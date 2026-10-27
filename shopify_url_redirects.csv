@@ -1,0 +1,5 @@
+Redirect from,Redirect to
+/llms.txt,/pages/llms-txt
+/assets/llms.txt,/pages/llms-txt
+/llms-full.txt,/pages/llms-full
+/assets/llms-full.txt,/pages/llms-full

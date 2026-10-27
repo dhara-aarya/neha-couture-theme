@@ -1,0 +1,460 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .promo-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+
+  @media screen and (min-width: 550px) {
+    .promo-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .promo-cards-grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop | default: 4 }}, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .promo-card {
+    position: relative;
+    border-radius: {{ section.settings.card_radius }}px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: {{ section.settings.card_height_mobile }}px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    .promo-card {
+      min-height: {{ section.settings.card_height_desktop }}px;
+    }
+  }
+
+  .promo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  }
+
+  .promo-card__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .promo-card__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+
+  .promo-card:hover .promo-card__bg img {
+    transform: scale(1.05);
+  }
+
+  .promo-card__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.88) 100%);
+  }
+
+  .promo-card__content {
+    position: relative;
+    z-index: 3;
+    padding: 2.4rem;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .promo-card__badge {
+    display: inline-block;
+    background-color: #673147;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .promo-card__title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.6rem;
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+  }
+
+  .promo-card__subtitle {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    margin: 0 0 1.4rem;
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8) !important;
+  }
+
+  .promo-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    padding: 0.8rem 1.6rem;
+    border-radius: 3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .promo-card:hover .promo-card__cta {
+    background: #673147;
+    border-color: #673147;
+    transform: translateX(4px);
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- assign is_de = false -%}
+    {%- if request.locale.iso_code == 'de' -%}
+      {%- assign is_de = true -%}
+    {%- endif -%}
+
+    {%- assign promo_title = section.settings.title -%}
+    {%- assign promo_subtitle = section.settings.subtitle -%}
+    {%- if is_de -%}
+      {%- assign promo_title = 'Ausgewählte Abteilungen' -%}
+      {%- assign promo_subtitle = 'Entdecken Sie indische Couture, wöchentlich frische Blumen, traditionelle Kosmetik & Spezialitäten in Berlin' -%}
+    {%- endif -%}
+
+    {%- if promo_title != blank -%}
+      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin center">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+          {{ promo_title }}
+        </h2>
+        {%- if promo_subtitle != blank -%}
+          <p class="collection__description">
+            {{ promo_subtitle }}
+          </p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="promo-cards-grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign card_title = block.settings.title
+          assign card_subtitle = block.settings.subtitle
+          assign card_badge = block.settings.badge
+          assign card_btn = block.settings.button_text
+
+          if is_de
+            if card_title contains 'Fashion' or card_title contains 'Couture'
+              assign card_title = 'Indische Mode & Couture'
+              assign card_subtitle = 'Lehengas, Saris, Anzüge, Schmuck & Herrenmode mit DHL Expressversand'
+              assign card_badge = 'Express-Versand'
+              assign card_btn = 'Mode entdecken'
+            elsif card_title contains 'Flower' or card_title contains 'Puja'
+              assign card_title = 'Frische Pooja-Blumen'
+              assign card_subtitle = 'Duftende Ringelblumen, Lotus & Jasmin wöchentlich frisch für Ihre Andacht'
+              assign card_badge = 'Frisch in Berlin'
+              assign card_btn = 'Blumen bestellen'
+            elsif card_title contains 'Cosmetic' or card_title contains 'Ayurvedic'
+              assign card_title = 'Ayurvedische Kosmetik'
+              assign card_subtitle = 'Authentischer Kajal, Kräuteröle & traditionelle Schönheitspflege'
+              assign card_badge = 'Pflege & Schönheit'
+              assign card_btn = 'Kosmetik shoppen'
+            elsif card_title contains 'Grocer' or card_title contains 'Pantry'
+              assign card_title = 'Indische Spezialitäten'
+              assign card_subtitle = 'Reines Ghee, Bio-Gewürze & Festtagsbedarf für die traditionelle Küche'
+              assign card_badge = 'Küche & Genuss'
+              assign card_btn = 'Spezialitäten entdecken'
+            endif
+          endif
+        -%}
+        <a
+          href="{{ block.settings.link | default: '#' }}"
+          class="promo-card"
+          role="listitem"
+          {{ block.shopify_attributes }}
+        >
+          <div class="promo-card__bg">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 900
+                | image_tag:
+                  loading: 'lazy',
+                  alt: card_title,
+                  class: 'promo-card__img'
+              }}
+            {%- elsif block.settings.asset_image != blank -%}
+              <img
+                src="{{ block.settings.asset_image | asset_url }}"
+                alt="{{ card_title | escape }}"
+                class="promo-card__img"
+                loading="lazy"
+                width="900"
+                height="600"
+              >
+            {%- elsif forloop.index == 1 -%}
+              <img
+                src="{{ 'tile-fashion.jpg' | asset_url }}"
+                alt="Indian Fashion & Couture"
+                class="promo-card__img"
+                loading="lazy"
+                width="900"
+                height="600"
+              >
+            {%- elsif forloop.index == 2 -%}
+              <img
+                src="{{ 'tile-flowers.jpg' | asset_url }}"
+                alt="Fresh Puja Flowers"
+                class="promo-card__img"
+                loading="lazy"
+                width="900"
+                height="600"
+              >
+            {%- elsif forloop.index == 3 -%}
+              <img
+                src="{{ 'tile-cosmetics.jpg' | asset_url }}"
+                alt="Indian Cosmetics & Ayurvedic Care"
+                class="promo-card__img"
+                loading="lazy"
+                width="900"
+                height="600"
+              >
+            {%- elsif forloop.index == 4 -%}
+              <img
+                src="{{ 'tile-grocery.jpg' | asset_url }}"
+                alt="Indian Grocery & Pantry Staples"
+                class="promo-card__img"
+                loading="lazy"
+                width="900"
+                height="600"
+              >
+            {%- else -%}
+              <div style="width:100%;height:100%;background:linear-gradient(135deg, #2b1821 0%, #103948 100%);"></div>
+            {%- endif -%}
+          </div>
+          <div class="promo-card__overlay"></div>
+          <div class="promo-card__content">
+            {%- if card_badge != blank -%}
+              <span class="promo-card__badge">{{ card_badge }}</span>
+            {%- endif -%}
+            {%- if card_title != blank -%}
+              <h3 class="promo-card__title">{{ card_title }}</h3>
+            {%- endif -%}
+            {%- if card_subtitle != blank -%}
+              <p class="promo-card__subtitle">{{ card_subtitle }}</p>
+            {%- endif -%}
+            {%- if card_btn != blank -%}
+              <span class="promo-card__cta">
+                {{ card_btn }}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            {%- endif -%}
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Promo Banner Cards",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Curated Collections"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "Subheading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "card_height_desktop",
+      "min": 240,
+      "max": 500,
+      "step": 20,
+      "unit": "px",
+      "label": "Card height desktop",
+      "default": 360
+    },
+    {
+      "type": "range",
+      "id": "card_height_mobile",
+      "min": 180,
+      "max": 350,
+      "step": 10,
+      "unit": "px",
+      "label": "Card height mobile",
+      "default": 240
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 16
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Promo Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "asset_image",
+          "label": "Asset Image Filename (Optional)",
+          "info": "e.g., promo-suits.jpg, promo-sarees.jpg, promo-ready.jpg"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "New Season"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Festive Sarees"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Handcrafted silk and zari work"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Explore Collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo Banner Cards",
+      "blocks": [
+        { "type": "card", "settings": { "title": "Bridal Lehengas", "badge": "Exclusive", "subtitle": "Intricate hand embroidery" } },
+        { "type": "card", "settings": { "title": "Pure Silk Sarees", "badge": "Bestsellers", "subtitle": "Authentic weaves direct from India" } },
+        { "type": "card", "settings": { "title": "Ready to Ship", "badge": "Fast Dispatch", "subtitle": "1-3 day delivery in Germany" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

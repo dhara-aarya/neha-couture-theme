@@ -1,0 +1,508 @@
+{%- if collection.handle == 'buy-saree-in-germany' or collection.handle == 'sarees' or collection.handle == 'saree' or collection.handle contains 'saree' and collection.handle != 'shape-your-sarees-with-stylish-underskirts-and-petticoats' -%}
+  {%- assign is_de = false -%}
+  {%- if request.locale.iso_code == 'de' -%}
+    {%- assign is_de = true -%}
+  {%- endif -%}
+
+  {%- style -%}
+    .saree-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .saree-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .saree-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .saree-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .saree-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .saree-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .saree-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .saree-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .saree-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .saree-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .saree-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .saree-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .saree-subcat-card.is-active .saree-subcat-circle,
+    .saree-subcat-card:hover .saree-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .saree-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .saree-subcat-card:hover .saree-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .saree-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 110px;
+      transition: color 0.2s ease;
+    }
+
+    .saree-subcat-card.is-active .saree-subcat-name,
+    .saree-subcat-card:hover .saree-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .saree-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .saree-subcat-card.is-active .saree-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .saree-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .saree-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .saree-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="saree-subcats-section">
+    <div class="page-width">
+      <div class="saree-subcats-header">
+        <h2 class="saree-subcats-title">
+          {%- if is_de -%}
+            Indische Saris nach Stil & Stoff shoppen
+          {%- else -%}
+            Shop Sarees By Style & Fabric
+          {%- endif -%}
+        </h2>
+        <p class="saree-subcats-subtitle">
+          {%- if is_de -%}
+            Entdecken Sie reine Seidensaris, Ready-to-Wear, Georgette, Organza-Gewebe und festliche Banarasi-Saris
+          {%- else -%}
+            Discover pure silk, ready-to-wear, lightweight georgette, organza tissue, and royal Banarasi sarees
+          {%- endif -%}
+        </p>
+      </div>
+
+      <div class="saree-subcats-track" role="list" id="SareeSubcatTrack">
+        <!-- 1. All Sarees -->
+        <button type="button" class="saree-subcat-card is-active" data-style="all" role="listitem">
+          <div class="saree-subcat-circle">
+            <img src="{{ 'subcat-saree-all.jpg' | asset_url }}" alt="All Sarees" width="100" height="100" loading="lazy">
+          </div>
+          <span class="saree-subcat-name">{% if is_de %}Alle Saris{% else %}All Sarees{% endif %}</span>
+          <span class="saree-subcat-count">76 Styles</span>
+        </button>
+
+        <!-- 2. Pure Silk -->
+        <button type="button" class="saree-subcat-card" data-style="silk" role="listitem">
+          <div class="saree-subcat-circle">
+            <img src="{{ 'subcat-saree-silk.jpg' | asset_url }}" alt="Pure Silk Sarees" width="100" height="100" loading="lazy">
+          </div>
+          <span class="saree-subcat-name">{% if is_de %}Seidensaris{% else %}Pure Silk{% endif %}</span>
+          <span class="saree-subcat-count">17 Styles</span>
+        </button>
+
+        <!-- 3. Ready To Wear -->
+        <button type="button" class="saree-subcat-card" data-style="ready-to-wear" role="listitem">
+          <div class="saree-subcat-circle">
+            <img src="{{ 'subcat-saree-ready.jpg' | asset_url }}" alt="Ready To Wear Sarees" width="100" height="100" loading="lazy">
+          </div>
+          <span class="saree-subcat-name">{% if is_de %}Ready To Wear{% else %}Ready To Wear{% endif %}</span>
+          <span class="saree-subcat-count">35 Styles</span>
+        </button>
+
+        <!-- 4. Georgette & Chiffon -->
+        <button type="button" class="saree-subcat-card" data-style="georgette" role="listitem">
+          <div class="saree-subcat-circle">
+            <img src="{{ 'subcat-saree-georgette.jpg' | asset_url }}" alt="Georgette and Chiffon Sarees" width="100" height="100" loading="lazy">
+          </div>
+          <span class="saree-subcat-name">{% if is_de %}Georgette & Chiffon{% else %}Georgette{% endif %}</span>
+          <span class="saree-subcat-count">13 Styles</span>
+        </button>
+
+        <!-- 5. Partywear & Sequin -->
+        <button type="button" class="saree-subcat-card" data-style="partywear" role="listitem">
+          <div class="saree-subcat-circle">
+            <img src="{{ 'subcat-saree-partywear.jpg' | asset_url }}" alt="Partywear and Sequin Sarees" width="100" height="100" loading="lazy">
+          </div>
+          <span class="saree-subcat-name">{% if is_de %}Partywear & Pailletten{% else %}Party & Sequin{% endif %}</span>
+          <span class="saree-subcat-count">25 Styles</span>
+        </button>
+
+        <!-- 6. Organza & Tissue -->
+        <button type="button" class="saree-subcat-card" data-style="organza" role="listitem">
+          <div class="saree-subcat-circle">
+            <img src="{{ 'subcat-saree-organza.jpg' | asset_url }}" alt="Organza and Tissue Sarees" width="100" height="100" loading="lazy">
+          </div>
+          <span class="saree-subcat-name">{% if is_de %}Organza & Tissue{% else %}Organza & Tissue{% endif %}</span>
+          <span class="saree-subcat-count">61 Styles</span>
+        </button>
+
+        <!-- 7. Banarasi Heritage -->
+        <button type="button" class="saree-subcat-card" data-style="banarasi" role="listitem">
+          <div class="saree-subcat-circle">
+            <img src="{{ 'subcat-saree-banarasi.jpg' | asset_url }}" alt="Banarasi Heritage Sarees" width="100" height="100" loading="lazy">
+          </div>
+          <span class="saree-subcat-name">{% if is_de %}Banarasi-Saris{% else %}Banarasi Zari{% endif %}</span>
+          <span class="saree-subcat-count">17 Styles</span>
+        </button>
+
+        <!-- 8. Cotton & Linen -->
+        <button type="button" class="saree-subcat-card" data-style="cotton" role="listitem">
+          <div class="saree-subcat-circle">
+            <img src="{{ 'subcat-saree-cotton.jpg' | asset_url }}" alt="Cotton and Linen Sarees" width="100" height="100" loading="lazy">
+          </div>
+          <span class="saree-subcat-name">{% if is_de %}Baumwolle & Leinen{% else %}Cotton & Linen{% endif %}</span>
+          <span class="saree-subcat-count">61 Styles</span>
+        </button>
+
+        <!-- 9. Bandhej & Bandhani -->
+        <button type="button" class="saree-subcat-card" data-style="bandhej" role="listitem">
+          <div class="saree-subcat-circle">
+            <img src="{{ 'subcat-saree-bandhej.jpg' | asset_url }}" alt="Bandhej and Bandhani Sarees" width="100" height="100" loading="lazy">
+          </div>
+          <span class="saree-subcat-name">{% if is_de %}Bandhej & Bandhani{% else %}Bandhej Silk{% endif %}</span>
+          <span class="saree-subcat-count">7 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="SareeFilterStatusBar" class="saree-filter-status-bar">
+        <span id="SareeFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="SareeFilterResetBtn" class="saree-reset-btn">
+          {%- if is_de -%}✕ Filter zurücksetzen{%- else -%}✕ Clear Filter{%- endif -%}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const isDe = {{ is_de | json }};
+      let cachedSarees = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+
+      fetch("{{ 'saree-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedSarees = data.filter(p => p.inventory === undefined || p.inventory > 0);
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading saree catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function renderFilteredProducts(items, styleName) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('SareeFilterStatusBar');
+        const statusText = document.getElementById('SareeFilterStatusText');
+          const isAllView = !styleName || styleName === (isDe ? "Alle Saris" : "All Sarees");
+          if (statusBar && statusText) {
+            if (isAllView) {
+              statusBar.style.display = "none";
+            } else {
+              statusBar.style.display = "flex";
+              statusText.innerHTML = isDe
+                ? `Filter: <strong>${styleName}</strong> (${items.length} Modelle gefunden)`
+                : `Filtered: <strong>${styleName}</strong> (${items.length} styles found)`;
+            }
+          }
+
+        grid.innerHTML = items.map(p => {
+          const img = p.image || '';
+          const price = p.price || '0.00';
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+        function restoreOriginal() {
+          const cards = document.querySelectorAll(".saree-subcat-card");
+          cards.forEach(c => {
+            if (c.getAttribute("data-style") === "all") c.classList.add("is-active");
+            else c.classList.remove("is-active");
+          });
+
+          if (history.replaceState) {
+            history.replaceState(null, "", window.location.pathname);
+          }
+
+          if (cachedSarees) {
+            renderFilteredProducts(cachedSarees, isDe ? "Alle Saris" : "All Sarees");
+          } else {
+            const grid = getTargetGrid();
+            if (grid && originalGridHTML) {
+              grid.innerHTML = originalGridHTML;
+            }
+          }
+
+          const statusBar = document.getElementById("SareeFilterStatusBar");
+          if (statusBar) statusBar.style.display = "none";
+        }
+
+      function handleFilterClick(styleKey, styleName) {
+        const cards = document.querySelectorAll('.saree-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          const newUrl = styleKey === 'all' 
+            ? window.location.pathname 
+            : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (styleKey === 'all') {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedSarees) {
+          fetch("{{ 'saree-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedSarees = data.filter(p => p.inventory === undefined || p.inventory > 0);
+              const matches = cachedSarees.filter(b => b.styles && b.styles.includes(styleKey));
+              renderFilteredProducts(matches, styleName);
+            });
+        } else {
+          const matches = cachedSarees.filter(b => b.styles && b.styles.includes(styleKey));
+          renderFilteredProducts(matches, styleName);
+        }
+      }
+
+        function checkInitialURL() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const style = urlParams.get("style") || urlParams.get("type") || window.location.hash.replace("#", "");
+          if (style && style !== "all") {
+            const targetCard = document.querySelector(`.saree-subcat-card[data-style="${style}"]`);
+            if (targetCard) {
+              const name = targetCard.querySelector(".saree-subcat-name").textContent.trim();
+              handleFilterClick(style, name);
+            }
+          } else if (style === "all") {
+            handleFilterClick("all", isDe ? "Alle Saris" : "All Sarees");
+          }
+        }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('SareeSubcatTrack');
+        const resetBtn = document.getElementById('SareeFilterResetBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.saree-subcat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.saree-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+
+        setTimeout(captureOriginal, 1000);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Saree Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Saree Subcategories"
+    }
+  ]
+}
+{% endschema %}

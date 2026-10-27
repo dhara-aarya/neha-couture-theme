@@ -1,0 +1,459 @@
+{%- if collection.handle == 'necklaces' or collection.handle contains 'necklace' -%}
+  {%- style -%}
+    .necklace-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .necklace-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .necklace-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .necklace-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .necklace-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .necklace-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .necklace-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .necklace-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .necklace-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .necklace-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .necklace-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .necklace-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .necklace-subcat-card.is-active .necklace-subcat-circle,
+    .necklace-subcat-card:hover .necklace-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .necklace-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .necklace-subcat-card:hover .necklace-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .necklace-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 110px;
+      transition: color 0.2s ease;
+    }
+
+    .necklace-subcat-card.is-active .necklace-subcat-name,
+    .necklace-subcat-card:hover .necklace-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .necklace-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .necklace-subcat-card.is-active .necklace-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .necklace-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .necklace-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .necklace-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="necklace-subcats-section">
+    <div class="page-width">
+      <div class="necklace-subcats-header">
+        <h2 class="necklace-subcats-title">Shop Indian & Modern Necklaces By Style</h2>
+        <p class="necklace-subcats-subtitle">Explore American Diamond (AD) sets, bridal chokers, Kundan necklace sets, and mangalsutras</p>
+      </div>
+
+      <div class="necklace-subcats-track" role="list" id="NecklaceSubcatTrack">
+        <!-- 1. All Necklaces -->
+        <button type="button" class="necklace-subcat-card is-active" data-style="all" role="listitem">
+          <div class="necklace-subcat-circle">
+            <img src="{{ 'subcat-necklace-all.jpg' | asset_url }}" alt="All Necklaces" width="100" height="100" loading="lazy">
+          </div>
+          <span class="necklace-subcat-name">All Necklaces</span>
+          <span class="necklace-subcat-count">497 Styles</span>
+        </button>
+
+        <!-- 2. Necklace Sets (with Earrings) -->
+        <button type="button" class="necklace-subcat-card" data-style="necklace-set" role="listitem">
+          <div class="necklace-subcat-circle">
+            <img src="{{ 'subcat-necklace-set.jpg' | asset_url }}" alt="Necklace Sets with Earrings" width="100" height="100" loading="lazy">
+          </div>
+          <span class="necklace-subcat-name">Necklace Sets</span>
+          <span class="necklace-subcat-count">413 Styles</span>
+        </button>
+
+        <!-- 3. American Diamond (AD) Necklaces -->
+        <button type="button" class="necklace-subcat-card" data-style="ad-necklace" role="listitem">
+          <div class="necklace-subcat-circle">
+            <img src="{{ 'subcat-necklace-ad.jpg' | asset_url }}" alt="American Diamond AD Necklaces" width="100" height="100" loading="lazy">
+          </div>
+          <span class="necklace-subcat-name">AD Diamond Sets</span>
+          <span class="necklace-subcat-count">65 Styles</span>
+        </button>
+
+        <!-- 4. Chokers & Gold Chokers -->
+        <button type="button" class="necklace-subcat-card" data-style="choker" role="listitem">
+          <div class="necklace-subcat-circle">
+            <img src="{{ 'subcat-necklace-choker.jpg' | asset_url }}" alt="Chokers & Gold Chokers" width="100" height="100" loading="lazy">
+          </div>
+          <span class="necklace-subcat-name">Chokers</span>
+          <span class="necklace-subcat-count">175 Styles</span>
+        </button>
+
+        <!-- 5. Kundan & Bridal Sets -->
+        <button type="button" class="necklace-subcat-card" data-style="kundan" role="listitem">
+          <div class="necklace-subcat-circle">
+            <img src="{{ 'subcat-necklace-set.jpg' | asset_url }}" alt="Kundan & Bridal Sets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="necklace-subcat-name">Kundan Sets</span>
+          <span class="necklace-subcat-count">175 Styles</span>
+        </button>
+
+        <!-- 6. Mangalsutra -->
+        <button type="button" class="necklace-subcat-card" data-style="mangalsutra" role="listitem">
+          <div class="necklace-subcat-circle">
+            <img src="{{ 'subcat-necklace-mangalsutra.jpg' | asset_url }}" alt="Mangalsutra" width="100" height="100" loading="lazy">
+          </div>
+          <span class="necklace-subcat-name">Mangalsutra</span>
+          <span class="necklace-subcat-count">5 Styles</span>
+        </button>
+
+        <!-- 7. Pendant Sets & Malas -->
+        <button type="button" class="necklace-subcat-card" data-style="pendant-mala" role="listitem">
+          <div class="necklace-subcat-circle">
+            <img src="{{ 'subcat-necklace-pendant.jpg' | asset_url }}" alt="Pendant Sets & Malas" width="100" height="100" loading="lazy">
+          </div>
+          <span class="necklace-subcat-name">Pendant & Mala</span>
+          <span class="necklace-subcat-count">85 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="NecklaceFilterStatusBar" class="necklace-filter-status-bar">
+        <span id="NecklaceFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="NecklaceFilterResetBtn" class="necklace-reset-btn">✕ Clear Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let cachedNecklaces = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+
+      fetch("{{ 'necklace-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedNecklaces = data;
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading necklace catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function renderFilteredProducts(items, styleName) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('NecklaceFilterStatusBar');
+        const statusText = document.getElementById('NecklaceFilterStatusText');
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Filtered: <strong>${styleName}</strong> (${items.length} styles found)`;
+        }
+
+        grid.innerHTML = items.map(p => {
+          const img = p.image || '';
+          const price = p.price || '0.00';
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function restoreOriginal() {
+        const grid = getTargetGrid();
+        if (grid && originalGridHTML) {
+          grid.innerHTML = originalGridHTML;
+        }
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = '';
+
+        updateCountDisplays(497);
+
+        const statusBar = document.getElementById('NecklaceFilterStatusBar');
+        if (statusBar) statusBar.style.display = 'none';
+
+        const cards = document.querySelectorAll('.necklace-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === 'all') c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      function handleFilterClick(styleKey, styleName) {
+        const cards = document.querySelectorAll('.necklace-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          const newUrl = styleKey === 'all' 
+            ? window.location.pathname 
+            : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (styleKey === 'all') {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedNecklaces) {
+          fetch("{{ 'necklace-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedNecklaces = data;
+              const matches = cachedNecklaces.filter(b => b.styles && b.styles.includes(styleKey));
+              renderFilteredProducts(matches, styleName);
+            });
+        } else {
+          const matches = cachedNecklaces.filter(b => b.styles && b.styles.includes(styleKey));
+          renderFilteredProducts(matches, styleName);
+        }
+      }
+
+      function checkInitialURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style') || window.location.hash.replace('#', '');
+        if (style && style !== 'all') {
+          const targetCard = document.querySelector(`.necklace-subcat-card[data-style="${style}"]`);
+          if (targetCard) {
+            const name = targetCard.querySelector('.necklace-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('NecklaceSubcatTrack');
+        const resetBtn = document.getElementById('NecklaceFilterResetBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.necklace-subcat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.necklace-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Necklace Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Necklace Subcategories"
+    }
+  ]
+}
+{% endschema %}

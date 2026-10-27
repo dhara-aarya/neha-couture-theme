@@ -1,0 +1,697 @@
+{%- comment -%}
+  Dedicated Winter Wear Special Page with Interactive Subcategory Filters
+  Bilingual: English & German (EN / DE)
+{%- endcomment -%}
+
+{%- assign is_de = false -%}
+{%- if request.locale.iso_code == 'de' -%}
+  {%- assign is_de = true -%}
+{%- endif -%}
+
+{%- style -%}
+  .winter-page-container {
+    padding-bottom: 6rem;
+  }
+
+  .winter-hero-banner {
+    background: linear-gradient(135deg, #103948 0%, #1e4d5f 50%, #2c6277 100%);
+    color: #ffffff;
+    text-align: center;
+    padding: 4.8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .winter-hero-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .winter-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    padding: 0.5rem 1.6rem;
+    border-radius: 3rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .winter-hero-title {
+    font-family: var(--font-heading-family);
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 1.2rem;
+    line-height: 1.2;
+  }
+
+  @media screen and (min-width: 750px) {
+    .winter-hero-title {
+      font-size: 4.6rem;
+    }
+  }
+
+  .winter-hero-subtitle {
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 760px;
+    margin: 0 auto 2rem;
+    line-height: 1.55;
+  }
+
+  .winter-hero-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.6rem;
+    font-size: 1.35rem;
+    color: #f7e6ce;
+    font-weight: 500;
+  }
+
+  .winter-hero-highlights span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Subcategories Navigation Bar */
+  .winter-subcats-bar {
+    background: #faf7f2;
+    border-bottom: 1px solid #ebd9c8;
+    padding: 2.8rem 0 3.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 4px 16px rgba(16, 57, 72, 0.04);
+  }
+
+  .winter-subcats-title {
+    text-align: center;
+    font-family: var(--font-heading-family);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #103948;
+    margin: 0 0 0.4rem;
+  }
+
+  .winter-subcats-subtitle {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #55666f;
+    margin: 0 0 2rem;
+  }
+
+  .winter-subcats-track {
+    display: flex;
+    gap: 1.6rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0.5rem 1rem 1.6rem;
+    justify-content: flex-start;
+  }
+
+  .winter-subcats-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media screen and (min-width: 990px) {
+    .winter-subcats-track {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2.2rem;
+    }
+  }
+
+  .winter-subcat-card {
+    flex: 0 0 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    transition: transform 0.25s ease;
+    outline: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .winter-subcat-card {
+      flex: 0 0 130px;
+    }
+  }
+
+  .winter-subcat-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .winter-subcat-circle {
+    position: relative;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 14px rgba(103, 49, 71, 0.15);
+    transition: all 0.25s ease;
+    background: #ffffff;
+  }
+
+  @media screen and (min-width: 750px) {
+    .winter-subcat-circle {
+      width: 104px;
+      height: 104px;
+    }
+  }
+
+  .winter-subcat-card.is-active .winter-subcat-circle,
+  .winter-subcat-card:hover .winter-subcat-circle {
+    border-color: #673147;
+    box-shadow: 0 6px 20px rgba(103, 49, 71, 0.35);
+    transform: scale(1.06);
+  }
+
+  .winter-subcat-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.35s ease;
+  }
+
+  .winter-subcat-card:hover .winter-subcat-circle img {
+    transform: scale(1.1);
+  }
+
+  .winter-subcat-name {
+    margin-top: 1rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #103948;
+    line-height: 1.25;
+    max-width: 120px;
+    transition: color 0.2s ease;
+  }
+
+  .winter-subcat-card.is-active .winter-subcat-name,
+  .winter-subcat-card:hover .winter-subcat-name {
+    color: #673147;
+    font-weight: 700;
+  }
+
+  .winter-subcat-count {
+    font-size: 1.15rem;
+    color: #7b8b93;
+    margin-top: 0.3rem;
+    font-weight: 500;
+  }
+
+  .winter-subcat-card.is-active .winter-subcat-count {
+    color: #673147;
+    font-weight: 600;
+  }
+
+  /* Status Bar */
+  .winter-status-bar {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border: 1px solid #ebd9c8;
+    border-radius: 30px;
+    padding: 0.9rem 2rem;
+    margin: 1.6rem auto 0;
+    max-width: 600px;
+    font-size: 1.35rem;
+    color: #103948;
+    box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+  }
+
+  .winter-reset-btn {
+    background: #673147;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1.4rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .winter-reset-btn:hover {
+    background: #923e61;
+  }
+
+  /* Product Grid */
+  .winter-grid-wrapper {
+    padding-top: 3.6rem;
+  }
+
+  .winter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .winter-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.4rem;
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .winter-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.8rem;
+    }
+  }
+
+  .winter-product-card {
+    background: #ffffff;
+    border: 1px solid #f0e6de;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .winter-product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(103, 49, 71, 0.12);
+  }
+
+  .winter-card-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: #fdfaf6;
+  }
+
+  .winter-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+  }
+
+  .winter-product-card:hover .winter-card-media img {
+    transform: scale(1.06);
+  }
+
+  .winter-card-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #673147;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+  }
+
+  .winter-card-info {
+    padding: 1.6rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .winter-card-title {
+    font-size: 1.45rem;
+    line-height: 1.35;
+    font-weight: 600;
+    margin: 0 0 0.8rem;
+    color: #103948;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 3.9rem;
+  }
+
+  .winter-card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .winter-card-title a:hover {
+    color: #673147;
+  }
+
+  .winter-card-price {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #673147;
+    margin-bottom: 1.2rem;
+  }
+
+  .winter-card-action {
+    margin-top: auto;
+  }
+
+  .winter-card-btn {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 1.2rem;
+    background: transparent;
+    color: #673147;
+    border: 1.5px solid #673147;
+    border-radius: 6px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+  }
+
+    .winter-product-card.is-sold-out {
+    opacity: 0.72;
+  }
+
+  .winter-card-badge--soldout {
+    background: #68757d !important;
+  }
+
+  .winter-card-btn--disabled {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 1.2rem;
+    background: #f1ede8;
+    color: #7b8b93;
+    border: 1.5px solid #dfd8cf;
+    border-radius: 6px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: default;
+  }
+
+  .winter-card-btn:hover {
+    background: #673147;
+    color: #ffffff;
+  }
+{%- endstyle -%}
+
+<div class="winter-page-container">
+  <!-- Hero Banner -->
+  <div class="winter-hero-banner">
+    <div class="page-width">
+      <div class="winter-hero-badge">
+        ❄️ {% if is_de %}Winterkollektion 2026{% else %}Winter Collection 2026{% endif %}
+      </div>
+      <h1 class="winter-hero-title">
+        {% if is_de %}
+          Exklusive Indische Wintermode in Deutschland
+        {% else %}
+          Indian Winter Wear & Woolen Couture
+        {% endif %}
+      </h1>
+      <p class="winter-hero-subtitle">
+        {% if is_de %}
+          Entdecken Sie edle Samtanzüge (Velvet Suits), wärmende Palazzo-Sets, bequeme Winter-Kurtas und handgefertigte Wollschals. Direkt aus unserem Berliner Lager mit schnellem 1–3 Werktage DHL-Versand.
+        {% else %}
+          Discover hand-embroidered velvet suits, cozy woolen palazzo sets, daily warm straight kurtas, and handcrafted embroidered shawls. Fast 1–3 business day DHL dispatch directly from Berlin.
+        {% endif %}
+      </p>
+      <div class="winter-hero-highlights">
+        <span>🚚 {% if is_de %}1–3 Tage DHL-Expressversand{% else %}1–3 Days Tracked DHL Shipping{% endif %}</span>
+        <span>•</span>
+        <span>📍 {% if is_de %}Showroom Potsdamer Platz, Berlin{% else %}Berlin Potsdamer Platz Showroom{% endif %}</span>
+        <span>•</span>
+        <span>🧵 {% if is_de %}Warme Premium-Stoffe & Innenfutter{% else %}Cozy Premium Fabrics with Inner Lining{% endif %}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subcategory Filter Bar -->
+  <div class="winter-subcats-bar">
+    <div class="page-width">
+      <h2 class="winter-subcats-title">
+        {% if is_de %}Nach Winter-Kategorie filtern{% else %}Shop By Winter Category{% endif %}
+      </h2>
+      <p class="winter-subcats-subtitle">
+        {% if is_de %}Wählen Sie einen Stil für sofortige Ansicht passende Modelle{% else %}Select any style below to instantly view matching winter outfits{% endif %}
+      </p>
+
+      <div class="winter-subcats-track" role="list" id="WinterSubcatsTrack">
+        <!-- 1. All Winter Wear (33 items) -->
+        <button type="button" class="winter-subcat-card is-active" data-style="all" role="listitem">
+          <div class="winter-subcat-circle">
+            <img src="{{ 'subcat-winter-all.jpg' | asset_url }}" alt="{% if is_de %}Alle Winterartikel{% else %}All Winter Wear{% endif %}" width="104" height="104" loading="eager">
+          </div>
+          <span class="winter-subcat-name">{% if is_de %}Alle Artikel{% else %}All Winter Wear{% endif %}</span>
+          <span class="winter-subcat-count">25 Styles</span>
+        </button>
+
+        <!-- 2. Velvet Suits (10 items) -->
+        <button type="button" class="winter-subcat-card" data-style="velvet" role="listitem">
+          <div class="winter-subcat-circle">
+            <img src="{{ 'subcat-winter-velvet.jpg' | asset_url }}" alt="{% if is_de %}Samtanzüge{% else %}Velvet Suits{% endif %}" width="104" height="104" loading="eager">
+          </div>
+          <span class="winter-subcat-name">{% if is_de %}Samtanzüge (Velvet){% else %}Velvet Suits{% endif %}</span>
+          <span class="winter-subcat-count">5 Styles</span>
+        </button>
+
+        <!-- 3. Palazzo & Trouser Sets (7 items) -->
+        <button type="button" class="winter-subcat-card" data-style="palazzo-sets" role="listitem">
+          <div class="winter-subcat-circle">
+            <img src="{{ 'subcat-winter-palazzo.jpg' | asset_url }}" alt="{% if is_de %}Palazzo-Sets{% else %}Palazzo Suit Sets{% endif %}" width="104" height="104" loading="eager">
+          </div>
+          <span class="winter-subcat-name">{% if is_de %}Palazzo-Sets{% else %}Palazzo Suit Sets{% endif %}</span>
+          <span class="winter-subcat-count">3 Styles</span>
+        </button>
+
+        <!-- 4. Warm Daily Kurtas (15 items) -->
+        <button type="button" class="winter-subcat-card" data-style="warm-kurtas" role="listitem">
+          <div class="winter-subcat-circle">
+            <img src="{{ 'subcat-winter-kurtas.jpg' | asset_url }}" alt="{% if is_de %}Warme Kurtas{% else %}Warm Daily Kurtas{% endif %}" width="104" height="104" loading="eager">
+          </div>
+          <span class="winter-subcat-name">{% if is_de %}Warme Kurtas{% else %}Warm Daily Kurtas{% endif %}</span>
+          <span class="winter-subcat-count">14 Styles</span>
+        </button>
+
+        <!-- 5. Woolen Shawls (1 item) -->
+        <button type="button" class="winter-subcat-card" data-style="shawls" role="listitem">
+          <div class="winter-subcat-circle">
+            <img src="{{ 'subcat-winter-shawls.jpg' | asset_url }}" alt="{% if is_de %}Wollschals{% else %}Woolen Shawls{% endif %}" width="104" height="104" loading="eager">
+          </div>
+          <span class="winter-subcat-name">{% if is_de %}Wollschals{% else %}Woolen Shawls{% endif %}</span>
+          <span class="winter-subcat-count">3 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Status Bar -->
+      <div id="WinterFilterStatusBar" class="winter-status-bar">
+        <span id="WinterFilterStatusText">{% if is_de %}Filter aktiv{% else %}Filtered{% endif %}</span>
+        <button type="button" id="WinterFilterResetBtn" class="winter-reset-btn">✕ {% if is_de %}Filter zurücksetzen{% else %}Clear Filter{% endif %}</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Grid Container -->
+  <div class="winter-grid-wrapper page-width">
+    <div id="WinterProductCount" style="margin-bottom: 2rem; font-size: 1.4rem; color: #55666f; font-weight: 500;">
+      {% if is_de %}25 Artikel in der Winterkollektion{% else %}25 Products in Winter Collection{% endif %}
+    </div>
+
+    <ul class="winter-grid" id="WinterProductGrid" role="list">
+      <!-- Dynamic Products Injected via JS -->
+    </ul>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const isDe = {{ is_de | json }};
+    let cachedWinter = null;
+
+    fetch("{{ 'winter-products.json' | asset_url }}")
+      .then(res => res.json())
+      .then(data => {
+        cachedWinter = data.filter(p => p.in_stock !== false && (p.inventory === undefined || p.inventory > 0));
+        renderInitial();
+      })
+      .catch(err => console.error('Error loading winter products catalog:', err));
+
+    function renderInitial() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const style = urlParams.get('style') || window.location.hash.replace('#', '') || 'all';
+      const targetCard = document.querySelector(`.winter-subcat-card[data-style="${style}"]`);
+      if (targetCard) {
+        const name = targetCard.querySelector('.winter-subcat-name').textContent.trim();
+        handleFilter(style, name);
+      } else {
+        handleFilter('all', isDe ? 'Alle Artikel' : 'All Winter Wear');
+      }
+    }
+
+    function renderProducts(items, styleName) {
+      const grid = document.getElementById('WinterProductGrid');
+      const countEl = document.getElementById('WinterProductCount');
+      const statusBar = document.getElementById('WinterFilterStatusBar');
+      const statusText = document.getElementById('WinterFilterStatusText');
+
+      if (!grid) return;
+
+      if (countEl) {
+        countEl.textContent = isDe 
+          ? `${items.length} Artikel gefunden` 
+          : `${items.length} Products Found`;
+      }
+
+      if (statusBar && statusText) {
+        if (styleName && styleName !== (isDe ? 'Alle Artikel' : 'All Winter Wear')) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = isDe
+            ? `Filter: <strong>${styleName}</strong> (${items.length} Artikel)`
+            : `Filtered: <strong>${styleName}</strong> (${items.length} Styles)`;
+        } else {
+          statusBar.style.display = 'none';
+        }
+      }
+
+      grid.innerHTML = items.map(p => {
+        const img = p.image || "";
+        const price = parseFloat(p.price || 0).toFixed(2);
+        const isAvailable = p.in_stock !== false && (p.inventory === undefined || p.inventory > 0);
+
+        let badgeLabel = "";
+        let badgeClass = "winter-card-badge";
+        if (!isAvailable) {
+          badgeLabel = isDe ? "Ausverkauft" : "Sold Out";
+          badgeClass += " winter-card-badge--soldout";
+        } else if (p.category === "velvet") {
+          badgeLabel = isDe ? "Samt / Velvet" : "Velvet Suit";
+        } else if (p.category === "palazzo-sets") {
+          badgeLabel = isDe ? "Komplett-Set" : "Palazzo Set";
+        } else if (p.category === "shawls") {
+          badgeLabel = isDe ? "Wolle / Stola" : "Wool Stole";
+        } else {
+          badgeLabel = isDe ? "Winter" : "Warm Kurta";
+        }
+
+        const actionBtn = isAvailable
+          ? `<a href="/products/${p.handle}" class="winter-card-btn">${isDe ? "Details ansehen" : "View Outfit"} &rarr;</a>`
+          : `<span class="winter-card-btn--disabled">${isDe ? "Derzeit ausverkauft" : "Sold Out"}</span>`;
+
+        return `
+          <li class="winter-product-card${isAvailable ? "" : " is-sold-out"}">
+            <div class="winter-card-media">
+              <a href="/products/${p.handle}">
+                <img src="${img}" alt="${p.title}" loading="lazy">
+              </a>
+              <span class="${badgeClass}">${badgeLabel}</span>
+            </div>
+            <div class="winter-card-info">
+              <h3 class="winter-card-title">
+                <a href="/products/${p.handle}">${p.title}</a>
+              </h3>
+              <div class="winter-card-price">€${price}</div>
+              <div class="winter-card-action">
+                ${actionBtn}
+              </div>
+            </div>
+          </li>
+        `;
+      }).join("");
+    }
+
+    function handleFilter(styleKey, styleName) {
+      const cards = document.querySelectorAll('.winter-subcat-card');
+      cards.forEach(c => {
+        if (c.getAttribute('data-style') === styleKey) {
+          c.classList.add('is-active');
+        } else {
+          c.classList.remove('is-active');
+        }
+      });
+
+      if (history.replaceState) {
+        const newUrl = styleKey === 'all'
+          ? window.location.pathname
+          : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+        history.replaceState(null, '', newUrl);
+      }
+
+      if (!cachedWinter) return;
+
+      let filtered = cachedWinter;
+      if (styleKey !== 'all') {
+        filtered = cachedWinter.filter(p => {
+          return p.category === styleKey || (p.categories && p.categories.includes(styleKey));
+        });
+      }
+
+      renderProducts(filtered, styleName);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const track = document.getElementById('WinterSubcatsTrack');
+      const resetBtn = document.getElementById('WinterFilterResetBtn');
+
+      if (track) {
+        track.querySelectorAll('.winter-subcat-card').forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.winter-subcat-name').textContent.trim();
+            handleFilter(style, name);
+          });
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          handleFilter('all', isDe ? 'Alle Artikel' : 'All Winter Wear');
+        });
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Winter Wear Page",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Winter Wear Page"
+    }
+  ]
+}
+{% endschema %}

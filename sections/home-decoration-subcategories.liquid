@@ -1,0 +1,489 @@
+{%- if collection.handle == 'home-decoration' or collection.handle == 'home-decor' or collection.handle == 'decor' or collection.handle == 'diwali-decorations' or collection.handle contains 'decor' or collection.handle contains 'toran' or collection.handle contains 'diya' -%}
+  {%- assign is_de = false -%}
+  {%- if request.locale.iso_code == 'de' -%}
+    {%- assign is_de = true -%}
+  {%- endif -%}
+
+  {%- style -%}
+    .home-decor-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .home-decor-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .home-decor-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .home-decor-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .home-decor-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .home-decor-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .home-decor-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .home-decor-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .home-decor-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .home-decor-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .home-decor-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .home-decor-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .home-decor-subcat-card.is-active .home-decor-subcat-circle,
+    .home-decor-subcat-card:hover .home-decor-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .home-decor-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .home-decor-subcat-card:hover .home-decor-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .home-decor-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 115px;
+      transition: color 0.2s ease;
+    }
+
+    .home-decor-subcat-card.is-active .home-decor-subcat-name,
+    .home-decor-subcat-card:hover .home-decor-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .home-decor-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .home-decor-subcat-card.is-active .home-decor-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .home-decor-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .home-decor-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .home-decor-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="home-decor-subcats-section">
+    <div class="page-width">
+      <div class="home-decor-subcats-header">
+        <h2 class="home-decor-subcats-title">
+          {%- if is_de -%}
+            Indische Festtags- & Heimdeko nach Typ shoppen
+          {%- else -%}
+            Shop Handcrafted Home Decor By Type
+          {%- endif -%}
+        </h2>
+        <p class="home-decor-subcats-subtitle">
+          {%- if is_de -%}
+            Wählen Sie aus handgefertigten Diyas, edlen Torans, Lotus-Urlis, Latkans und festlichen Girlanden
+          {%- else -%}
+            Choose from authentic diyas, decorative latkans, lotus urlis, metal bandarwals, and festive hangings
+          {%- endif -%}
+        </p>
+      </div>
+
+      <div class="home-decor-subcats-track" role="list" id="HomeDecorSubcatTrack">
+        <!-- 1. All Home Decor -->
+        <button type="button" class="home-decor-subcat-card is-active" data-style="all" role="listitem">
+          <div class="home-decor-subcat-circle">
+            <img src="{{ 'subcat-decor-all.jpg' | asset_url }}" alt="All Home Decor" width="100" height="100" loading="lazy">
+          </div>
+          <span class="home-decor-subcat-name">{% if is_de %}Alle Dekoartikel{% else %}All Decor{% endif %}</span>
+          <span class="home-decor-subcat-count">259 Styles</span>
+        </button>
+
+        <!-- 2. Diyas & Candle Holders -->
+        <button type="button" class="home-decor-subcat-card" data-style="diya" role="listitem">
+          <div class="home-decor-subcat-circle">
+            <img src="{{ 'subcat-decor-diya.jpg' | asset_url }}" alt="Diya and Candle Holders" width="100" height="100" loading="lazy">
+          </div>
+          <span class="home-decor-subcat-name">{% if is_de %}Diyas & Lichter{% else %}Diya & Candles{% endif %}</span>
+          <span class="home-decor-subcat-count">49 Styles</span>
+        </button>
+
+        <!-- 3. Latkans & Tassels -->
+        <button type="button" class="home-decor-subcat-card" data-style="latkan" role="listitem">
+          <div class="home-decor-subcat-circle">
+            <img src="{{ 'subcat-decor-latkan.jpg' | asset_url }}" alt="Latkan and Tassels" width="100" height="100" loading="lazy">
+          </div>
+          <span class="home-decor-subcat-name">{% if is_de %}Latkans & Quasten{% else %}Latkan & Tassels{% endif %}</span>
+          <span class="home-decor-subcat-count">12 Styles</span>
+        </button>
+
+        <!-- 4. Decorative Urlis -->
+        <button type="button" class="home-decor-subcat-card" data-style="urli" role="listitem">
+          <div class="home-decor-subcat-circle">
+            <img src="{{ 'subcat-decor-urli.jpg' | asset_url }}" alt="Decorative Urlis" width="100" height="100" loading="lazy">
+          </div>
+          <span class="home-decor-subcat-name">{% if is_de %}Lotus & Urlis{% else %}Lotus & Urlis{% endif %}</span>
+          <span class="home-decor-subcat-count">11 Styles</span>
+        </button>
+
+        <!-- 5. Bandarwals & Torans -->
+        <button type="button" class="home-decor-subcat-card" data-style="bandarwal" role="listitem">
+          <div class="home-decor-subcat-circle">
+            <img src="{{ 'subcat-decor-bandarwal.jpg' | asset_url }}" alt="Bandarwal and Torans" width="100" height="100" loading="lazy">
+          </div>
+          <span class="home-decor-subcat-name">{% if is_de %}Bandarwal & Toran{% else %}Bandarwal & Toran{% endif %}</span>
+          <span class="home-decor-subcat-count">27 Styles</span>
+        </button>
+
+        <!-- 6. Door & Wall Hangings -->
+        <button type="button" class="home-decor-subcat-card" data-style="hanging" role="listitem">
+          <div class="home-decor-subcat-circle">
+            <img src="{{ 'subcat-decor-hanging.jpg' | asset_url }}" alt="Wall and Door Hangings" width="100" height="100" loading="lazy">
+          </div>
+          <span class="home-decor-subcat-name">{% if is_de %}Wand- & Türbehänge{% else %}Wall & Hangings{% endif %}</span>
+          <span class="home-decor-subcat-count">119 Styles</span>
+        </button>
+
+        <!-- 7. Floral Garlands -->
+        <button type="button" class="home-decor-subcat-card" data-style="garlands" role="listitem">
+          <div class="home-decor-subcat-circle">
+            <img src="{{ 'subcat-decor-garlands.jpg' | asset_url }}" alt="Floral Garlands" width="100" height="100" loading="lazy">
+          </div>
+          <span class="home-decor-subcat-name">{% if is_de %}Festtags-Girlanden{% else %}Floral Garlands{% endif %}</span>
+          <span class="home-decor-subcat-count">131 Styles</span>
+        </button>
+
+        <!-- 8. Idols & Showpieces -->
+        <button type="button" class="home-decor-subcat-card" data-style="showpieces" role="listitem">
+          <div class="home-decor-subcat-circle">
+            <img src="{{ 'subcat-decor-showpieces.jpg' | asset_url }}" alt="Idols and Showpieces" width="100" height="100" loading="lazy">
+          </div>
+          <span class="home-decor-subcat-name">{% if is_de %}Statuen & Figuren{% else %}Idols & Showpieces{% endif %}</span>
+          <span class="home-decor-subcat-count">38 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="HomeDecorFilterStatusBar" class="home-decor-filter-status-bar">
+        <span id="HomeDecorFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="HomeDecorFilterResetBtn" class="home-decor-reset-btn">
+          {%- if is_de -%}✕ Filter zurücksetzen{%- else -%}✕ Clear Filter{%- endif -%}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let cachedDecor = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+
+      fetch("{{ 'home-decoration-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedDecor = data;
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading home decoration catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function renderFilteredProducts(items, styleName) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('HomeDecorFilterStatusBar');
+        const statusText = document.getElementById('HomeDecorFilterStatusText');
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Filtered: <strong>${styleName}</strong> (${items.length} styles found)`;
+        }
+
+        grid.innerHTML = items.map(p => {
+          const img = p.image || '';
+          const price = p.price || '0.00';
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function restoreOriginal() {
+        const grid = getTargetGrid();
+        if (grid && originalGridHTML) {
+          grid.innerHTML = originalGridHTML;
+        }
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = '';
+
+        updateCountDisplays(259);
+
+        const statusBar = document.getElementById('HomeDecorFilterStatusBar');
+        if (statusBar) statusBar.style.display = 'none';
+
+        const cards = document.querySelectorAll('.home-decor-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === 'all') c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      function handleFilterClick(styleKey, styleName) {
+        const cards = document.querySelectorAll('.home-decor-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          const newUrl = styleKey === 'all' 
+            ? window.location.pathname 
+            : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (styleKey === 'all') {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedDecor) {
+          fetch("{{ 'home-decoration-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedDecor = data;
+              const matches = cachedDecor.filter(b => b.styles && b.styles.includes(styleKey));
+              renderFilteredProducts(matches, styleName);
+            });
+        } else {
+          const matches = cachedDecor.filter(b => b.styles && b.styles.includes(styleKey));
+          renderFilteredProducts(matches, styleName);
+        }
+      }
+
+      function checkInitialURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style') || urlParams.get('type') || window.location.hash.replace('#', '');
+        if (style && style !== 'all') {
+          const targetCard = document.querySelector(`.home-decor-subcat-card[data-style="${style}"]`);
+          if (targetCard) {
+            const name = targetCard.querySelector('.home-decor-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('HomeDecorSubcatTrack');
+        const resetBtn = document.getElementById('HomeDecorFilterResetBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.home-decor-subcat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.home-decor-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+
+        setTimeout(captureOriginal, 1000);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Home Decor Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Home Decor Subcategories"
+    }
+  ]
+}
+{% endschema %}

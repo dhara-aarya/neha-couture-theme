@@ -1,0 +1,158 @@
+{%- comment -%}
+  German Metadata Generator for /de/ (Collections, Products, Index, Articles)
+  Ensures high-converting, keyword-rich title tags and meta descriptions in German.
+{%- endcomment -%}
+{%- assign de_title = '' -%}
+{%- assign de_desc = '' -%}
+
+{%- if request.page_type == 'index' -%}
+  {%- assign de_title = 'Neha Couture – Exquisite indische Couture & Brautmode in Berlin & Deutschland' -%}
+  {%- assign de_desc = 'Exklusive indische Couture & Brautmode bei Neha Couture Berlin. Handgefertigte Lehengas, Seidensaris, Shararas & Schmuck mit Expressversand in Deutschland & Europa.' -%}
+
+{%- elsif request.page_type == 'collection' and collection -%}
+  {%- case collection.handle -%}
+    {%- when 'buy-saree-in-germany', 'saree', 'sarees' -%}
+      {%- assign de_title = 'Indische Saris online kaufen | Seidensaris, Banarasi & Partywear – Neha Couture' -%}
+      {%- assign de_desc = 'Kaufen Sie exquisite indische Saris bei Neha Couture. Traditionelle Banarasi-Seidensaris, Georgette & Ready-to-Wear Saris. Schneller DHL-Versand in 1–3 Tagen aus Berlin.' -%}
+    {%- when 'indian-jewellery-in-germany', 'jewellery' -%}
+      {%- assign de_title = 'Indischer Schmuck in Deutschland | Kundan, Brautschmuck & Tempelschmuck – Neha Couture' -%}
+      {%- assign de_desc = 'Entdecken Sie traditionellen & modernen indischen Schmuck in Deutschland. Exklusive Kundan-Sets, Brautschmuck, Choker & Jhumkas mit 1–3 Werktagen DHL-Lieferung.' -%}
+    {%- when 'ladies-suits-in-germany', 'handwork-ladies-suits-in-germany' -%}
+      {%- assign de_title = 'Indische Damenanzüge & Salwar Kameez online kaufen | Neha Couture Berlin' -%}
+      {%- assign de_desc = 'Elegante indische Damenanzüge, Anarkalis, Sharara-Sets & Punjabi-Suits in Deutschland kaufen. Handbestickte Designerstücke mit 1–3 Tagen Expressversand aus Berlin.' -%}
+    {%- when 'kurti' -%}
+      {%- assign de_title = 'Indische Kurtis & Tuniken online kaufen in Deutschland | Neha Couture' -%}
+      {%- assign de_desc = 'Moderne & traditionelle indische Kurtis für Damen in Deutschland & Europa. Baumwolle, Seide, Rayon & Chikankari-Stickerei für Alltag & Feste. Schnelle DHL-Lieferung.' -%}
+    {%- when 'blouse-it-completes-the-best-dress-ever-made-for-a-women' -%}
+      {%- assign de_title = 'Fertig genähte Saree-Blusen kaufen | Designer-Cholis & Stretchblusen – Neha Couture' -%}
+      {%- assign de_desc = 'Genähte Saree-Blusen & Cholis online kaufen in Deutschland. Gepolsterte Seidenblusen, Brokat & elastische Passformen mit Nahtzugabe. Expressversand in 1–3 Tagen.' -%}
+    {%- when 'exquisit-bangles-by-neha-couture', 'bangles' -%}
+      {%- assign de_title = 'Indische Armreifen & Braut-Chuda kaufen in Deutschland | Neha Couture' -%}
+      {%- assign de_desc = 'Wunderschöne indische Armreifen, Glas-Bangles, Braut-Chuda & Kangan-Sets. Traditionelle Handwerkskunst aus Indien, sofort lieferbar aus Berlin via DHL.' -%}
+    {%- when 'shape-your-sarees-with-stylish-underskirts-and-petticoats', 'underskirt-petticoat' -%}
+      {%- assign de_title = 'Saree-Petticoats & Shapewear Unterröcke kaufen in Deutschland | Neha Couture' -%}
+      {%- assign de_desc = 'Perfekt sitzende Saree-Petticoats & figurformende Shapewear-Unterröcke für Saris in Deutschland & Europa. Bequeme Passform mit Kordelzug, schneller DHL-Versand.' -%}
+    {%- when 'indian-wedding-clothes-in-germany' -%}
+      {%- assign de_title = 'Indische Hochzeitskleidung in Deutschland | Braut-Lehengas & Festmode – Neha Couture' -%}
+      {%- assign de_desc = 'Exklusive indische Hochzeitskleidung für Bräute, Bräutigame & Hochzeitsgäste in Deutschland. Lehengas, Sherwanis, Saris & Anarkalis mit 1–3 Werktagen DHL-Lieferung.' -%}
+    {%- when 'mens' -%}
+      {%- assign de_title = 'Indische Herrenkleidung in Deutschland | Kurta Pajama & Nehru-Jacken – Neha Couture' -%}
+      {%- assign de_desc = 'Traditionelle indische Herrenmode in Deutschland & Europa. Kurta-Pajama-Sets aus Baumwolle & Seide, Designer-Westen & Hochzeitsmode. Schneller DHL-Versand aus Berlin.' -%}
+    {%- when 'girls' -%}
+      {%- assign de_title = 'Indische Festkleidung für Mädchen | Kinder-Lehengas & Kurtis – Neha Couture' -%}
+      {%- assign de_desc = 'Zauberhafte indische Mädchenkleidung für Hochzeiten & Feste in Deutschland. Bequeme Kinder-Lehengas, Shararas & Kurta-Sets mit weichem Innenfutter. Schnelle Lieferung.' -%}
+    {%- when 'boys' -%}
+      {%- assign de_title = 'Indische Kleidung für Jungen | Kinder-Kurta-Pajama & Westen – Neha Couture' -%}
+      {%- assign de_desc = 'Festliche indische Jungenkleidung in Deutschland & Europa. Kurta-Pajama-Sets, Nehru-Jacken & Dhoti-Kombinationen für Jungen jeden Alters. Versandfertig in 24 Stunden.' -%}
+    {%- when 'kids-lehengas-ghaghra-choli-kurta-payjamas-in-germany' -%}
+      {%- assign de_title = 'Indische Kindermode in Deutschland | Ghagra Choli & Kurta Pajama – Neha Couture' -%}
+      {%- assign de_desc = 'Farbenfrohe & bequeme indische Kindermode für Mädchen & Jungen in Deutschland. Lehengas, Ghagra Cholis & Kurta-Sets mit DHL-Expressversand aus Berlin.' -%}
+    {%- when 'partywear' -%}
+      {%- assign de_title = 'Indische Partywear & Festkleider online kaufen | Neha Couture Berlin' -%}
+      {%- assign de_desc = 'Glamouröse indische Abendkleider, Festtags-Anzüge & Party-Lehengas für Feiern in Deutschland. Hochwertige Stoffe, Pailletten & Stickereien mit Expressversand.' -%}
+    {%- when 'royal-hand-embroidered-punjabi-juttis-artisan-crafted-leather-flats' -%}
+      {%- assign de_title = 'Handbestickte Punjabi Juttis & indische Schuhe kaufen | Neha Couture' -%}
+      {%- assign de_desc = 'Echtes Leder & kunstvolle Handstickerei: Traditionelle Punjabi Juttis & indische Mules für Damen & Herren in Deutschland. Bequeme Passform, sofort lieferbar.' -%}
+    {%- when 'indian-gajra-in-germany' -%}
+      {%- assign de_title = 'Indische Gajra Haarschmuck-Kollektion in Deutschland | Neha Couture' -%}
+      {%- assign de_desc = 'Künstliche Jasmin-Gajras & floraler Haarschmuck für indische Frisuren, Hochzeiten & Feste. Sofort lieferbar in ganz Deutschland & Europa via DHL.' -%}
+    {%- when 'home-decoration' -%}
+      {%- assign de_title = 'Indische Deko & Festdekoration in Deutschland | Torans & Girlanden – Neha Couture' -%}
+      {%- assign de_desc = 'Indische Türbehänge (Torans), Festtags-Girlanden, Glocken & Deko für Diwali, Pooja & Feierlichkeiten in Deutschland & Europa. Schneller Versand aus Berlin.' -%}
+    {%- when 'henna' -%}
+      {%- assign de_title = 'Natürliche Henna-Kegel & Mehendi kaufen in Deutschland | Neha Couture' -%}
+      {%- assign de_desc = 'Frische Henna-Kegel für tiefrote Mehendi-Muster auf Händen & Füßen für Hochzeiten und Feste. Sichere Inhaltsstoffe, Expressversand in Deutschland & Europa.' -%}
+    {%- when 'necklaces' -%}
+      {%- assign de_title = 'Indische Halsketten & Choker online kaufen in Deutschland | Neha Couture' -%}
+      {%- assign de_desc = 'Prachtvolle indische Halsketten, Choker-Sets, Kundan-Mala & Perlenketten für Hochzeiten und Feste. Hochwertige Handwerkskunst, sofort lieferbar aus Berlin.' -%}
+    {%- when 'earrings' -%}
+      {%- assign de_title = 'Indische Ohrringe & Jhumkas online kaufen in Deutschland | Neha Couture' -%}
+      {%- assign de_desc = 'Traditionelle indische Jhumkas, Chandbalis, Stecker & Statement-Ohrringe in Deutschland & Europa. Leicht zu tragen mit edlem Glanz. DHL-Versand in 1–3 Tagen.' -%}
+    {%- when 'western-collection-with-indian-flavour' -%}
+      {%- assign de_title = 'Indo-Western Fusion Mode & zeitgenössische Kleider | Neha Couture Berlin' -%}
+      {%- assign de_desc = 'Die perfekte Verbindung aus modernem Schnitt und indischer Handwerkskunst. Indo-Western Tuniken, Röcke & Fusion-Outfits mit Expressversand in Deutschland.' -%}
+    {%- when 'office-wear' -%}
+      {%- assign de_title = 'Chice indische Bürokleidung & elegante Tuniken für Damen | Neha Couture' -%}
+      {%- assign de_desc = 'Bequeme und stilvolle indische Tuniken, Baumwollkurtis & Hosen für den Büroalltag in Deutschland. Hochwertige Naturstoffe mit schnellem DHL-Versand.' -%}
+    {%- when 'skirts' -%}
+      {%- assign de_title = 'Indische Feströcke & ausgestellte Maxiröcke kaufen | Neha Couture Berlin' -%}
+      {%- assign de_desc = 'Weite, schwingende indische Röcke mit Goldborten & Stickereien für Feste und Partys. Kombinierbar mit Tops & Blusen. Schneller Versand aus Berlin.' -%}
+    {%- when 'pants-or-leggings' -%}
+      {%- assign de_title = 'Indische Leggings, Churidaar & Hosen kaufen | Neha Couture Berlin' -%}
+      {%- assign de_desc = 'Bequeme Baumwoll-Churidaars, elastische Leggings & weite Palazzohosen passend zu Ihren Kurtis. Verschiedene Farben, schneller Versand in ganz Deutschland.' -%}
+    {%- when 'navratri-jewellery' -%}
+      {%- assign de_title = 'Navratri Schmuck & Garba-Accessoires kaufen | Neha Couture Berlin' -%}
+      {%- assign de_desc = 'Traditioneller Silberschmuck, Spiegelschmuck & oxidierte Schmucksets für die 9 Nächte von Navratri und Garba. Sofort lieferbar in ganz Deutschland.' -%}
+    {%- when 'onam-collection-bright-festivities-with-beautiful-traditional-wear', 'the-kasavu-chronicle-an-onam-heritage-collection' -%}
+      {%- assign de_title = 'Onam Festtagskollektion & traditionelle Kasavu-Mode | Neha Couture' -%}
+      {%- assign de_desc = 'Traditionelle Kasavu-Saris & festliche Kleidung in Weiß und Gold für Onam in Deutschland. Authentische indische Handwebkunst mit schnellem DHL-Versand.' -%}
+    {%- when 'fresh-flowers' -%}
+      {%- assign de_title = 'Frische Blumen & Festtagsblumen in Berlin & Deutschland | Neha Couture' -%}
+      {%- assign de_desc = 'Frische Blumen für indische Poojas, Tempelbesuche & Feierlichkeiten in Berlin und Umgebung. Exzellente Frische & Qualität bei Neha Couture.' -%}
+    {%- when 'cosmetics' -%}
+      {%- assign de_title = 'Indische Kosmetik & traditionelle Schönheitspflege | Neha Couture' -%}
+      {%- assign de_desc = 'Kajal, Sindoor, Bindi-Sets & traditionelle indische Kosmetikprodukte in Deutschland online bestellen. Schneller, zuverlässiger DHL-Versand aus Berlin.' -%}
+    {%- when 'indian-grocery' -%}
+      {%- assign de_title = 'Indische Spezialitäten & Festtagsbedarf online kaufen | Neha Couture' -%}
+      {%- assign de_desc = 'Pooja-Bedarf, Festtagsartikel & ausgewählte indische Spezialitäten für Feiertage in Deutschland. Sicher verpackt und schnell geliefert.' -%}
+    {%- when 'rakhi' -%}
+      {%- assign de_title = 'Wunderschöne Rakhis online kaufen in Deutschland | Neha Couture Berlin' -%}
+      {%- assign de_desc = 'Feiern Sie Raksha Bandhan in Deutschland mit handgefertigten Rakhis, Silber-Rakhis & Geschenksets für Ihren Bruder. Schneller Expressversand aus Berlin.' -%}
+    {%- when 'buy-indian-clothes-in-germany', 'indian-handwork-clothes-in-germany', 'all' -%}
+      {%- assign de_title = 'Indische Kleidung online kaufen in Deutschland & Europa | Neha Couture Berlin' -%}
+      {%- assign de_desc = 'Entdecken Sie Deutschlands größte Auswahl an indischer Couture: Saris, Lehengas, Salwar Kameez, Kurtis, Schmuck & Herrenmode. DHL-Versand in 1–3 Tagen aus Berlin.' -%}
+    {%- else -%}
+      {%- assign de_title = raw_page_title | append: ' – Indische Mode | Neha Couture Berlin' -%}
+      {%- assign de_desc = 'Entdecken Sie ' | append: raw_page_title | append: ' bei Neha Couture. Authentische indische Mode & Accessoires in Deutschland mit schnellem 1–3 Tage DHL-Versand aus Berlin.' -%}
+  {%- endcase -%}
+
+{%- elsif request.page_type == 'product' and product -%}
+  {%- assign prod_title_lower = raw_page_title | downcase -%}
+  {%- assign prod_type_lower = product.type | downcase -%}
+
+  {%- if prod_title_lower contains 'saree' or prod_type_lower contains 'saree' -%}
+    {%- assign de_title = raw_page_title | append: ' – Indischer Sari | Neha Couture Berlin' -%}
+    {%- assign de_desc = 'Kaufen Sie ' | append: raw_page_title | append: ' online bei Neha Couture. Authentischer indischer Sari mit Expressversand in 1–3 Werktagen mit DHL in Deutschland & EU.' -%}
+  {%- elsif prod_title_lower contains 'earring' or prod_title_lower contains 'necklace' or prod_title_lower contains 'jewel' or prod_title_lower contains 'kundan' or prod_type_lower contains 'jewel' -%}
+    {%- assign de_title = raw_page_title | append: ' – Indischer Schmuck | Neha Couture Berlin' -%}
+    {%- assign de_desc = 'Kaufen Sie ' | append: raw_page_title | append: ' bei Neha Couture. Traditioneller indischer Schmuck mit 1–3 Werktagen DHL-Lieferung in Deutschland & EU, Showroom Potsdamer Platz.' -%}
+  {%- elsif prod_title_lower contains 'blouse' or prod_type_lower contains 'blouse' -%}
+    {%- assign de_title = raw_page_title | append: ' – Genähte Saree-Bluse | Neha Couture Berlin' -%}
+    {%- assign de_desc = 'Kaufen Sie die genähte Saree-Bluse ' | append: raw_page_title | append: ' bei Neha Couture Berlin. Bequeme Passform mit 4 cm Nahtzugabe, 1–3 Tage DHL-Lieferung.' -%}
+  {%- elsif prod_title_lower contains 'lehenga' or prod_type_lower contains 'lehenga' -%}
+    {%- assign de_title = raw_page_title | append: ' – Indisches Designer-Lehenga | Neha Couture Berlin' -%}
+    {%- assign de_desc = 'Exklusives Designer-Lehenga ' | append: raw_page_title | append: ' bei Neha Couture Berlin kaufen. Festliche indische Couture, 1–3 Werktage DHL-Versand in Deutschland & EU.' -%}
+  {%- elsif prod_title_lower contains 'kurti' or prod_type_lower contains 'kurti' -%}
+    {%- assign de_title = raw_page_title | append: ' – Indische Kurti | Neha Couture Berlin' -%}
+    {%- assign de_desc = 'Kaufen Sie ' | append: raw_page_title | append: ' bei Neha Couture. Elegante indische Damen-Kurti mit 1–3 Tagen Expressversand aus Berlin in ganz Deutschland & Europa.' -%}
+  {%- elsif prod_title_lower contains 'suit' or prod_title_lower contains 'sharara' or prod_title_lower contains 'anarkali' or prod_type_lower contains 'suit' -%}
+    {%- assign de_title = raw_page_title | append: ' – Indischer Damenanzug | Neha Couture Berlin' -%}
+    {%- assign de_desc = 'Kaufen Sie ' | append: raw_page_title | append: ' bei Neha Couture. Hochwertiger Salwar-Anzug / Sharara-Set, schneller 1–3 Werktage DHL-Versand aus Berlin in ganz Europa.' -%}
+  {%- elsif prod_title_lower contains 'men' or prod_title_lower contains 'kurta' or prod_type_lower contains 'men' -%}
+    {%- assign de_title = raw_page_title | append: ' – Indische Herrenmode | Neha Couture Berlin' -%}
+    {%- assign de_desc = 'Kaufen Sie ' | append: raw_page_title | append: ' bei Neha Couture Berlin. Traditionelle indische Herren-Kurta mit 1–3 Tagen Expressversand in ganz Deutschland & Europa.' -%}
+  {%- elsif prod_title_lower contains 'girl' or prod_title_lower contains 'boy' or prod_title_lower contains 'kid' or prod_type_lower contains 'kid' -%}
+    {%- assign de_title = raw_page_title | append: ' – Indische Kindermode | Neha Couture Berlin' -%}
+    {%- assign de_desc = 'Kaufen Sie ' | append: raw_page_title | append: ' bei Neha Couture. Festliche indische Kinderkleidung mit weichem Innenfutter, schneller 1–3 Tage DHL-Versand aus Berlin.' -%}
+  {%- else -%}
+    {%- assign de_title = raw_page_title | append: ' – Indische Mode | Neha Couture Berlin' -%}
+    {%- assign de_desc = 'Kaufen Sie ' | append: raw_page_title | append: ' online bei Neha Couture. Schnelle Lieferung in 1–3 Werktagen mit DHL in ganz Deutschland & Europa. Showroom Potsdamer Platz Berlin.' -%}
+  {%- endif -%}
+
+{%- elsif request.page_type == 'article' and article -%}
+  {%- assign de_title = article.title | append: ' | Neha Couture Magazin' -%}
+  {%- assign de_desc = article.excerpt_or_content | strip_html | truncate: 155 -%}
+
+{%- elsif request.page_type == 'blog' and blog -%}
+  {%- assign de_title = 'Indischer Mode- & Styling-Guide | Neha Couture Berlin Blog' -%}
+  {%- assign de_desc = 'Entdecken Sie unsere Styling-Tipps, Hochzeits-Guides und Trageanleitungen für indische Mode in Deutschland. Von Neha Couture Berlin.' -%}
+
+{%- else -%}
+  {%- assign de_title = raw_page_title | append: ' – Neha Couture Berlin' -%}
+  {%- assign de_desc = raw_meta_desc | strip_html | truncate: 155 -%}
+{%- endif -%}
+
+<title>{{ de_title | strip }}</title>
+{%- if de_desc != blank -%}
+<meta name="description" content="{{ de_desc | truncate: 155 | escape | replace: '&amp;amp;', '&amp;' }}">
+{%- endif -%}

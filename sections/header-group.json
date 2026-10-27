@@ -1,0 +1,115 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "1-3 day free shipping in Germany above 40 Euros",
+            "link": ""
+          }
+        },
+        "announcement_TM8W4f": {
+          "type": "announcement",
+          "settings": {
+            "text": "All collections available for free pickup in Berlin",
+            "link": ""
+          }
+        },
+        "announcement_BFKgaB": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free Mystery gift on every order above 50 euros",
+            "link": ""
+          }
+        },
+        "announcement_XMWacD": {
+          "type": "announcement",
+          "settings": {
+            "text": "Add reviews to win discount vouchers for your next purchase",
+            "link": ""
+          }
+        },
+        "announcement_Ehzwkt": {
+          "type": "announcement",
+          "settings": {
+            "text": "Visit our store in Berlin to try out the products",
+            "link": ""
+          }
+        },
+        "announcement_iyBLgQ": {
+          "type": "announcement",
+          "settings": {
+            "text": "Live Chat & Video Calls: Mon – Sat (10am – 8pm)",
+            "link": ""
+          }
+        },
+        "announcement_GGjVMF": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
+        },
+        "announcement_cpdfLE": {
+          "type": "announcement",
+          "settings": {
+            "text": "We ship everywhere in Europe at only 9.99 euro delivery fees.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0",
+        "announcement_TM8W4f",
+        "announcement_BFKgaB",
+        "announcement_XMWacD",
+        "announcement_Ehzwkt",
+        "announcement_iyBLgQ",
+        "announcement_GGjVMF",
+        "announcement_cpdfLE"
+      ],
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "inverse",
+        "show_line_separator": true,
+        "auto_rotate": true,
+        "change_slides_speed": 5
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-left",
+        "enable_curated_menu": true,
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "always",
+        "show_line_separator": true,
+        "color_scheme": "background-2",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "mobile_logo_position": "center",
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

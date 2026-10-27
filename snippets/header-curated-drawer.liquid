@@ -1,0 +1,250 @@
+{% comment %}
+  Curated Mobile Drawer Navigation for Neha Couture (Bilingual: EN / DE)
+{% endcomment %}
+{%- assign is_de = false -%}
+{%- if request.locale.iso_code == 'de' -%}
+  {%- assign is_de = true -%}
+{%- endif -%}
+
+<header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
+  <details id="Details-menu-drawer-container" class="menu-drawer-container">
+    <summary
+      class="header__icon header__icon--menu header__icon--summary link focus-inset"
+      aria-label="{{ 'sections.header.menu' | t }}"
+    >
+      <span>
+        {% render 'icon-hamburger' %}
+        {% render 'icon-close' %}
+      </span>
+    </summary>
+    <div id="menu-drawer" class="gradient menu-drawer motion-reduce">
+      <div class="menu-drawer__inner-container">
+        <div class="menu-drawer__navigation-container">
+          <nav class="menu-drawer__navigation">
+            <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              <!-- 1. WOMEN'S COUTURE -->
+              <li>
+                <details id="Details-menu-drawer-menu-item-1">
+                  <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                    {% if is_de %}Damen Couture{% else %}Women&#39;s Couture{% endif %}
+                    {% render 'icon-arrow' %}
+                    {% render 'icon-caret' %}
+                  </summary>
+                  <div class="menu-drawer__submenu has-submenu gradient motion-reduce" tabindex="-1">
+                    <div class="menu-drawer__inner-submenu">
+                      <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                        {% render 'icon-arrow' %}
+                        {% if is_de %}Damen Couture{% else %}Women&#39;s Couture{% endif %}
+                      </button>
+                      <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                        <li><a href="/collections/handwork-ladies-suits-in-germany" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Shararas & Damenanzüge{% else %}Shararas & Suits{% endif %}</a></li>
+                          <li><a href="/pages/winter-wear" class="menu-drawer__menu-item link link--text list-menu__item" style="color: #673147; font-weight: 700;">❄️ {% if is_de %}Wintermode & Wollanzüge{% else %}Winter Wear & Woolen Collection{% endif %}</a></li>
+                        <li><a href="/collections/buy-saree-in-germany" class="menu-drawer__menu-item link link--text list-menu__item" style="font-weight: 700; color: #673147;">{% if is_de %}Indische Saris (Alle Saris){% else %}Sarees (All Collections){% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/buy-saree-in-germany?style=silk" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Echte Seidensaris{% else %}Pure Silk Sarees{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/buy-saree-in-germany?style=ready-to-wear" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Ready To Wear Saris{% else %}Ready To Wear Sarees{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/buy-saree-in-germany?style=georgette" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Georgette & Chiffon{% else %}Georgette & Chiffon{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/buy-saree-in-germany?style=partywear" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Partywear & Pailletten{% else %}Party & Sequin Sarees{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/buy-saree-in-germany?style=banarasi" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Banarasi-Saris{% else %}Banarasi Heritage{% endif %}</a></li>
+                        <li><a href="/collections/indian-handwork-clothes-in-germany" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Handbestickte Couture{% else %}Premium Handwork{% endif %}</a></li>
+                        <li><a href="/collections/blouse-it-completes-the-best-dress-ever-made-for-a-women" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Designer Saree-Blusen{% else %}Designer Blouses{% endif %}</a></li>
+                        <li><a href="/collections/underskirt-petticoat" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Unterröcke & Petticoats{% else %}Underskirts & Petticoats{% endif %}</a></li>
+                        <li><a href="/collections/kurti" class="menu-drawer__menu-item link link--text list-menu__item" style="color: #673147; font-weight: 600;">{% if is_de %}Chikankari Stickerei{% else %}Lucknowi Chikankari{% endif %}</a></li>
+                        <li><a href="/collections/kurti" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Kurtis & Tuniken{% else %}Kurtis & Tunics{% endif %}</a></li>
+                        <li><a href="/collections/office-wear" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Indische Bürokleidung{% else %}Office Wear{% endif %}</a></li>
+                        <li><a href="/collections/western-collection-with-indian-flavour" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Fusion Mode & Röcke{% else %}Western Fusion & Skirts{% endif %}</a></li>
+                        <li><a href="/collections/royal-hand-embroidered-punjabi-juttis-artisan-crafted-leather-flats" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Punjabi Juttis (Schuhe){% else %}Punjabi Juttis{% endif %}</a></li>
+                        <li><a href="/collections/all" class="menu-drawer__menu-item link link--text list-menu__item" style="font-weight: 700; color: #673147;">{% if is_de %}Alle Damenartikel ansehen &rarr;{% else %}View All Women&#39;s &rarr;{% endif %}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </details>
+              </li>
+
+              <!-- 2. JEWELLERY & ACCESSORIES -->
+              <li>
+                <details id="Details-menu-drawer-menu-item-2">
+                  <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                    {% if is_de %}Schmuck & Accessoires{% else %}Jewellery & Accessories{% endif %}
+                    {% render 'icon-arrow' %}
+                    {% render 'icon-caret' %}
+                  </summary>
+                  <div class="menu-drawer__submenu has-submenu gradient motion-reduce" tabindex="-1">
+                    <div class="menu-drawer__inner-submenu">
+                      <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                        {% render 'icon-arrow' %}
+                        {% if is_de %}Schmuck & Accessoires{% else %}Jewellery & Accessories{% endif %}
+                      </button>
+                      <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                        <li><a href="/collections/jewellery" class="menu-drawer__menu-item link link--text list-menu__item" style="font-weight: 700; color: #673147;">{% if is_de %}Gesamter Schmuck (Übersicht){% else %}All Jewellery (Explore All){% endif %}</a></li>
+                        
+                        <li style="border-top: 1px solid rgba(16, 57, 72, 0.08); margin-top: 0.6rem; padding-top: 0.6rem;">
+                          <a href="/collections/jewellery?category=necklaces" class="menu-drawer__menu-item link link--text list-menu__item" style="font-weight: 700;">{% if is_de %}Halsketten & Sets{% else %}Necklaces & Sets{% endif %}</a>
+                        </li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=necklaces&style=necklace-set" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Kettensets (mit Ohrringen){% else %}Necklace Sets (with Earrings){% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=necklaces&style=ad-necklace" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}American Diamond (AD){% else %}American Diamond (AD){% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=necklaces&style=choker" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Choker & Gold-Choker{% else %}Chokers & Gold Chokers{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=necklaces&style=kundan" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Kundan- & Brautsets{% else %}Kundan & Bridal Sets{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=necklaces&style=mangalsutra" class="menu-drawer__menu-item link link--text list-menu__item">└ Mangalsutra</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=necklaces&style=pendant-mala" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Anhänger-Sets & Malas{% else %}Pendant Sets & Malas{% endif %}</a></li>
+
+                        <li style="border-top: 1px solid rgba(16, 57, 72, 0.08); margin-top: 0.6rem; padding-top: 0.6rem;">
+                          <a href="/collections/jewellery?category=earrings" class="menu-drawer__menu-item link link--text list-menu__item" style="font-weight: 700;">{% if is_de %}Ohrringe & Jhumkas{% else %}Earrings & Jhumkas{% endif %}</a>
+                        </li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=earrings&style=only-earrings" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Ohrringe einzeln{% else %}Only Earrings (Standalone){% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=earrings&style=jhumka" class="menu-drawer__menu-item link link--text list-menu__item">└ Jhumkas & Jhumkis</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=earrings&style=ad-earrings" class="menu-drawer__menu-item link link--text list-menu__item">└ American Diamond (AD)</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=earrings&style=chandbali-hoop" class="menu-drawer__menu-item link link--text list-menu__item">└ Chandbalis & Creolen</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=earrings&style=kundan-drops" class="menu-drawer__menu-item link link--text list-menu__item">└ Kundan & Tropfen</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/jewellery?category=earrings&style=studs" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Stecker & Ohrstecker{% else %}Studs & Tops{% endif %}</a></li>
+
+                        <li style="border-top: 1px solid rgba(16, 57, 72, 0.08); margin-top: 0.6rem; padding-top: 0.6rem;">
+                          <a href="/collections/exquisit-bangles-by-neha-couture" class="menu-drawer__menu-item link link--text list-menu__item" style="font-weight: 700;">{% if is_de %}Armreifen & Armbänder{% else %}Bangles & Bracelets{% endif %}</a>
+                        </li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/exquisit-bangles-by-neha-couture?style=gold-bangles" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Gold- & Metallarmreifen{% else %}Gold & Metal Bangles{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/exquisit-bangles-by-neha-couture?style=bracelets" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Armbänder & Spangen{% else %}Bracelets & Cuffs{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/exquisit-bangles-by-neha-couture?style=velvet-ghungroo" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Samt- & Ghungroo-Sets{% else %}Velvet & Ghungroo Sets{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/exquisit-bangles-by-neha-couture?style=kada-chooda" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Kadas & Braut-Choodas{% else %}Kadas & Choodas{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/exquisit-bangles-by-neha-couture?style=glass-bangles" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Traditionelle Glasarmreifen{% else %}Traditional Glass Bangles{% endif %}</a></li>
+
+                        <li style="border-top: 1px solid rgba(16, 57, 72, 0.08); margin-top: 0.6rem; padding-top: 0.6rem;">
+                          <a href="/collections/jewellery?style=maang-tikka" class="menu-drawer__menu-item link link--text list-menu__item">Maang Tikka & Matha Patti</a>
+                        </li>
+                        <li><a href="/collections/jewellery?style=kamarbandh" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Kamarbandh & Bauchketten{% else %}Kamarbandh & Waist Chains{% endif %}</a></li>
+                        <li><a href="/collections/indian-jewellery-in-germany" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Traditioneller indischer Schmuck{% else %}Traditional Indian Heritage{% endif %}</a></li>
+                        <li><a href="/collections/navratri-jewellery" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Navratri & Festkollektion{% else %}Festive & Navratri Collection{% endif %}</a></li>
+                        <li><a href="/collections/indian-gajra-in-germany" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Gajras & Haarschmuck{% else %}Gajras & Hair Ornaments{% endif %}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </details>
+              </li>
+
+              <!-- 3. MEN'S -->
+              <li>
+                <a href="/collections/mens" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  {% if is_de %}Herrenmode{% else %}Men&#39;s Fashion{% endif %}
+                </a>
+              </li>
+
+              <!-- 4. KIDS -->
+              <li>
+                <details id="Details-menu-drawer-menu-item-4">
+                  <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                    {% if is_de %}Kindermode{% else %}Kids Collection{% endif %}
+                    {% render 'icon-arrow' %}
+                    {% render 'icon-caret' %}
+                  </summary>
+                  <div class="menu-drawer__submenu has-submenu gradient motion-reduce" tabindex="-1">
+                    <div class="menu-drawer__inner-submenu">
+                      <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                        {% render 'icon-arrow' %}
+                        {% if is_de %}Kindermode{% else %}Kids Collection{% endif %}
+                      </button>
+                      <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                        <li><a href="/collections/girls" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Mädchenkollektion{% else %}Girls Collection{% endif %}</a></li>
+                        <li><a href="/collections/boys" class="menu-drawer__menu-item link link--text list-menu__item">{% if is_de %}Jungenkollektion{% else %}Boys Collection{% endif %}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </details>
+              </li>
+
+              <!-- 5. LIFESTYLE & PUJA -->
+              <li>
+                <details id="Details-menu-drawer-menu-item-5">
+                  <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                    {% if is_de %}Lifestyle & Pooja{% else %}Lifestyle & Puja{% endif %}
+                    {% render 'icon-arrow' %}
+                    {% render 'icon-caret' %}
+                  </summary>
+                  <div class="menu-drawer__submenu has-submenu gradient motion-reduce" tabindex="-1">
+                    <div class="menu-drawer__inner-submenu">
+                      <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                        {% render 'icon-arrow' %}
+                        {% if is_de %}Lifestyle & Pooja{% else %}Lifestyle & Puja{% endif %}
+                      </button>
+                      <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                        <li><a href="/collections/home-decoration" class="menu-drawer__menu-item link link--text list-menu__item" style="font-weight: 700; color: #673147;">{% if is_de %}Indische Deko & Torans (Alle){% else %}Home Decoration (All){% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/home-decoration?style=diya" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Diyas & Lichter{% else %}Diyas & Candle Holders{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/home-decoration?style=bandarwal" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Bandarwals & Torans{% else %}Bandarwal & Toran{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/home-decoration?style=urli" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Lotus-Urlis{% else %}Decorative Urlis{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/home-decoration?style=latkan" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Latkans & Quasten{% else %}Latkans & Tassels{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/home-decoration?style=hanging" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Wand- & Türbehänge{% else %}Wall & Door Hangings{% endif %}</a></li>
+                        <li style="border-top: 1px solid rgba(16, 57, 72, 0.08); margin-top: 0.6rem; padding-top: 0.6rem;">
+                          <span class="menu-drawer__menu-item list-menu__item" style="font-weight: 700; color: #673147; padding-bottom: 0;">{% if is_de %}Schönheit & Kosmetik{% else %}Beauty & Cosmetics{% endif %}</span>
+                        </li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/henna" class="menu-drawer__menu-item link link--text list-menu__item">└ Henna & Mehendi</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/cosmetics" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Indische Kosmetik & Kajal{% else %}Indian Cosmetics & Kajal{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/indian-gajra-in-germany" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Haar-Gajras & Blumenschmuck{% else %}Hair Gajras & Flowers{% endif %}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </details>
+              </li>
+
+              <!-- 6. FRESH FLOWERS & GROCERY -->
+              <li>
+                <details id="Details-menu-drawer-menu-item-6">
+                  <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                    {% if is_de %}Frische Blumen & Lebensmittel{% else %}Fresh Flowers & Grocery{% endif %}
+                    {% render 'icon-arrow' %}
+                    {% render 'icon-caret' %}
+                  </summary>
+                  <div class="menu-drawer__submenu has-submenu gradient motion-reduce" tabindex="-1">
+                    <div class="menu-drawer__inner-submenu">
+                      <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                        {% render 'icon-arrow' %}
+                        {% if is_de %}Frische Blumen & Lebensmittel{% else %}Fresh Flowers & Grocery{% endif %}
+                      </button>
+                      <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                        <li><a href="/collections/fresh-flowers" class="menu-drawer__menu-item link link--text list-menu__item" style="font-weight: 700; color: #673147;">{% if is_de %}🌸 Frische Blumen (Alle){% else %}🌸 Fresh Flowers (All){% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/fresh-flowers?style=jasmine" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Madurai Malli (Jasmin){% else %}Madurai Malli (Jasmine){% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/fresh-flowers?style=rose" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Duftende Rosenblätter{% else %}Fragrant Rose Petals{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/fresh-flowers?style=marigold" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Ringelblumen-Blüten{% else %}Marigold Petals{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/fresh-flowers?style=strings" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Blumenschnüre & Malai{% else %}Floral Strings & Malai{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/fresh-flowers?style=garlands" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Festtags-Girlanden{% else %}Temple & Wedding Garlands{% endif %}</a></li>
+
+                        <li style="border-top: 1px solid rgba(16, 57, 72, 0.08); margin-top: 0.6rem; padding-top: 0.6rem;">
+                          <a href="/collections/indian-grocery" class="menu-drawer__menu-item link link--text list-menu__item" style="font-weight: 700; color: #673147;">{% if is_de %}🛒 Indische Lebensmittel (Alle){% else %}🛒 Indian Groceries (All){% endif %}</a>
+                        </li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/indian-grocery?style=spices" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Gewürze & Masalas{% else %}Spices & Masalas{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/indian-grocery?style=namkeen" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Namkeen & Snacks{% else %}Namkeen & Snacks{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/indian-grocery?style=staples" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Reis, Atta & Dals{% else %}Atta, Rice & Dals{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/indian-grocery?style=instant-mix" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Fertigmischungen & Süßes{% else %}Instant Mixes & Sweets{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/indian-grocery?style=pickles" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Pickles & Chutneys{% else %}Pickles & Chutneys{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/indian-grocery?style=pantry" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Ghee, Öl & Papads{% else %}Ghee, Oils & Papad{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/indian-grocery?style=beverages" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Chai & Filterkaffee{% else %}Chai & Filter Coffee{% endif %}</a></li>
+                        <li style="padding-left: 1.5rem;"><a href="/collections/indian-grocery?style=frames" class="menu-drawer__menu-item link link--text list-menu__item">└ {% if is_de %}Götter-Bilderrahmen{% else %}God Photo Frames{% endif %}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </details>
+              </li>
+
+              <!-- 7. BERLIN STORE & VIDEO CALLS -->
+              <li>
+                <a href="/pages/different-ways-to-reach-us" class="menu-drawer__menu-item list-menu__item link link--text focus-inset" style="color: #673147; font-weight: 700;">
+                  📍 {% if is_de %}Showroom Berlin & Videoberatung{% else %}Berlin Store & Video Calls{% endif %}
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- Drawer Footer Utilities -->
+          <div class="menu-drawer__utility-links">
+            <ul class="list list-social list-unstyled" role="list">
+              {%- if settings.social_instagram_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_instagram_link }}" class="list-social__link link">
+                    {%- render 'icon-instagram' -%}
+                    <span class="visually-hidden">Instagram</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+</header-drawer>

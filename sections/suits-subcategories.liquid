@@ -1,0 +1,481 @@
+{%- if collection.handle contains 'suits' or collection.handle contains 'handwork-ladies' -%}
+  {%- assign is_de = false -%}
+  {%- if request.locale.iso_code == 'de' -%}
+    {%- assign is_de = true -%}
+  {%- endif -%}
+  {%- style -%}
+    .suits-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .suits-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .suits-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .suits-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .suits-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .suits-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .suits-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .suits-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .suits-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .suits-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .suits-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .suits-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .suits-subcat-card.is-active .suits-subcat-circle,
+    .suits-subcat-card:hover .suits-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .suits-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .suits-subcat-card:hover .suits-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .suits-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 110px;
+      transition: color 0.2s ease;
+    }
+
+    .suits-subcat-card.is-active .suits-subcat-name,
+    .suits-subcat-card:hover .suits-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .suits-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .suits-subcat-card.is-active .suits-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .suits-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .suits-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .suits-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="suits-subcats-section">
+    <div class="page-width">
+      <div class="suits-subcats-header">
+        <h2 class="suits-subcats-title">Shop Ladies Suits By Style & Silhouette</h2>
+        <p class="suits-subcats-subtitle">Select any category below to instantly view matching shararas, palazzo suits & festive sets</p>
+      </div>
+
+      <div class="suits-subcats-track" role="list" id="SuitsSubcatTrack">
+        <!-- 1. All Styles -->
+        <button type="button" class="suits-subcat-card is-active" data-style="all" role="listitem">
+          <div class="suits-subcat-circle">
+            <img src="{{ 'subcat-suits-all.jpg' | asset_url }}" alt="All Suits" width="100" height="100" loading="lazy">
+          </div>
+          <span class="suits-subcat-name">{% if is_de %}Alle Stile{% else %}All Styles{% endif %}</span>
+          <span class="suits-subcat-count">242 Styles</span>
+        </button>
+
+        <!-- 2. Woolen & Winter Suits (32 items) -->
+        <button type="button" class="suits-subcat-card" data-style="woolen" role="listitem">
+          <div class="suits-subcat-circle">
+            <img src="{{ 'subcat-suits-woolen.jpg' | asset_url }}" alt="{% if is_de %}Wollanzüge{% else %}Woolen Suits{% endif %}" width="100" height="100" loading="lazy">
+          </div>
+          <span class="suits-subcat-name">{% if is_de %}Wollanzüge{% else %}Woolen Suits{% endif %}</span>
+          <span class="suits-subcat-count">8 Styles</span>
+        </button>
+
+        <!-- 2. Sharara & Gharara (78 items) -->
+        <button type="button" class="suits-subcat-card" data-style="sharara" role="listitem">
+          <div class="suits-subcat-circle">
+            <img src="{{ 'subcat-suits-sharara.jpg' | asset_url }}" alt="Sharara & Gharara" width="100" height="100" loading="lazy">
+          </div>
+          <span class="suits-subcat-name">Sharara & Gharara</span>
+          <span class="suits-subcat-count">32 Styles</span>
+        </button>
+
+        <!-- 3. Palazzo & Pants (121 items) -->
+        <button type="button" class="suits-subcat-card" data-style="palazzo" role="listitem">
+          <div class="suits-subcat-circle">
+            <img src="{{ 'subcat-suits-palazzo.jpg' | asset_url }}" alt="Palazzo & Pant Suits" width="100" height="100" loading="lazy">
+          </div>
+          <span class="suits-subcat-name">Palazzo & Pants</span>
+          <span class="suits-subcat-count">67 Styles</span>
+        </button>
+
+        <!-- 4. Anarkali Suit Sets (36 items) -->
+        <button type="button" class="suits-subcat-card" data-style="anarkali" role="listitem">
+          <div class="suits-subcat-circle">
+            <img src="{{ 'subcat-suits-anarkali.jpg' | asset_url }}" alt="Anarkali Suit Sets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="suits-subcat-name">Anarkali Suits</span>
+          <span class="suits-subcat-count">10 Styles</span>
+        </button>
+
+        <!-- 5. Heavy Handwork & Zari (145 items) -->
+        <button type="button" class="suits-subcat-card" data-style="handwork" role="listitem">
+          <div class="suits-subcat-circle">
+            <img src="{{ 'subcat-suits-handwork.jpg' | asset_url }}" alt="Heavy Handwork & Zari" width="100" height="100" loading="lazy">
+          </div>
+          <span class="suits-subcat-name">Handwork & Zari</span>
+          <span class="suits-subcat-count">64 Styles</span>
+        </button>
+
+        <!-- 6. Pure Silk & Chinon (143 items) -->
+        <button type="button" class="suits-subcat-card" data-style="silk" role="listitem">
+          <div class="suits-subcat-circle">
+            <img src="{{ 'subcat-suits-silk.jpg' | asset_url }}" alt="Pure Silk & Chinon" width="100" height="100" loading="lazy">
+          </div>
+          <span class="suits-subcat-name">Silk & Chinon</span>
+          <span class="suits-subcat-count">143 Styles</span>
+        </button>
+
+        <!-- 7. Pure Cotton Daily (344 items) -->
+        <button type="button" class="suits-subcat-card" data-style="cotton" role="listitem">
+          <div class="suits-subcat-circle">
+            <img src="{{ 'subcat-suits-cotton.jpg' | asset_url }}" alt="Pure Cotton Daily" width="100" height="100" loading="lazy">
+          </div>
+          <span class="suits-subcat-name">Pure Cotton</span>
+          <span class="suits-subcat-count">344 Styles</span>
+        </button>
+
+        <!-- 8. Pakistani Outfits (57 items) -->
+        <button type="button" class="suits-subcat-card" data-style="pakistani" role="listitem">
+          <div class="suits-subcat-circle">
+            <img src="{{ 'subcat-suits-pakistani.jpg' | asset_url }}" alt="Pakistani Outfits" width="100" height="100" loading="lazy">
+          </div>
+          <span class="suits-subcat-name">Pakistani Cuts</span>
+          <span class="suits-subcat-count">57 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="SuitsFilterStatusBar" class="suits-filter-status-bar">
+        <span id="SuitsFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="SuitsFilterResetBtn" class="suits-reset-btn">✕ Clear Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let cachedSuits = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+
+      fetch("{{ 'suits-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedSuits = data.filter(p => p.inventory === undefined || p.inventory > 0);
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading suits catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function renderFilteredProducts(items, styleName) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('SuitsFilterStatusBar');
+        const statusText = document.getElementById('SuitsFilterStatusText');
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Filtered: <strong>${styleName}</strong> (${items.length} styles found)`;
+        }
+
+        grid.innerHTML = items.map(p => {
+          const img = p.image || '';
+          const price = p.price || '0.00';
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function restoreOriginal() {
+        const grid = getTargetGrid();
+        if (grid && originalGridHTML) {
+          grid.innerHTML = originalGridHTML;
+        }
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = '';
+
+        const statusBar = document.getElementById('SuitsFilterStatusBar');
+        if (statusBar) statusBar.style.display = 'none';
+
+        const cards = document.querySelectorAll('.suits-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === 'all') c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      function handleFilterClick(styleKey, styleName) {
+        const cards = document.querySelectorAll('.suits-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          const newUrl = styleKey === 'all' 
+            ? window.location.pathname 
+            : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (styleKey === 'all') {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedSuits) {
+          fetch("{{ 'suits-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedSuits = data.filter(p => p.inventory === undefined || p.inventory > 0);
+              const matches = cachedSuits.filter(b => b.styles && b.styles.includes(styleKey));
+              renderFilteredProducts(matches, styleName);
+            });
+        } else {
+          const matches = cachedSuits.filter(b => b.styles && b.styles.includes(styleKey));
+          renderFilteredProducts(matches, styleName);
+        }
+      }
+
+      function checkInitialURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style') || window.location.hash.replace('#', '');
+        if (style && style !== 'all') {
+          const targetCard = document.querySelector(`.suits-subcat-card[data-style="${style}"]`);
+          if (targetCard) {
+            const name = targetCard.querySelector('.suits-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('SuitsSubcatTrack');
+        const resetBtn = document.getElementById('SuitsFilterResetBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.suits-subcat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.suits-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+
+        setTimeout(captureOriginal, 1000);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Suits Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Suits Subcategories"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,470 @@
+{%- if collection.handle == 'kurti' -%}
+  {%- style -%}
+    .kurti-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .kurti-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .kurti-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .kurti-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .kurti-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .kurti-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .kurti-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .kurti-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .kurti-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .kurti-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .kurti-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .kurti-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .kurti-subcat-card.is-active .kurti-subcat-circle,
+    .kurti-subcat-card:hover .kurti-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .kurti-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .kurti-subcat-card:hover .kurti-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .kurti-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 110px;
+      transition: color 0.2s ease;
+    }
+
+    .kurti-subcat-card.is-active .kurti-subcat-name,
+    .kurti-subcat-card:hover .kurti-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .kurti-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .kurti-subcat-card.is-active .kurti-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .kurti-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .kurti-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .kurti-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="kurti-subcats-section">
+    <div class="page-width">
+      <div class="kurti-subcats-header">
+        <h2 class="kurti-subcats-title">Shop Kurtis By Style & Craft</h2>
+        <p class="kurti-subcats-subtitle">Select any category below to instantly view matching handcrafted kurtis and tunics</p>
+      </div>
+
+      <div class="kurti-subcats-track" role="list" id="KurtiSubcatTrack">
+        <!-- 1. All Styles (344 items) -->
+        <button type="button" class="kurti-subcat-card is-active" data-style="all" role="listitem">
+          <div class="kurti-subcat-circle">
+            <img src="{{ 'subcat-kurti-all.jpg' | asset_url }}" alt="All Kurtis" width="100" height="100" loading="lazy">
+          </div>
+          <span class="kurti-subcat-name">All Styles</span>
+          <span class="kurti-subcat-count">344 Styles</span>
+        </button>
+
+        <!-- 2. Lucknowi Chikankari (64 items) -->
+        <button type="button" class="kurti-subcat-card" data-style="chikankari" role="listitem">
+          <div class="kurti-subcat-circle">
+            <img src="{{ 'subcat-kurti-chikankari.jpg' | asset_url }}" alt="Lucknowi Chikankari" width="100" height="100" loading="lazy">
+          </div>
+          <span class="kurti-subcat-name">Chikankari Kurti</span>
+          <span class="kurti-subcat-count">64 Styles</span>
+        </button>
+
+        <!-- 3. Anarkali & Flared (20 items) -->
+        <button type="button" class="kurti-subcat-card" data-style="anarkali" role="listitem">
+          <div class="kurti-subcat-circle">
+            <img src="{{ 'subcat-kurti-anarkali.jpg' | asset_url }}" alt="Anarkali & Flared" width="100" height="100" loading="lazy">
+          </div>
+          <span class="kurti-subcat-name">Anarkali & Flared</span>
+          <span class="kurti-subcat-count">20 Styles</span>
+        </button>
+
+        <!-- 4. Straight Cut (124 items) -->
+        <button type="button" class="kurti-subcat-card" data-style="straight" role="listitem">
+          <div class="kurti-subcat-circle">
+            <img src="{{ 'subcat-kurti-straight.jpg' | asset_url }}" alt="Straight Cut Kurtas" width="100" height="100" loading="lazy">
+          </div>
+          <span class="kurti-subcat-name">Straight Cut</span>
+          <span class="kurti-subcat-count">124 Styles</span>
+        </button>
+
+        <!-- 5. Pure Cotton (170 items) -->
+        <button type="button" class="kurti-subcat-card" data-style="cotton" role="listitem">
+          <div class="kurti-subcat-circle">
+            <img src="{{ 'subcat-kurti-cotton.jpg' | asset_url }}" alt="Pure Cotton Kurtis" width="100" height="100" loading="lazy">
+          </div>
+          <span class="kurti-subcat-name">Pure Cotton</span>
+          <span class="kurti-subcat-count">170 Styles</span>
+        </button>
+
+        <!-- 6. Embroidered & Handwork (147 items) -->
+        <button type="button" class="kurti-subcat-card" data-style="embroidered" role="listitem">
+          <div class="kurti-subcat-circle">
+            <img src="{{ 'subcat-kurti-embroidered.jpg' | asset_url }}" alt="Embroidered & Handwork" width="100" height="100" loading="lazy">
+          </div>
+          <span class="kurti-subcat-name">Embroidered Work</span>
+          <span class="kurti-subcat-count">147 Styles</span>
+        </button>
+
+        <!-- 7. Floral & Printed (71 items) -->
+        <button type="button" class="kurti-subcat-card" data-style="printed" role="listitem">
+          <div class="kurti-subcat-circle">
+            <img src="{{ 'subcat-kurti-printed.jpg' | asset_url }}" alt="Floral & Printed" width="100" height="100" loading="lazy">
+          </div>
+          <span class="kurti-subcat-name">Floral & Printed</span>
+          <span class="kurti-subcat-count">71 Styles</span>
+        </button>
+
+        <!-- 8. Short Kurti & Tunics (11 items) -->
+        <button type="button" class="kurti-subcat-card" data-style="short-kurti" role="listitem">
+          <div class="kurti-subcat-circle">
+            <img src="{{ 'subcat-kurti-short.jpg' | asset_url }}" alt="Short Kurti & Tunics" width="100" height="100" loading="lazy">
+          </div>
+          <span class="kurti-subcat-name">Short Tunics</span>
+          <span class="kurti-subcat-count">11 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="KurtiFilterStatusBar" class="kurti-filter-status-bar">
+        <span id="KurtiFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="KurtiFilterResetBtn" class="kurti-reset-btn">✕ Clear Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let cachedKurtis = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+
+      fetch("{{ 'kurti-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedKurtis = data;
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading kurti catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function renderFilteredProducts(items, styleName) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('KurtiFilterStatusBar');
+        const statusText = document.getElementById('KurtiFilterStatusText');
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Filtered: <strong>${styleName}</strong> (${items.length} styles found)`;
+        }
+
+        grid.innerHTML = items.map(p => {
+          const img = p.image || '';
+          const price = p.price || '0.00';
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function restoreOriginal() {
+        const grid = getTargetGrid();
+        if (grid && originalGridHTML) {
+          grid.innerHTML = originalGridHTML;
+        }
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = '';
+
+        updateCountDisplays(344);
+
+        const statusBar = document.getElementById('KurtiFilterStatusBar');
+        if (statusBar) statusBar.style.display = 'none';
+
+        const cards = document.querySelectorAll('.kurti-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === 'all') c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      function handleFilterClick(styleKey, styleName) {
+        const cards = document.querySelectorAll('.kurti-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          const newUrl = styleKey === 'all' 
+            ? window.location.pathname 
+            : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (styleKey === 'all') {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedKurtis) {
+          fetch("{{ 'kurti-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedKurtis = data;
+              const matches = cachedKurtis.filter(b => b.styles && b.styles.includes(styleKey));
+              renderFilteredProducts(matches, styleName);
+            });
+        } else {
+          const matches = cachedKurtis.filter(b => b.styles && b.styles.includes(styleKey));
+          renderFilteredProducts(matches, styleName);
+        }
+      }
+
+      function checkInitialURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style') || window.location.hash.replace('#', '');
+        if (style && style !== 'all') {
+          const targetCard = document.querySelector(`.kurti-subcat-card[data-style="${style}"]`);
+          if (targetCard) {
+            const name = targetCard.querySelector('.kurti-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('KurtiSubcatTrack');
+        const resetBtn = document.getElementById('KurtiFilterResetBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.kurti-subcat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.kurti-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+
+        setTimeout(captureOriginal, 1000);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Kurti Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Kurti Subcategories"
+    }
+  ]
+}
+{% endschema %}

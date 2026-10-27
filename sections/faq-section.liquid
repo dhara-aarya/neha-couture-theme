@@ -1,0 +1,508 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .faq-container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .faq-eyebrow {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(103, 49, 71, 0.08);
+    color: #673147;
+    border-radius: 999px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+  }
+
+  .faq-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .faq-item {
+    background: #ffffff;
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .faq-item:hover {
+    border-color: rgba(103, 49, 71, 0.3);
+    box-shadow: 0 4px 16px rgba(103, 49, 71, 0.04);
+  }
+
+  .faq-item[open] {
+    border-color: #673147;
+    box-shadow: 0 6px 20px rgba(103, 49, 71, 0.06);
+  }
+
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 2.4rem;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #1a1a1a;
+    transition: color 0.2s ease;
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item[open] .faq-summary {
+    color: #673147;
+  }
+
+  .faq-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    margin-left: 1.6rem;
+    color: #673147;
+    transition: transform 0.25s ease;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 0 2.4rem 2.4rem 2.4rem;
+    font-size: 1.5rem;
+    line-height: 1.7;
+    color: #4a4a4a;
+    border-top: 1px solid rgba(var(--color-foreground), 0.06);
+    margin-top: 0.4rem;
+    padding-top: 1.6rem;
+  }
+
+  .faq-answer p {
+    margin: 0 0 1rem 0;
+  }
+
+  .faq-answer p:last-child {
+    margin-bottom: 0;
+  }
+
+  .faq-cta-box {
+    margin-top: 4.5rem;
+    background: linear-gradient(135deg, #fdfbf7 0%, #f7f1e6 100%);
+    border: 1px solid #ebd9c8;
+    border-radius: 16px;
+    padding: 3rem 2.4rem;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(103, 49, 71, 0.04);
+  }
+
+  .faq-cta-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.8rem;
+  }
+
+  .faq-cta-text {
+    font-size: 1.45rem;
+    color: #5a5a5a;
+    margin: 0 0 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .faq-cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .faq-cta-btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25d366;
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 1.1rem 2.4rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .faq-cta-btn-whatsapp:hover {
+    background: #1eb956;
+    transform: translateY(-2px);
+    color: #ffffff;
+  }
+
+  .faq-cta-btn-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: #673147;
+    border: 1px solid rgba(103, 49, 71, 0.3);
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 1.1rem 2.4rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .faq-cta-btn-email:hover {
+    background: rgba(103, 49, 71, 0.05);
+    transform: translateY(-2px);
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- assign is_de = false -%}
+    {%- if request.locale.iso_code == 'de' -%}
+      {%- assign is_de = true -%}
+    {%- endif -%}
+
+    {%- assign faq_eyebrow = section.settings.eyebrow -%}
+    {%- assign faq_title = section.settings.title -%}
+    {%- assign faq_subtitle = section.settings.subtitle -%}
+    {%- assign faq_cta_title = section.settings.contact_title | default: "Still have questions?" -%}
+    {%- assign faq_cta_text = section.settings.contact_text | default: "Can't find the answer you are looking for? Chat with our Berlin styling team directly." -%}
+    {%- assign faq_wa_label = "WhatsApp Consultation" -%}
+    {%- assign faq_em_label = "Email Support" -%}
+
+    {%- if is_de -%}
+      {%- assign faq_eyebrow = 'Häufig gestellte Fragen' -%}
+      {%- assign faq_title = 'Alles, was Sie wissen müssen' -%}
+      {%- assign faq_subtitle = 'Wichtige Informationen zu europaweitem DHL-Versand, Showroom-Anproben in Berlin und Rückgaberichtlinien' -%}
+      {%- assign faq_cta_title = 'Haben Sie noch Fragen?' -%}
+      {%- assign faq_cta_text = 'Finden Sie nicht die passende Antwort? Unser Berliner Styling-Team berät Sie gerne persönlich per WhatsApp oder E-Mail.' -%}
+      {%- assign faq_wa_label = 'WhatsApp Beratung' -%}
+      {%- assign faq_em_label = 'E-Mail schreiben' -%}
+    {%- endif -%}
+
+    <div class="faq-container">
+      <div class="faq-header">
+        {%- if faq_eyebrow != blank -%}
+          <span class="faq-eyebrow">{{ faq_eyebrow }}</span>
+        {%- endif -%}
+
+        {%- if faq_title != blank -%}
+          <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+            {{ faq_title }}
+          </h2>
+        {%- endif -%}
+
+        {%- if faq_subtitle != blank -%}
+          <p class="collection__description">
+            {{ faq_subtitle }}
+          </p>
+        {%- endif -%}
+      </div>
+
+      <div class="faq-accordion-list" role="region" aria-label="FAQ Accordion">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign q_text = block.settings.question
+            assign a_text = block.settings.answer
+
+            if is_de
+              if q_text contains 'ship' or q_text contains 'dispatch' or q_text contains 'Europe'
+                assign q_text = 'Versenden Sie indische Mode in ganz Deutschland und Europa?'
+                assign a_text = '<p>Alle Bestellungen werden direkt aus unserem Berliner Logistikzentrum per DHL mit Sendungsverfolgung versendet. Die Lieferzeit innerhalb Deutschlands beträgt 1–3 Werktage. Für Österreich, die Schweiz und andere EU-Länder beträgt die Lieferzeit 3–5 Werktage (ohne Zollgebühren innerhalb der EU).</p>'
+              elsif q_text contains 'store' or q_text contains 'located' or q_text contains 'try'
+                assign q_text = 'Wo befindet sich Ihr Geschäft und kann ich Outfits vor Ort anprobieren?'
+                assign a_text = '<p>Ja, sehr gerne! Unser Showroom befindet sich im The Playce am Potsdamer Platz (Shop Nr. 55, Ebene -1, Alte Potsdamer Str. 7, 10785 Berlin). Geöffnet Montag bis Samstag von 10:00 bis 20:00 Uhr. Sie können spontan vorbeikommen oder vorab einen Termin vereinbaren.</p>'
+              elsif q_text contains 'consultation' or q_text contains 'video'
+                assign q_text = 'Wie funktioniert die persönliche Live-Videoberatung?'
+                assign a_text = '<p>In einem individuellen WhatsApp Video-Call (Mo–Sa 10:00–20:00 Uhr) zeigen Ihnen unsere Berliner Stylistinnen die gewünschten Outfits live auf Mannequins, prüfen Farbnuancen bei Tageslicht und messen Maße vor Ihrer Bestellung exakt aus.</p>'
+              elsif q_text contains 'size' or q_text contains 'correct' or q_text contains 'measure'
+                assign q_text = 'Wie finde ich die richtige Größe für Lehengas, Saris und Damenanzüge?'
+                assign a_text = '<p>Indische Kleidung wird nach Brustumfang in Zoll (Inches) gemessen (z.B. Größe 38 = 38 Zoll Brustumfang ≈ 96,5 cm, entspricht EU 38/40). Alle genähten Blusen und Kurtis von Neha Couture verfügen über ca. 4 cm eingearbeitete Nahtzugabe an den Seiten, sodass sie leicht angepasst werden können.</p>'
+              elsif q_text contains 'return' or q_text contains 'exchange' or q_text contains 'policy'
+                assign q_text = 'Wie funktionieren Rückgabe und Umtausch?'
+                assign a_text = '<p>Sie haben ein 14-tägiges Rückgaberecht. Rücksendungen per Post müssen an unser Retourenlager gesendet werden: Neha Aggarwal, Dolgenseestr. 9A, 10319 Berlin. Alternativ können Sie Artikel auch persönlich in unserem Showroom am Potsdamer Platz zurückgeben oder umtauschen.</p>'
+              endif
+            endif
+          -%}
+          <details class="faq-item" {{ block.shopify_attributes }}{% if forloop.first and section.settings.open_first %} open{% endif %}>
+            <summary class="faq-summary">
+              <span>{{ q_text }}</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="faq-answer">
+              {{ a_text }}
+            </div>
+          </details>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.show_contact_card -%}
+        <div class="faq-cta-box">
+          <h3 class="faq-cta-title">{{ faq_cta_title }}</h3>
+          <p class="faq-cta-text">
+            {{ faq_cta_text }}
+          </p>
+          <div class="faq-cta-actions">
+            {%- if section.settings.whatsapp_number != blank -%}
+              <a href="https://wa.me/{{ section.settings.whatsapp_number | remove: '+' | remove: ' ' | remove: '-' }}?text={{ section.settings.whatsapp_message | url_encode }}" target="_blank" rel="noopener noreferrer" class="faq-cta-btn-whatsapp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+                <span>{{ faq_wa_label }}</span>
+              </a>
+            {%- endif -%}
+            {%- if section.settings.contact_email != blank -%}
+              <a href="mailto:{{ section.settings.contact_email }}" class="faq-cta-btn-email">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>{{ faq_em_label }}</span>
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{%- comment -%}
+  AI SEO & Google Rich Snippets: FAQPage Schema (JSON-LD)
+  This structured data feeds Perplexity, ChatGPT, Gemini, and Google Search with verified Q&As
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for block in section.blocks -%}
+      {
+        "@type": "Question",
+        "name": {{ block.settings.question | json }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ block.settings.answer | strip_html | json }}
+        }
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Accordion (AI SEO)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Badge",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Everything You Need to Know"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Answers about European shipping, ready-to-wear collections, sizing, and showroom visits in Berlin."
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first",
+      "label": "Open first item by default",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "accent-1", "label": "Accent 1" },
+        { "value": "accent-2", "label": "Accent 2" },
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" },
+        { "value": "inverse", "label": "Inverse" }
+      ],
+      "default": "background-1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Contact Call to Action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact_card",
+      "label": "Show 'Still have questions?' Box",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Box Title",
+      "default": "Still have questions?"
+    },
+    {
+      "type": "text",
+      "id": "contact_text",
+      "label": "Contact Box Subtitle",
+      "default": "Can't find the answer you need? Connect directly with our Berlin styling team."
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp Phone Number (with country code)",
+      "default": "4915175316266"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_message",
+      "label": "Pre-filled WhatsApp message",
+      "default": "Hello Neha Couture, I have a question about an outfit / sizing."
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Support Email Address",
+      "default": "info@nehacouture.de"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Do you ship Indian bridal and ethnic wear across Europe?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Yes! We ship all ready-to-ship outfits directly from our Berlin fulfillment hub across Germany within 1–3 business days. We also deliver across Europe (Austria, Switzerland, France, Netherlands, Belgium, etc.) in 3–5 days with zero customs or import duties.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion (AI SEO)",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship Indian wear across Germany and Europe?",
+            "answer": "<p>Yes! We ship all ready-to-ship collections directly from our Berlin center. Deliveries within Germany take <strong>1–3 business days</strong>. We also ship across all European Union countries and Switzerland within <strong>3–5 business days</strong> with no surprise import duties.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Can I visit your showroom in Berlin to try outfits in person?",
+            "answer": "<p>Yes, absolutely! You can visit our retail store & showroom at <strong>The Playce Mall (Potsdamer Platz), Shop No. 55, Floor -1, Alte Potsdamer Str. 7, 10785 Berlin</strong>. We are open Monday to Saturday from 10:00 to 20:00.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "How does your 1-on-1 live video consultation work?",
+            "answer": "<p>If you live outside Berlin, you can book a free 1-on-1 video call via WhatsApp. Our stylists show you the fabric, hand embroidery details in natural lighting, and help you take precise measurements before placing an order.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "How do I choose the correct size for Lehengas, Sarees, and Suits?",
+            "answer": "<p>Every product includes an accurate sizing chart in centimetres and inches. Sarees come with unstitched or semi-stitched blouse pieces, and many lehengas have adjustable drawstring waists. You can also send us your bust, waist, and height via WhatsApp to help you choose the best fitting size.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "What is your return and exchange policy?",
+            "answer": "<p>We accept returns and exchanges on standard items within <strong>14 days of delivery</strong> across Germany and the EU. Garments must be in their original, unworn condition with tags intact.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

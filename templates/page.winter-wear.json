@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "winter_wear_page": {
+      "type": "winter-wear-page",
+      "settings": {}
+    }
+  },
+  "order": [
+    "winter_wear_page"
+  ]
+}

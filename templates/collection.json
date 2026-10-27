@@ -1,0 +1,121 @@
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "blouse_subcategories": {
+      "type": "blouse-subcategories",
+      "settings": {}
+    },
+    "mens_subcategories": {
+      "type": "mens-subcategories",
+      "settings": {}
+    },
+    "girls_subcategories": {
+      "type": "girls-subcategories",
+      "settings": {}
+    },
+    "boys_subcategories": {
+      "type": "boys-subcategories",
+      "settings": {}
+    },
+    "kurti_subcategories": {
+      "type": "kurti-subcategories",
+      "settings": {}
+    },
+    "suits_subcategories": {
+      "type": "suits-subcategories",
+      "settings": {}
+    },
+    "saree_subcategories": {
+      "type": "saree-subcategories",
+      "settings": {}
+    },
+    "western_subcategories": {
+      "type": "western-subcategories",
+      "settings": {}
+    },
+    "shapewear_subcategories": {
+      "type": "shapewear-subcategories",
+      "settings": {}
+    },
+    "officewear_subcategories": {
+      "type": "officewear-subcategories",
+      "settings": {}
+    },
+    "jewellery_subcategories": {
+      "type": "jewellery-subcategories",
+      "settings": {}
+    },
+    "necklace_subcategories": {
+      "type": "necklace-subcategories",
+      "settings": {}
+    },
+    "earrings_subcategories": {
+      "type": "earrings-subcategories",
+      "settings": {}
+    },
+    "bangles_subcategories": {
+      "type": "bangles-subcategories",
+      "settings": {}
+    },
+    "home_decoration_subcategories": {
+      "type": "home-decoration-subcategories",
+      "settings": {}
+    },
+    "flowers_subcategories": {
+      "type": "flowers-subcategories",
+      "settings": {}
+    },
+    "grocery_subcategories": {
+      "type": "grocery-subcategories",
+      "settings": {}
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 24,
+        "columns_desktop": 4,
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "enable_quick_add": true,
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "default_sort_by": "best-selling",
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "blouse_subcategories",
+    "mens_subcategories",
+    "girls_subcategories",
+    "boys_subcategories",
+    "kurti_subcategories",
+    "suits_subcategories",
+    "saree_subcategories",
+    "western_subcategories",
+    "shapewear_subcategories",
+    "officewear_subcategories",
+    "jewellery_subcategories",
+    "necklace_subcategories",
+    "earrings_subcategories",
+    "bangles_subcategories",
+    "home_decoration_subcategories",
+    "flowers_subcategories",
+    "grocery_subcategories",
+    "banner",
+    "product-grid"
+  ]
+}

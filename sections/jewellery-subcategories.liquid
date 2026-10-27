@@ -1,0 +1,583 @@
+{%- if collection.handle == 'jewellery' or collection.handle == 'indian-jewellery-in-germany' or collection.handle contains 'jewel' -%}
+  {%- style -%}
+    .jewellery-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .jewellery-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .jewellery-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .jewellery-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    /* Primary Category Circle Cards */
+    .jewellery-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.4rem;
+      justify-content: flex-start;
+    }
+
+    .jewellery-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .jewellery-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .jewellery-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .jewellery-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .jewellery-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .jewellery-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .jewellery-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .jewellery-subcat-card.is-active .jewellery-subcat-circle,
+    .jewellery-subcat-card:hover .jewellery-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .jewellery-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .jewellery-subcat-card:hover .jewellery-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .jewellery-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 110px;
+      transition: color 0.2s ease;
+    }
+
+    .jewellery-subcat-card.is-active .jewellery-subcat-name,
+    .jewellery-subcat-card:hover .jewellery-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .jewellery-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .jewellery-subcat-card.is-active .jewellery-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    /* Level 2 Subcategory Pills */
+    .jewellery-pills-wrap {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      margin: 1.6rem auto 0;
+      max-width: 960px;
+      padding: 0 1rem;
+    }
+
+    .jewellery-pill-btn {
+      background: #ffffff;
+      color: #103948;
+      border: 1px solid #ebd9c8;
+      border-radius: 20px;
+      padding: 0.6rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .jewellery-pill-btn:hover {
+      border-color: #673147;
+      color: #673147;
+      background: #faf7f2;
+    }
+
+    .jewellery-pill-btn.is-active {
+      background: #673147;
+      color: #ffffff;
+      border-color: #673147;
+      box-shadow: 0 4px 10px rgba(103, 49, 71, 0.2);
+    }
+
+    .jewellery-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 580px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .jewellery-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .jewellery-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="jewellery-subcats-section">
+    <div class="page-width">
+      <div class="jewellery-subcats-header">
+        <h2 class="jewellery-subcats-title">Shop Indian & Designer Jewellery</h2>
+        <p class="jewellery-subcats-subtitle">Explore handcrafted necklaces, traditional jhumkas, glass bangles, and bridal accessories</p>
+      </div>
+
+      <!-- Level 1: Primary Category Circle Track -->
+      <div class="jewellery-subcats-track" role="list" id="JewellerySubcatTrack">
+        <!-- 1. All Jewellery -->
+        <button type="button" class="jewellery-subcat-card is-active" data-category="all" role="listitem">
+          <div class="jewellery-subcat-circle">
+            <img src="{{ 'subcat-jewel-all.jpg' | asset_url }}" alt="All Jewellery" width="100" height="100" loading="lazy">
+          </div>
+          <span class="jewellery-subcat-name">All Jewellery</span>
+          <span class="jewellery-subcat-count">2000+ Styles</span>
+        </button>
+
+        <!-- 2. Necklaces & Sets -->
+        <button type="button" class="jewellery-subcat-card" data-category="necklaces" role="listitem">
+          <div class="jewellery-subcat-circle">
+            <img src="{{ 'subcat-necklace-all.jpg' | asset_url }}" alt="Necklaces and Sets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="jewellery-subcat-name">Necklaces & Sets</span>
+          <span class="jewellery-subcat-count">497 Styles</span>
+        </button>
+
+        <!-- 3. Earrings & Jhumkas -->
+        <button type="button" class="jewellery-subcat-card" data-category="earrings" role="listitem">
+          <div class="jewellery-subcat-circle">
+            <img src="{{ 'subcat-earrings-all.jpg' | asset_url }}" alt="Earrings and Jhumkas" width="100" height="100" loading="lazy">
+          </div>
+          <span class="jewellery-subcat-name">Earrings & Jhumkas</span>
+          <span class="jewellery-subcat-count">1438 Styles</span>
+        </button>
+
+        <!-- 4. Bangles & Bracelets -->
+        <button type="button" class="jewellery-subcat-card" data-category="bangles" role="listitem">
+          <div class="jewellery-subcat-circle">
+            <img src="{{ 'subcat-bangles-all.jpg' | asset_url }}" alt="Bangles and Bracelets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="jewellery-subcat-name">Bangles & Kadas</span>
+          <span class="jewellery-subcat-count">246 Styles</span>
+        </button>
+
+        <!-- 5. Maang Tikka & Sets -->
+        <button type="button" class="jewellery-subcat-card" data-category="maang-tikka" role="listitem">
+          <div class="jewellery-subcat-circle">
+            <img src="{{ 'subcat-jewel-maangtikka.jpg' | asset_url }}" alt="Maang Tikka and Matha Patti" width="100" height="100" loading="lazy">
+          </div>
+          <span class="jewellery-subcat-name">Maang Tikka</span>
+          <span class="jewellery-subcat-count">83 Styles</span>
+        </button>
+
+        <!-- 6. Kamarbandh & Belts -->
+        <button type="button" class="jewellery-subcat-card" data-category="kamarbandh" role="listitem">
+          <div class="jewellery-subcat-circle">
+            <img src="{{ 'subcat-jewel-kamarbandh.jpg' | asset_url }}" alt="Kamarbandh and Waist Chains" width="100" height="100" loading="lazy">
+          </div>
+          <span class="jewellery-subcat-name">Kamarbandh</span>
+          <span class="jewellery-subcat-count">26 Styles</span>
+        </button>
+      </div>
+
+      <!-- Level 2: Subcategory Quick Filter Pills for Necklaces -->
+      <div id="NecklacesPills" class="jewellery-pills-wrap" data-parent-cat="necklaces">
+        <button type="button" class="jewellery-pill-btn is-active" data-sub="all">All Necklaces (497)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="necklace-set">Necklace Sets (413)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="ad-necklace">American Diamond AD (65)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="choker">Chokers & Gold Chokers (175)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="kundan">Kundan Sets (175)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="mangalsutra">Mangalsutra (5)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="pendant-mala">Pendant & Malas (85)</button>
+      </div>
+
+      <!-- Level 2: Subcategory Quick Filter Pills for Earrings -->
+      <div id="EarringsPills" class="jewellery-pills-wrap" data-parent-cat="earrings">
+        <button type="button" class="jewellery-pill-btn is-active" data-sub="all">All Earrings (1438)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="only-earrings">Only Earrings (1344)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="jhumka">Jhumkas & Jhumkis (363)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="ad-earrings">American Diamond AD (61)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="chandbali-hoop">Chandbalis & Hoops (120)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="kundan-drops">Kundan & Drops (585)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="studs">Studs & Tops (185)</button>
+      </div>
+
+      <!-- Level 2: Subcategory Quick Filter Pills for Bangles -->
+      <div id="BanglesPills" class="jewellery-pills-wrap" data-parent-cat="bangles">
+        <button type="button" class="jewellery-pill-btn is-active" data-sub="all">All Bangles (246)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="gold-bangles">Gold & Metal (155)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="bracelets">Bracelets & Cuffs (99)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="velvet-ghungroo">Velvet & Ghungroo (47)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="kada-chooda">Kada & Chooda (6)</button>
+        <button type="button" class="jewellery-pill-btn" data-sub="glass-bangles">Glass Bangles (5)</button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="JewelleryFilterStatusBar" class="jewellery-filter-status-bar">
+        <span id="JewelleryFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="JewelleryFilterResetBtn" class="jewellery-reset-btn">✕ Clear Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let cachedJewellery = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+      let currentCategory = 'all';
+      let currentSub = 'all';
+
+      // Pre-fetch all jewellery products on page load
+      fetch("{{ 'jewellery-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedJewellery = data;
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading jewellery catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function showPillsForCategory(cat) {
+        document.querySelectorAll('.jewellery-pills-wrap').forEach(wrap => {
+          wrap.style.display = 'none';
+        });
+
+        let targetPills = null;
+        if (cat === 'necklaces') targetPills = document.getElementById('NecklacesPills');
+        else if (cat === 'earrings') targetPills = document.getElementById('EarringsPills');
+        else if (cat === 'bangles') targetPills = document.getElementById('BanglesPills');
+
+        if (targetPills) {
+          targetPills.style.display = 'flex';
+          targetPills.querySelectorAll('.jewellery-pill-btn').forEach(btn => {
+            if (btn.getAttribute('data-sub') === currentSub) btn.classList.add('is-active');
+            else btn.classList.remove('is-active');
+          });
+        }
+      }
+
+      function renderFilteredProducts(items, labelText) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('JewelleryFilterStatusBar');
+        const statusText = document.getElementById('JewelleryFilterStatusText');
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Showing: <strong>${labelText}</strong> (${items.length} styles found)`;
+        }
+
+        grid.innerHTML = items.map(p => {
+          const img = p.image || '';
+          const price = p.price || '0.00';
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function restoreOriginal() {
+        const grid = getTargetGrid();
+        if (grid && originalGridHTML) {
+          grid.innerHTML = originalGridHTML;
+        }
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = '';
+
+        updateCountDisplays(2007);
+
+        currentCategory = 'all';
+        currentSub = 'all';
+
+        const statusBar = document.getElementById('JewelleryFilterStatusBar');
+        if (statusBar) statusBar.style.display = 'none';
+
+        document.querySelectorAll('.jewellery-pills-wrap').forEach(w => w.style.display = 'none');
+
+        const cards = document.querySelectorAll('.jewellery-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-category') === 'all') c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      function applyFilter(cat, sub, labelText) {
+        currentCategory = cat;
+        currentSub = sub || 'all';
+
+        // Update Level 1 active card
+        document.querySelectorAll('.jewellery-subcat-card').forEach(c => {
+          if (c.getAttribute('data-category') === cat) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        showPillsForCategory(cat);
+
+        // Update URL
+        if (history.replaceState) {
+          const params = new URLSearchParams();
+          if (cat !== 'all') params.set('category', cat);
+          if (sub && sub !== 'all') params.set('style', sub);
+          const qs = params.toString();
+          const newUrl = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (cat === 'all' && (!sub || sub === 'all')) {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedJewellery) return;
+
+        let filtered = cachedJewellery;
+        if (cat !== 'all') {
+          filtered = filtered.filter(p => p.categories && p.categories.includes(cat));
+        }
+        if (sub && sub !== 'all') {
+          filtered = filtered.filter(p => p.subcategories && p.subcategories.includes(sub));
+        }
+
+        renderFilteredProducts(filtered, labelText);
+      }
+
+      function checkInitialURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        let cat = urlParams.get('category') || urlParams.get('cat');
+        let style = urlParams.get('style') || urlParams.get('sub');
+
+        // Normalize legacy params
+        if (style === 'necklace') { cat = 'necklaces'; style = 'all'; }
+        if (style === 'earrings') { cat = 'earrings'; style = 'all'; }
+        if (style === 'bangles') { cat = 'bangles'; style = 'all'; }
+
+        if (cat) {
+          const card = document.querySelector(`.jewellery-subcat-card[data-category="${cat}"]`);
+          const label = card ? card.querySelector('.jewellery-subcat-name').textContent.trim() : cat;
+          applyFilter(cat, style || 'all', label);
+        } else if (style) {
+          // Find which category has this style
+          if (['ad-necklace', 'choker', 'mangalsutra', 'kundan', 'pendant-mala', 'necklace-set'].includes(style)) {
+            applyFilter('necklaces', style, 'Necklaces');
+          } else if (['jhumka', 'ad-earrings', 'chandbali-hoop', 'studs', 'kundan-drops', 'only-earrings'].includes(style)) {
+            applyFilter('earrings', style, 'Earrings');
+          } else if (['gold-bangles', 'bracelets', 'velvet-ghungroo', 'kada-chooda', 'glass-bangles'].includes(style)) {
+            applyFilter('bangles', style, 'Bangles');
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('JewellerySubcatTrack');
+        const resetBtn = document.getElementById('JewelleryFilterResetBtn');
+        if (!track) return;
+
+        // Level 1: Category Cards Click
+        track.querySelectorAll('.jewellery-subcat-card').forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const cat = this.getAttribute('data-category');
+            const name = this.querySelector('.jewellery-subcat-name').textContent.trim();
+            applyFilter(cat, 'all', name);
+          });
+        });
+
+        // Level 2: Pill Buttons Click
+        document.querySelectorAll('.jewellery-pill-btn').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const sub = this.getAttribute('data-sub');
+            const parentWrap = this.closest('.jewellery-pills-wrap');
+            const cat = parentWrap.getAttribute('data-parent-cat');
+            const label = this.textContent.trim();
+            applyFilter(cat, sub, label);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Jewellery Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Jewellery Subcategories"
+    }
+  ]
+}
+{% endschema %}

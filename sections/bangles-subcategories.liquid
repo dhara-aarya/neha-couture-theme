@@ -1,0 +1,450 @@
+{%- if collection.handle == 'bangles' or collection.handle == 'exquisit-bangles-by-neha-couture' or collection.handle contains 'bangle' -%}
+  {%- style -%}
+    .bangles-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .bangles-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .bangles-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .bangles-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .bangles-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .bangles-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .bangles-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .bangles-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .bangles-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .bangles-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .bangles-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .bangles-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .bangles-subcat-card.is-active .bangles-subcat-circle,
+    .bangles-subcat-card:hover .bangles-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .bangles-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .bangles-subcat-card:hover .bangles-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .bangles-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 110px;
+      transition: color 0.2s ease;
+    }
+
+    .bangles-subcat-card.is-active .bangles-subcat-name,
+    .bangles-subcat-card:hover .bangles-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .bangles-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .bangles-subcat-card.is-active .bangles-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .bangles-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .bangles-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .bangles-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="bangles-subcats-section">
+    <div class="page-width">
+      <div class="bangles-subcats-header">
+        <h2 class="bangles-subcats-title">Shop Handcrafted Bangles & Bracelets By Type</h2>
+        <p class="bangles-subcats-subtitle">Choose from authentic glass bangles, golden kadas, Kashmiri velvet sets, and elegant bracelets</p>
+      </div>
+
+      <div class="bangles-subcats-track" role="list" id="BanglesSubcatTrack">
+        <!-- 1. All Bangles -->
+        <button type="button" class="bangles-subcat-card is-active" data-style="all" role="listitem">
+          <div class="bangles-subcat-circle">
+            <img src="{{ 'subcat-bangles-all.jpg' | asset_url }}" alt="All Bangles" width="100" height="100" loading="lazy">
+          </div>
+          <span class="bangles-subcat-name">All Bangles</span>
+          <span class="bangles-subcat-count">246 Styles</span>
+        </button>
+
+        <!-- 2. Gold & Metal Bangles -->
+        <button type="button" class="bangles-subcat-card" data-style="gold-bangles" role="listitem">
+          <div class="bangles-subcat-circle">
+            <img src="{{ 'subcat-bangles-gold.jpg' | asset_url }}" alt="Gold and Metal Bangles" width="100" height="100" loading="lazy">
+          </div>
+          <span class="bangles-subcat-name">Gold & Metal</span>
+          <span class="bangles-subcat-count">155 Styles</span>
+        </button>
+
+        <!-- 3. Bracelets & Cuffs -->
+        <button type="button" class="bangles-subcat-card" data-style="bracelets" role="listitem">
+          <div class="bangles-subcat-circle">
+            <img src="{{ 'subcat-bangles-bracelet.jpg' | asset_url }}" alt="Bracelets and Cuffs" width="100" height="100" loading="lazy">
+          </div>
+          <span class="bangles-subcat-name">Bracelets</span>
+          <span class="bangles-subcat-count">99 Styles</span>
+        </button>
+
+        <!-- 4. Velvet & Ghungroo Bangles -->
+        <button type="button" class="bangles-subcat-card" data-style="velvet-ghungroo" role="listitem">
+          <div class="bangles-subcat-circle">
+            <img src="{{ 'subcat-bangles-velvet.jpg' | asset_url }}" alt="Velvet and Ghungroo Bangles" width="100" height="100" loading="lazy">
+          </div>
+          <span class="bangles-subcat-name">Velvet Sets</span>
+          <span class="bangles-subcat-count">47 Styles</span>
+        </button>
+
+        <!-- 5. Kadas & Choodas -->
+        <button type="button" class="bangles-subcat-card" data-style="kada-chooda" role="listitem">
+          <div class="bangles-subcat-circle">
+            <img src="{{ 'subcat-bangles-kada.jpg' | asset_url }}" alt="Kadas and Bridal Choodas" width="100" height="100" loading="lazy">
+          </div>
+          <span class="bangles-subcat-name">Kada & Chooda</span>
+          <span class="bangles-subcat-count">6 Styles</span>
+        </button>
+
+        <!-- 6. Glass Bangles -->
+        <button type="button" class="bangles-subcat-card" data-style="glass-bangles" role="listitem">
+          <div class="bangles-subcat-circle">
+            <img src="{{ 'subcat-bangles-glass.jpg' | asset_url }}" alt="Traditional Glass Bangles" width="100" height="100" loading="lazy">
+          </div>
+          <span class="bangles-subcat-name">Glass Bangles</span>
+          <span class="bangles-subcat-count">5 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="BanglesFilterStatusBar" class="bangles-filter-status-bar">
+        <span id="BanglesFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="BanglesFilterResetBtn" class="bangles-reset-btn">✕ Clear Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let cachedBangles = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+
+      fetch("{{ 'bangles-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedBangles = data;
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading bangles catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function renderFilteredProducts(items, styleName) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('BanglesFilterStatusBar');
+        const statusText = document.getElementById('BanglesFilterStatusText');
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Filtered: <strong>${styleName}</strong> (${items.length} styles found)`;
+        }
+
+        grid.innerHTML = items.map(p => {
+          const img = p.image || '';
+          const price = p.price || '0.00';
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function restoreOriginal() {
+        const grid = getTargetGrid();
+        if (grid && originalGridHTML) {
+          grid.innerHTML = originalGridHTML;
+        }
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = '';
+
+        updateCountDisplays(246);
+
+        const statusBar = document.getElementById('BanglesFilterStatusBar');
+        if (statusBar) statusBar.style.display = 'none';
+
+        const cards = document.querySelectorAll('.bangles-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === 'all') c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      function handleFilterClick(styleKey, styleName) {
+        const cards = document.querySelectorAll('.bangles-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          const newUrl = styleKey === 'all' 
+            ? window.location.pathname 
+            : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (styleKey === 'all') {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedBangles) {
+          fetch("{{ 'bangles-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedBangles = data;
+              const matches = cachedBangles.filter(b => b.styles && b.styles.includes(styleKey));
+              renderFilteredProducts(matches, styleName);
+            });
+        } else {
+          const matches = cachedBangles.filter(b => b.styles && b.styles.includes(styleKey));
+          renderFilteredProducts(matches, styleName);
+        }
+      }
+
+      function checkInitialURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style') || window.location.hash.replace('#', '');
+        if (style && style !== 'all') {
+          const targetCard = document.querySelector(`.bangles-subcat-card[data-style="${style}"]`);
+          if (targetCard) {
+            const name = targetCard.querySelector('.bangles-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('BanglesSubcatTrack');
+        const resetBtn = document.getElementById('BanglesFilterResetBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.bangles-subcat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.bangles-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Bangles Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Bangles Subcategories"
+    }
+  ]
+}
+{% endschema %}

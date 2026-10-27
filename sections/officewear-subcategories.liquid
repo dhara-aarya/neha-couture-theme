@@ -1,0 +1,452 @@
+{%- if collection.handle == 'office-wear' -%}
+  {%- style -%}
+    .office-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .office-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .office-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .office-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .office-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .office-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .office-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .office-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .office-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .office-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .office-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .office-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .office-subcat-card.is-active .office-subcat-circle,
+    .office-subcat-card:hover .office-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .office-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .office-subcat-card:hover .office-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .office-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 110px;
+      transition: color 0.2s ease;
+    }
+
+    .office-subcat-card.is-active .office-subcat-name,
+    .office-subcat-card:hover .office-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .office-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .office-subcat-card.is-active .office-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .office-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .office-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .office-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="office-subcats-section">
+    <div class="page-width">
+      <div class="office-subcats-header">
+        <h2 class="office-subcats-title">Shop Indian Office Wear By Style</h2>
+        <p class="office-subcats-subtitle">Select any category below to instantly view matching formal kurtas, pant sets & daily chic</p>
+      </div>
+
+      <div class="office-subcats-track" role="list" id="OfficeSubcatTrack">
+        <!-- 1. All Styles (468 items) -->
+        <button type="button" class="office-subcat-card is-active" data-style="all" role="listitem">
+          <div class="office-subcat-circle">
+            <img src="{{ 'subcat-office-all.jpg' | asset_url }}" alt="All Office Wear" width="100" height="100" loading="lazy">
+          </div>
+          <span class="office-subcat-name">All Styles</span>
+          <span class="office-subcat-count">468 Styles</span>
+        </button>
+
+        <!-- 2. Straight Formal Kurtas (221 items) -->
+        <button type="button" class="office-subcat-card" data-style="straight" role="listitem">
+          <div class="office-subcat-circle">
+            <img src="{{ 'subcat-office-straight.jpg' | asset_url }}" alt="Straight Formal Kurtas" width="100" height="100" loading="lazy">
+          </div>
+          <span class="office-subcat-name">Straight Formals</span>
+          <span class="office-subcat-count">221 Styles</span>
+        </button>
+
+        <!-- 3. Kurta Pant Sets (101 items) -->
+        <button type="button" class="office-subcat-card" data-style="pantsets" role="listitem">
+          <div class="office-subcat-circle">
+            <img src="{{ 'subcat-office-pantsets.jpg' | asset_url }}" alt="Kurta Pant Sets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="office-subcat-name">Kurta Pant Sets</span>
+          <span class="office-subcat-count">101 Styles</span>
+        </button>
+
+        <!-- 4. Pure Cotton Formals (123 items) -->
+        <button type="button" class="office-subcat-card" data-style="cotton" role="listitem">
+          <div class="office-subcat-circle">
+            <img src="{{ 'subcat-office-cotton.jpg' | asset_url }}" alt="Pure Cotton Formals" width="100" height="100" loading="lazy">
+          </div>
+          <span class="office-subcat-name">Pure Cotton</span>
+          <span class="office-subcat-count">123 Styles</span>
+        </button>
+
+        <!-- 5. Lucknowi Chikankari Workwear (64 items) -->
+        <button type="button" class="office-subcat-card" data-style="chikankari" role="listitem">
+          <div class="office-subcat-circle">
+            <img src="{{ 'subcat-office-chikan.jpg' | asset_url }}" alt="Chikankari Workwear" width="100" height="100" loading="lazy">
+          </div>
+          <span class="office-subcat-name">Chikankari Work</span>
+          <span class="office-subcat-count">64 Styles</span>
+        </button>
+
+        <!-- 6. Printed Daily Chic (101 items) -->
+        <button type="button" class="office-subcat-card" data-style="printed" role="listitem">
+          <div class="office-subcat-circle">
+            <img src="{{ 'subcat-office-printed.jpg' | asset_url }}" alt="Printed Daily Chic" width="100" height="100" loading="lazy">
+          </div>
+          <span class="office-subcat-name">Printed Chic</span>
+          <span class="office-subcat-count">101 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="OfficeFilterStatusBar" class="office-filter-status-bar">
+        <span id="OfficeFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="OfficeFilterResetBtn" class="office-reset-btn">✕ Clear Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let cachedOffice = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+
+      fetch("{{ 'officewear-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedOffice = data;
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading office catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function renderFilteredProducts(items, styleName) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('OfficeFilterStatusBar');
+        const statusText = document.getElementById('OfficeFilterStatusText');
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Filtered: <strong>${styleName}</strong> (${items.length} styles found)`;
+        }
+
+        grid.innerHTML = items.map(p => {
+          const img = p.image || '';
+          const price = p.price || '0.00';
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function restoreOriginal() {
+        const grid = getTargetGrid();
+        if (grid && originalGridHTML) {
+          grid.innerHTML = originalGridHTML;
+        }
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = '';
+
+        updateCountDisplays(468);
+
+        const statusBar = document.getElementById('OfficeFilterStatusBar');
+        if (statusBar) statusBar.style.display = 'none';
+
+        const cards = document.querySelectorAll('.office-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === 'all') c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      function handleFilterClick(styleKey, styleName) {
+        const cards = document.querySelectorAll('.office-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          const newUrl = styleKey === 'all' 
+            ? window.location.pathname 
+            : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (styleKey === 'all') {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedOffice) {
+          fetch("{{ 'officewear-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedOffice = data;
+              const matches = cachedOffice.filter(b => b.styles && b.styles.includes(styleKey));
+              renderFilteredProducts(matches, styleName);
+            });
+        } else {
+          const matches = cachedOffice.filter(b => b.styles && b.styles.includes(styleKey));
+          renderFilteredProducts(matches, styleName);
+        }
+      }
+
+      function checkInitialURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style') || window.location.hash.replace('#', '');
+        if (style && style !== 'all') {
+          const targetCard = document.querySelector(`.office-subcat-card[data-style="${style}"]`);
+          if (targetCard) {
+            const name = targetCard.querySelector('.office-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('OfficeSubcatTrack');
+        const resetBtn = document.getElementById('OfficeFilterResetBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.office-subcat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.office-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+
+        setTimeout(captureOriginal, 1000);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Office Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Office Subcategories"
+    }
+  ]
+}
+{% endschema %}

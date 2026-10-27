@@ -1,0 +1,66 @@
+{%- comment -%}
+  Renders fulfillment origin badge for line item in cart
+  Usage: {% render 'cart-fulfillment-badge', item: item %}
+{%- endcomment -%}
+
+{%- liquid
+  assign vendor_lower = item.product.vendor | downcase
+  assign type_lower = item.product.type | downcase
+  assign title_lower = item.product.title | downcase
+
+  if type_lower contains 'flower' or type_lower contains 'garland' or type_lower contains 'leaves' or title_lower contains 'garland' or title_lower contains 'rose' and vendor_lower contains 'namma'
+    assign badge_type = 'flower'
+    assign badge_icon = '🌸'
+    assign badge_text = 'Fresh Flowers • Priority Express'
+    assign badge_class = 'fulfillment-badge--flower'
+  elsif vendor_lower contains 'namma'
+    assign badge_type = 'namma'
+    assign badge_icon = '🚚'
+    assign badge_text = 'Ships from Namma Markt (Hamburg • 1–2 Days)'
+    assign badge_class = 'fulfillment-badge--namma'
+  else
+    assign badge_type = 'neha'
+    assign badge_icon = '📦'
+    assign badge_text = 'Ships from Neha Couture (Berlin • 1–3 Days)'
+    assign badge_class = 'fulfillment-badge--neha'
+  endif
+-%}
+
+<div class="cart-fulfillment-badge {{ badge_class }}">
+  <span class="cart-fulfillment-badge__icon">{{ badge_icon }}</span>
+  <span class="cart-fulfillment-badge__text">{{ badge_text }}</span>
+</div>
+
+<style>
+  .cart-fulfillment-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin: 4px 0 6px 0;
+    max-width: fit-content;
+  }
+  .cart-fulfillment-badge__icon {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .cart-fulfillment-badge.fulfillment-badge--neha {
+    background: rgba(103, 49, 71, 0.08);
+    color: #673147;
+    border: 1px solid rgba(103, 49, 71, 0.18);
+  }
+  .cart-fulfillment-badge.fulfillment-badge--namma {
+    background: #eef6fc;
+    color: #12538a;
+    border: 1px solid #c9e1f5;
+  }
+  .cart-fulfillment-badge.fulfillment-badge--flower {
+    background: #fdf2f5;
+    color: #9c2749;
+    border: 1px solid #fad2dc;
+  }
+</style>

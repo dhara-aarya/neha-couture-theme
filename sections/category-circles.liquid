@@ -1,0 +1,463 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .category-circles-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .category-circles-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.6rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0.5rem 0.2rem 1.2rem;
+  }
+
+  .category-circles-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media screen and (min-width: 990px) {
+    .category-circles-container {
+      justify-content: {{ section.settings.desktop_alignment }};
+      gap: 2.4rem;
+      flex-wrap: wrap;
+    }
+  }
+
+  .category-circle-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    flex: 0 0 auto;
+    width: {{ section.settings.circle_size_mobile }}px;
+    text-align: center;
+    transition: transform 0.25s ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    .category-circle-item {
+      width: {{ section.settings.circle_size_desktop }}px;
+    }
+  }
+
+  .category-circle-item:hover {
+    transform: translateY(-3px);
+  }
+
+  .category-circle-image-wrapper {
+    position: relative;
+    width: {{ section.settings.circle_size_mobile }}px;
+    height: {{ section.settings.circle_size_mobile }}px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgba(var(--color-foreground), 0.04);
+    border: 2px solid rgba(var(--color-foreground), 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    .category-circle-image-wrapper {
+      width: {{ section.settings.circle_size_desktop }}px;
+      height: {{ section.settings.circle_size_desktop }}px;
+    }
+  }
+
+  .category-circle-item:hover .category-circle-image-wrapper {
+    border-color: rgba(var(--color-button), 0.85);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .category-circle-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .category-circle-item:hover .category-circle-image-wrapper img {
+    transform: scale(1.08);
+  }
+
+  .category-circle-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f0eb 0%, #e8dec8 100%);
+    color: #673147;
+    font-weight: 600;
+    font-size: 1.4rem;
+  }
+
+  .category-circle-title {
+    margin-top: 0.8rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: rgb(var(--color-foreground));
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 750px) {
+    .category-circle-title {
+      font-size: 1.4rem;
+      margin-top: 1rem;
+    }
+  }
+
+  .category-circle-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: #b22222;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- assign is_de = false -%}
+    {%- if request.locale.iso_code == 'de' -%}
+      {%- assign is_de = true -%}
+    {%- endif -%}
+
+    {%- assign cat_sec_title = section.settings.title -%}
+    {%- assign cat_sec_subtitle = section.settings.subtitle -%}
+    {%- if is_de -%}
+      {%- assign cat_sec_title = 'Nach Kategorie shoppen' -%}
+      {%- assign cat_sec_subtitle = 'Entdecken Sie authentische indische Mode und handgefertigte Couture' -%}
+    {%- endif -%}
+
+    {%- if cat_sec_title != blank -%}
+      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin center">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+          {{ cat_sec_title }}
+        </h2>
+        {%- if cat_sec_subtitle != blank -%}
+          <p class="collection__description {{ section.settings.description_style }}">
+            {{ cat_sec_subtitle }}
+          </p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="category-circles-wrapper">
+      <div class="category-circles-container" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign collection = block.settings.collection
+            assign asset_image = block.settings.asset_image
+            assign custom_image = block.settings.image
+            assign fallback_image = collection.featured_image | default: collection.products.first.featured_image
+            assign title = block.settings.title | default: collection.title
+            assign link = block.settings.link | default: collection.url
+            assign badge = block.settings.badge_text
+
+            if is_de
+              case title
+                when 'Shararas & Suits'
+                  assign title = 'Shararas & Damenanzüge'
+                when 'Winter Wear', 'Woolen Suits', 'Wollen Suits'
+                  assign title = 'Wollene Damenanzüge'
+                when 'Silk Sarees', 'Pure Silk Sarees', 'Sarees', 'Sarees Collection'
+                  assign title = 'Indische Saris'
+                when 'Kurtis'
+                  assign title = 'Kurtis'
+                when 'Traditional Jewellery'
+                  assign title = 'Traditioneller Schmuck'
+                when 'Bangles & Choodas'
+                  assign title = 'Armreifen & Choodas'
+                when 'Hair Gajras'
+                  assign title = 'Haarschmuck & Gajras'
+                when 'Modern Jewellery'
+                  assign title = 'Moderner Schmuck'
+                when "Men's Kurtas & Jackets"
+                  assign title = 'Herren-Kurtas & Westen'
+                when 'Girls Lehengas & Sets'
+                  assign title = 'Mädchen-Lehengas'
+                when 'Boys Kurtas'
+                  assign title = 'Jungen-Kurtas'
+                when 'Designer Blouses'
+                  assign title = 'Designer-Blusen'
+                when 'Petticoats & Shapewear'
+                  assign title = 'Unterröcke & Shapewear'
+                when 'Punjabi Juttis'
+                  assign title = 'Punjabi Juttis'
+                when 'Home Decor & Torans'
+                  assign title = 'Indische Deko & Torans'
+                when 'Fresh Flowers'
+                  assign title = 'Frische Blumen'
+              endcase
+
+              case badge
+                when 'Popular'
+                  assign badge = 'Beliebt'
+                when 'Bridal'
+                  assign badge = 'Braut'
+                when 'Jackets'
+                  assign badge = 'Westen'
+              endcase
+            endif
+          -%}
+          <a
+            href="{{ link | default: '#' }}"
+            class="category-circle-item"
+            role="listitem"
+            {{ block.shopify_attributes }}
+          >
+            <div class="category-circle-image-wrapper">
+              {%- if custom_image != blank -%}
+                {{
+                  custom_image
+                  | image_url: width: 240
+                  | image_tag:
+                    loading: 'lazy',
+                    width: section.settings.circle_size_desktop,
+                    height: section.settings.circle_size_desktop,
+                    alt: title,
+                    class: 'category-circle-image'
+                }}
+              {%- elsif asset_image != blank -%}
+                <img
+                  src="{{ asset_image | asset_url }}"
+                  loading="lazy"
+                  width="{{ section.settings.circle_size_desktop }}"
+                  height="{{ section.settings.circle_size_desktop }}"
+                  alt="{{ title | escape }}"
+                  class="category-circle-image"
+                >
+              {%- elsif fallback_image != blank -%}
+                {{
+                  fallback_image
+                  | image_url: width: 240
+                  | image_tag:
+                    loading: 'lazy',
+                    width: section.settings.circle_size_desktop,
+                    height: section.settings.circle_size_desktop,
+                    alt: title,
+                    class: 'category-circle-image'
+                }}
+              {%- elsif forloop.index == 1 -%}
+                <img src="{{ 'cat-suits.jpg' | asset_url }}" loading="lazy" width="{{ section.settings.circle_size_desktop }}" height="{{ section.settings.circle_size_desktop }}" alt="{{ title | escape }}" class="category-circle-image">
+              {%- elsif forloop.index == 2 -%}
+                <img src="{{ 'cat-sarees.jpg' | asset_url }}" loading="lazy" width="{{ section.settings.circle_size_desktop }}" height="{{ section.settings.circle_size_desktop }}" alt="{{ title | escape }}" class="category-circle-image">
+              {%- elsif forloop.index == 3 -%}
+                <img src="{{ 'cat-kurtis.jpg' | asset_url }}" loading="lazy" width="{{ section.settings.circle_size_desktop }}" height="{{ section.settings.circle_size_desktop }}" alt="{{ title | escape }}" class="category-circle-image">
+              {%- elsif forloop.index == 4 -%}
+                <img src="{{ 'cat-bangles.jpg' | asset_url }}" loading="lazy" width="{{ section.settings.circle_size_desktop }}" height="{{ section.settings.circle_size_desktop }}" alt="{{ title | escape }}" class="category-circle-image">
+              {%- elsif forloop.index == 5 -%}
+                <img src="{{ 'cat-mens.jpg' | asset_url }}" loading="lazy" width="{{ section.settings.circle_size_desktop }}" height="{{ section.settings.circle_size_desktop }}" alt="{{ title | escape }}" class="category-circle-image">
+              {%- elsif forloop.index == 6 -%}
+                <img src="{{ 'cat-girls.jpg' | asset_url }}" loading="lazy" width="{{ section.settings.circle_size_desktop }}" height="{{ section.settings.circle_size_desktop }}" alt="{{ title | escape }}" class="category-circle-image">
+              {%- elsif forloop.index == 7 -%}
+                <img src="{{ 'cat-boys.jpg' | asset_url }}" loading="lazy" width="{{ section.settings.circle_size_desktop }}" height="{{ section.settings.circle_size_desktop }}" alt="{{ title | escape }}" class="category-circle-image">
+              {%- elsif block.settings.custom_icon_text != blank -%}
+                <div class="category-circle-placeholder">
+                  {{ block.settings.custom_icon_text }}
+                </div>
+              {%- else -%}
+                <div class="category-circle-placeholder">
+                  {{ title | slice: 0, 2 | upcase }}
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.badge_text != blank -%}
+                <span class="category-circle-badge">{{ block.settings.badge_text }}</span>
+              {%- endif -%}
+            </div>
+            {%- if title != blank -%}
+              <span class="category-circle-title">{{ title }}</span>
+            {%- endif -%}
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Category Circles",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Shop By Category",
+      "label": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "Subheading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "select",
+      "id": "desktop_alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "space-between", "label": "Space between" }
+      ],
+      "default": "center",
+      "label": "Desktop alignment"
+    },
+    {
+      "type": "range",
+      "id": "circle_size_desktop",
+      "min": 80,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Circle size on Desktop",
+      "default": 110
+    },
+    {
+      "type": "range",
+      "id": "circle_size_mobile",
+      "min": 65,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Circle size on Mobile",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Image",
+          "info": "Optional. Overrides the collection's featured image."
+        },
+        {
+          "type": "text",
+          "id": "asset_image",
+          "label": "Asset Image Filename (Optional)",
+          "info": "e.g., cat-suits.jpg, cat-sarees.jpg, etc."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom Title",
+          "info": "Optional. Overrides the collection title."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom Link",
+          "info": "Optional. Overrides the collection link."
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge",
+          "info": "e.g., 'New', 'Sale'"
+        },
+        {
+          "type": "text",
+          "id": "custom_icon_text",
+          "label": "Initials / Shortcode",
+          "info": "Displayed if no image is available (e.g. 'NC')"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Circles",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}

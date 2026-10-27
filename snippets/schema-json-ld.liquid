@@ -1,0 +1,538 @@
+{%- comment -%}
+  Structured Data (JSON-LD) for Google Rich Snippets & AI SEO (GEO / Generative Engine Optimization)
+  Includes: Organization (Entity Graph), WebSite, Breadcrumbs (Collections, Products, Articles, Blogs),
+  Product (with Material, Color, Audience, Shipping to DE & EU, Return Policy),
+  CollectionPage, and BlogPosting (for conversational AI citations).
+{%- endcomment -%}
+
+{%- assign origin_url = shop.url -%}
+{%- assign price_valid_until = 'now' | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' -%}
+
+{%- if product -%}
+  {%- assign schema_product_title = product.title -%}
+  {%- assign geo_tokens = ' IN GERMANY||in Germany||In Germany||in germany||IN BERLIN||in Berlin||In Berlin||in berlin||IN ESSEN||in Essen||In Essen||in essen||IN MUNICH||in Munich||In Munich||in munich||IN MÜNCHEN||in München||In München||in münchen||IN FRANKFURT||in Frankfurt||In Frankfurt||in frankfurt||IN HAMBURG||in Hamburg||In Hamburg||in hamburg||IN COLOGNE||in Cologne||In Cologne||in cologne||IN KÖLN||in Köln||In Köln||in köln||IN STUTTGART||in Stuttgart||In Stuttgart||in stuttgart||IN DUSSELDORF||in Dusseldorf||In Dusseldorf||in dusseldorf||IN DÜSSELDORF||in Düsseldorf||In Düsseldorf||in düsseldorf||IN DORTMUND||in Dortmund||In Dortmund||in dortmund||IN LEIPZIG||in Leipzig||In Leipzig||in leipzig||IN BREMEN||in Bremen||In Bremen||in bremen||IN DRESDEN||in Dresden||In Dresden||in dresden||IN HANNOVER||in Hannover||In Hannover||in hannover||IN NUREMBERG||in Nuremberg||In Nuremberg||in nuremberg||IN DUISBURG||in Duisburg||In Duisburg||in duisburg||IN BOCHUM||in Bochum||In Bochum||in bochum||IN WUPPERTAL||in Wuppertal||In Wuppertal||in wuppertal||IN BONN||in Bonn||In Bonn||in bonn||IN EUROPE||in Europe||In Europe||in europe||IN DEUTSCHLAND||in Deutschland||In Deutschland||in deutschland' | split: '||' -%}
+  {%- for gtoken in geo_tokens -%}
+    {%- assign schema_product_title = schema_product_title | replace: gtoken, '' -%}
+  {%- endfor -%}
+  {%- assign schema_product_title = schema_product_title | strip -%}
+{%- endif -%}
+
+{%- comment -%} Dynamically construct non-empty sameAs social profile array {%- endcomment -%}
+{%- assign same_as_links = '' -%}
+{%- assign maps_link = 'https://www.google.com/maps/search/?api=1&query=Neha+Couture+The+Playce+Berlin' -%}
+{%- assign same_as_links = same_as_links | append: maps_link -%}
+
+{%- assign fb_link = settings.social_facebook_link | default: 'https://www.facebook.com/p/Indian-Clothes-Jewellery-in-Germany-100083136706974/' | split: '?' | first | strip -%}
+{%- if fb_link != blank -%}
+  {%- assign same_as_links = same_as_links | append: '||' | append: fb_link -%}
+{%- endif -%}
+
+{%- assign insta_link = settings.social_instagram_link | default: 'https://www.instagram.com/neha_21.2008' | split: '?' | first | strip -%}
+{%- if insta_link != blank -%}
+  {%- assign same_as_links = same_as_links | append: '||' | append: insta_link -%}
+{%- endif -%}
+
+{%- assign pinterest_link = settings.social_pinterest_link | default: 'https://www.pinterest.com/nehacouture/' | split: '?' | first | strip -%}
+{%- if pinterest_link != blank -%}
+  {%- assign same_as_links = same_as_links | append: '||' | append: pinterest_link -%}
+{%- endif -%}
+
+{%- if settings.social_youtube_link != blank -%}
+  {%- assign yt_link = settings.social_youtube_link | split: '?' | first | strip -%}
+  {%- assign same_as_links = same_as_links | append: '||' | append: yt_link -%}
+{%- endif -%}
+{%- if settings.social_tiktok_link != blank -%}
+  {%- assign tt_link = settings.social_tiktok_link | split: '?' | first | strip -%}
+  {%- assign same_as_links = same_as_links | append: '||' | append: tt_link -%}
+{%- endif -%}
+{%- assign same_as_array = same_as_links | split: '||' -%}
+
+{%- comment -%} 1. Organization & Brand Entity Schema (Rendered on all pages) {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["ClothingStore", "OnlineBusiness", "Organization"],
+  "@id": "{{ origin_url }}/#organization",
+  "name": "Neha Couture",
+  "legalName": "Neha Couture",
+  "url": {{ origin_url | json }},
+  "logo": {
+    "@type": "ImageObject",
+    "@id": "{{ origin_url }}/#logo",
+    "url": "https://nehacouture.de/cdn/shop/files/LOGO_WITHOUT_BORDER.png?v=1726746799",
+    "caption": "Neha Couture Logo"
+  },
+  "image": "https://nehacouture.de/cdn/shop/files/LOGO_WITHOUT_BORDER.png?v=1726746799",
+  "founder": {
+    "@type": "Person",
+    "name": "Neha Aggarwal",
+    "jobTitle": "Founder & Creative Director"
+  },
+  "description": "Neha Couture is a premium South Asian and Indian bridal and ethnic wear boutique based in Berlin, Germany, specializing in handcrafted lehengas, pure silk sarees, shararas, and ethnic wear for European customers.",
+  "disambiguatingDescription": "Online and showroom boutique for Indian ethnic wear, bridal lehengas, silk sarees, and traditional jewelry with 1-3 day delivery in Germany and European shipping.",
+  "knowsAbout": [
+    "Indian Bridal Wear",
+    "Handcrafted Lehengas",
+    "Pure Silk Sarees",
+    "Sharara and Gharara Suits",
+    "South Asian Ethnic Fashion",
+    "Indian Jewellery",
+    "Traditional Bangles",
+    "Indian Fashion in Germany"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Alte Potsdamer Str. 7, The Playce",
+    "postalCode": "10785",
+    "addressLocality": "Berlin",
+    "addressCountry": "DE"
+  },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Neha+Couture+The+Playce+Berlin",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "133",
+    "reviewCount": "133",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "telephone": "+49 151 75316266",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "telephone": "+49 151 75316266",
+      "email": "info@nehacouture.de",
+      "areaServed": ["DE", "AT", "CH", "EU"],
+      "availableLanguage": ["English", "German", "Hindi"]
+    },
+    {
+      "@type": "ContactPoint",
+      "contactType": "WhatsApp Support",
+      "telephone": "+49 1551 0583042",
+      "email": "info@nehacouture.de",
+      "areaServed": ["DE", "AT", "CH", "EU"],
+      "availableLanguage": ["English", "German", "Hindi"]
+    }
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "10:00",
+      "closes": "20:00"
+    }
+  ],
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Credit Card, Debit Card, Visa, Mastercard, Maestro, Bank Transfer, Bank Deposit",
+  "priceRange": "€€",
+  "hasMerchantReturnPolicy": {
+    "@type": "MerchantReturnPolicy",
+    "applicableCountry": "DE",
+    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+    "merchantReturnDays": 14,
+    "returnMethod": [
+      "https://schema.org/ReturnByMail",
+      "https://schema.org/ReturnInStore"
+    ],
+    "returnFees": "https://schema.org/ReturnShippingFees",
+    "merchantReturnLink": "https://nehacouture.de/pages/return-policy",
+    "returnAddress": {
+      "@type": "PostalAddress",
+      "name": "Neha Aggarwal",
+      "streetAddress": "Dolgenseestr. 9A",
+      "postalCode": "10319",
+      "addressLocality": "Berlin",
+      "addressRegion": "Berlin",
+      "addressCountry": "DE"
+    }
+  },
+  "sameAs": [
+    {%- for link in same_as_array -%}
+      {{ link | json }}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+
+{%- comment -%} 2. WebSite Schema with Sitelinks SearchBox (Rendered on Homepage) {%- endcomment -%}
+{%- if request.page_type == 'index' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ origin_url }}/#website",
+  "name": {{ shop.name | json }},
+  "url": {{ origin_url | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ origin_url }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{%- endif -%}
+
+{%- comment -%} 3. BreadcrumbList Schema (Rendered on Products, Collections, Articles, and Blogs) {%- endcomment -%}
+{%- if request.page_type == 'product' or request.page_type == 'collection' or request.page_type == 'article' or request.page_type == 'blog' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ origin_url | json }}
+    }
+    {%- if request.page_type == 'collection' and collection.title != blank -%}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ collection.title | json }},
+        "item": {{ origin_url | append: collection.url | json }}
+      }
+    {%- elsif request.page_type == 'product' -%}
+      {%- assign primary_col = product.collections.first -%}
+      {%- if primary_col -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ primary_col.title | json }},
+          "item": {{ origin_url | append: primary_col.url | json }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ schema_product_title | default: product.title | json }},
+          "item": {{ origin_url | append: product.url | json }}
+        }
+      {%- else -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ schema_product_title | default: product.title | json }},
+          "item": {{ origin_url | append: product.url | json }}
+        }
+      {%- endif -%}
+    {%- elsif request.page_type == 'article' -%}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ blog.title | json }},
+        "item": {{ origin_url | append: blog.url | json }}
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": {{ article.title | json }},
+        "item": {{ origin_url | append: article.url | json }}
+      }
+    {%- elsif request.page_type == 'blog' -%}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ blog.title | json }},
+        "item": {{ origin_url | append: blog.url | json }}
+      }
+    {%- endif -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- comment -%} 4. Comprehensive Product Schema (Rendered on Product Pages) {%- endcomment -%}
+{%- if request.page_type == 'product' -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign offer_valid_from = product.published_at | default: product.created_at | date: '%Y-%m-%d' -%}
+
+{%- comment -%}
+  Reviews detection: Supports standard Shopify reviews metafields, Judge.me app namespace, and Judge.me badge HTML fallback.
+  IMPORTANT GOOGLE SEO COMPLIANCE:
+  Google Search Console reports 'Missing aggregateRating' and 'Missing review' as non-critical suggestions for improvement.
+  Per Google Search Central guidelines, 'aggregateRating' must ONLY be output when genuine, verified customer reviews
+  exist for the specific product (review_count > 0). Injecting default ratings or store ratings on products without reviews
+  violates Google's Structured Data Spam policies and results in a 'Spammy Structured Markup' manual action penalty.
+{%- endcomment -%}
+{%- assign review_count = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count | default: product.metafields["app--2519111--reviews"].review_count.value | default: product.metafields["app--2519111--reviews"].review_count | default: 0 | plus: 0 -%}
+{%- assign review_val = product.metafields.reviews.rating.value.rating | default: product.metafields.reviews.rating.value | default: product.metafields.reviews.rating | default: product.metafields["app--2519111--reviews"].review_average_rating.value | default: product.metafields["app--2519111--reviews"].review_average_rating -%}
+
+{%- if review_count == 0 and product.metafields.judgeme.badge != blank -%}
+  {%- assign jm_badge = product.metafields.judgeme.badge -%}
+  {%- if jm_badge contains "data-number-of-reviews='" -%}
+    {%- assign jm_count = jm_badge | split: "data-number-of-reviews='" | last | split: "'" | first | plus: 0 -%}
+    {%- assign jm_rating = jm_badge | split: "data-average-rating='" | last | split: "'" | first -%}
+    {%- if jm_count > 0 -%}
+      {%- assign review_count = jm_count -%}
+      {%- assign review_val = jm_rating -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} AI SEO: Detect Fabric/Material from tags or description {%- endcomment -%}
+{%- assign product_material = '' -%}
+{%- for tag in product.tags -%}
+  {%- assign tag_lower = tag | downcase -%}
+  {%- if tag_lower contains 'silk' -%}
+    {%- assign product_material = 'Silk' -%}
+  {%- elsif tag_lower contains 'georgette' -%}
+    {%- assign product_material = 'Georgette' -%}
+  {%- elsif tag_lower contains 'velvet' -%}
+    {%- assign product_material = 'Velvet' -%}
+  {%- elsif tag_lower contains 'cotton' -%}
+    {%- assign product_material = 'Cotton' -%}
+  {%- elsif tag_lower contains 'organza' -%}
+    {%- assign product_material = 'Organza' -%}
+  {%- elsif tag_lower contains 'chiffon' -%}
+    {%- assign product_material = 'Chiffon' -%}
+  {%- elsif tag_lower contains 'net' -%}
+    {%- assign product_material = 'Net' -%}
+  {%- elsif tag_lower contains 'crepe' -%}
+    {%- assign product_material = 'Crepe' -%}
+  {%- elsif tag_lower contains 'chanderi' -%}
+    {%- assign product_material = 'Chanderi' -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if product_material == '' -%}
+  {%- if product.description contains 'Silk' or product.description contains 'silk' -%}
+    {%- assign product_material = 'Silk' -%}
+  {%- elsif product.description contains 'Georgette' or product.description contains 'georgette' -%}
+    {%- assign product_material = 'Georgette' -%}
+  {%- elsif product.description contains 'Velvet' or product.description contains 'velvet' -%}
+    {%- assign product_material = 'Velvet' -%}
+  {%- elsif product.description contains 'Cotton' or product.description contains 'cotton' -%}
+    {%- assign product_material = 'Cotton' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} AI SEO: Detect Color from Variant Options {%- endcomment -%}
+{%- assign product_color = '' -%}
+{%- for option in product.options_with_values -%}
+  {%- assign opt_name = option.name | downcase -%}
+  {%- if opt_name contains 'color' or opt_name contains 'colour' or opt_name contains 'farbe' -%}
+    {%- assign product_color = option.values | join: ', ' -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%} AI SEO: Detect Target Demographic {%- endcomment -%}
+{%- assign audience_gender = 'female' -%}
+{%- assign prod_title_lower = product.title | downcase -%}
+{%- assign prod_type_lower = product.type | downcase -%}
+{%- if prod_title_lower contains 'men' or prod_type_lower contains 'men' or product.tags contains 'mens' -%}
+  {%- assign audience_gender = 'male' -%}
+{%- elsif prod_title_lower contains 'boy' or prod_title_lower contains 'girl' or prod_title_lower contains 'kid' -%}
+  {%- assign audience_gender = 'unisex' -%}
+{%- endif -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": {{ origin_url | append: product.url | json }},
+  "name": {{ schema_product_title | default: product.title | json }},
+  "url": {{ origin_url | append: product.url | json }},
+  "description": {{ product.description | replace: '&amp;amp;', '&' | replace: '&amp;', '&' | replace: '&ndash;', '–' | replace: '&mdash;', '—' | strip_html | truncatewords: 60 | json }},
+  "image": [
+    {%- for image in product.images limit: 5 -%}
+      {{ image | image_url: width: 1200 | prepend: 'https:' | json }}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "sku": {{ current_variant.sku | default: product.id | json }},
+  "mpn": {{ current_variant.sku | default: current_variant.id | json }},
+  {%- if current_variant.barcode != blank -%}
+  "gtin": {{ current_variant.barcode | json }},
+  {%- endif -%}
+  "brand": {
+    "@type": "Brand",
+    "name": "Neha Couture"
+  },
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "Neha Couture"
+  },
+  "category": {{ product.type | default: "Indian Ethnic Wear" | json }},
+  {%- if product_material != '' -%}
+  "material": {{ product_material | json }},
+  {%- endif -%}
+  {%- if product_color != '' -%}
+  "color": {{ product_color | json }},
+  {%- endif -%}
+  "audience": {
+    "@type": "PeopleAudience",
+    "suggestedGender": {{ audience_gender | json }}
+  },
+  {%- if review_count > 0 and review_val != blank -%}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ review_val | json }},
+    "reviewCount": {{ review_count | json }},
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  {%- endif -%}
+  "offers": [
+    {%- for variant in product.variants -%}
+      {
+        "@type": "Offer",
+        "sku": {{ variant.sku | default: variant.id | json }},
+        "price": {{ variant.price | divided_by: 100.00 | json }},
+        "priceCurrency": {{ cart.currency.iso_code | default: "EUR" | json }},
+        "validFrom": {{ offer_valid_from | json }},
+        "priceValidUntil": {{ price_valid_until | json }},
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+        "url": {{ origin_url | append: variant.url | json }},
+        "seller": {
+          "@type": "Organization",
+          "@id": "{{ origin_url }}/#organization",
+          "name": "Neha Couture"
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "DE",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 14,
+          "returnMethod": "https://schema.org/ReturnByMail",
+          "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"
+        },
+        "shippingDetails": [
+          {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": 0,
+              "currency": {{ cart.currency.iso_code | default: "EUR" | json }}
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "DE"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 1,
+                "maxValue": 3,
+                "unitCode": "DAY"
+              }
+            }
+          },
+          {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": 0,
+              "currency": {{ cart.currency.iso_code | default: "EUR" | json }}
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": ["AT", "FR", "NL", "BE", "IT", "ES", "CH", "PL", "SE", "DK", "IE"]
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 3,
+                "maxValue": 5,
+                "unitCode": "DAY"
+              }
+            }
+          }
+        ]
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- comment -%} 5. CollectionPage Schema (Rendered on Collection Pages) {%- endcomment -%}
+{%- if request.page_type == 'collection' -%}
+{%- assign schema_coll_desc = collection.description | replace: '&amp;amp;', '&' | replace: '&amp;', '&' | replace: '&ndash;', '–' | replace: '&mdash;', '—' | replace: '&quot;', '"' | replace: '&#39;', "'" | strip_html | truncatewords: 60 | default: "Handcrafted Indian ethnic wear and couture collections at Neha Couture Berlin, Germany." -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": {{ origin_url | append: collection.url | json }},
+  "name": {{ collection.title | json }},
+  "url": {{ origin_url | append: collection.url | json }},
+  "description": {{ schema_coll_desc | json }},
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {%- for product in collection.products limit: 16 -%}
+        {%- capture item_clean_title -%}{%- render 'clean-title', title: product.title -%}{%- endcapture -%}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "url": {{ origin_url | append: product.url | json }},
+          "name": {{ item_clean_title | strip | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+}
+</script>
+{%- endif -%}
+
+{%- comment -%} 6. BlogPosting Schema (Rendered on Article / Blog Post Pages) {%- endcomment -%}
+{%- if request.page_type == 'article' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": {{ origin_url | append: article.url | append: '#article' | json }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ origin_url | append: article.url | json }}
+  },
+  "headline": {{ article.title | json }},
+  "name": {{ article.title | json }},
+  "description": {{ article.excerpt_or_content | strip_html | truncatewords: 50 | json }},
+  "articleBody": {{ article.content | strip_html | json }},
+  {%- if article.image -%}
+  "image": [
+    {{ article.image | image_url: width: 1200 | prepend: 'https:' | json }}
+  ],
+  {%- endif -%}
+  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+  "dateModified": {{ article.updated_at | default: article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | default: "Neha Aggarwal" | json }},
+    "jobTitle": "Founder & Creative Director"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "{{ origin_url }}/#organization",
+    "name": "Neha Couture",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nehacouture.de/cdn/shop/files/LOGO_WITHOUT_BORDER.png?v=1726746799"
+    }
+  },
+  "inLanguage": "{{ request.locale.iso_code }}",
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": {{ origin_url | append: blog.url | json }},
+    "name": {{ blog.title | json }}
+  }
+}
+</script>
+{%- endif -%}

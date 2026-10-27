@@ -1,0 +1,588 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .google-reviews-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3rem auto;
+  }
+
+  .google-reviews-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid rgba(103, 49, 71, 0.15);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #673147;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 2px 8px rgba(103, 49, 71, 0.05);
+  }
+
+  .google-g-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .google-reviews-rating-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 1.6rem;
+    padding: 12px 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid rgba(var(--color-foreground), 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .rating-score {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1;
+  }
+
+  .stars-container {
+    display: flex;
+    gap: 3px;
+    color: #fbbc04;
+  }
+
+  .stars-container svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  .rating-summary-text {
+    font-size: 1.4rem;
+    color: #5f6368;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .google-reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .google-reviews-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .google-reviews-grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop | default: 3 }}, 1fr);
+    }
+  }
+
+  .google-review-card {
+    background: #ffffff;
+    border: 1px solid rgba(var(--color-foreground), 0.08);
+    border-radius: 16px;
+    padding: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+  }
+
+  .google-review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(103, 49, 71, 0.09);
+    border-color: rgba(103, 49, 71, 0.25);
+  }
+
+  .review-author-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 1.4rem;
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #673147 0%, #9e476c 100%);
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .author-meta {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .author-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #202124;
+    margin: 0 0 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .review-verification {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 1.2rem;
+    color: #1a73e8;
+    font-weight: 500;
+  }
+
+  .review-verification svg {
+    width: 14px;
+    height: 14px;
+    fill: #1a73e8;
+  }
+
+  .google-source-icon {
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .review-stars-date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+  }
+
+  .card-stars {
+    display: flex;
+    gap: 2px;
+    color: #fbbc04;
+  }
+
+  .card-stars svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  .review-date {
+    font-size: 1.2rem;
+    color: #70757a;
+  }
+
+  .review-text {
+    font-size: 1.45rem;
+    line-height: 1.6;
+    color: #3c4043;
+    margin: 0 0 1.6rem;
+    flex-grow: 1;
+  }
+
+  .review-tag {
+    display: inline-block;
+    background: #fdf6ec;
+    color: #8c5a27;
+    border: 1px solid #faeccd;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    align-self: flex-start;
+  }
+
+  .google-reviews-cta-container {
+    text-align: center;
+    margin-top: 3.5rem;
+  }
+
+  .google-reviews-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1.2rem 2.8rem;
+    background: #673147;
+    color: #ffffff;
+    border-radius: 999px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(103, 49, 71, 0.2);
+  }
+
+  .google-reviews-btn:hover {
+    background: #502436;
+    transform: translateY(-2px);
+    color: #ffffff;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- assign is_de = false -%}
+    {%- if request.locale.iso_code == 'de' -%}
+      {%- assign is_de = true -%}
+    {%- endif -%}
+
+    {%- assign gr_eyebrow = section.settings.eyebrow | default: "Google Verified Reviews" -%}
+    {%- assign gr_title = section.settings.title -%}
+    {%- assign gr_subtitle = section.settings.subtitle -%}
+    {%- assign gr_summary = section.settings.rating_summary | default: "Based on 133+ Google Reviews" -%}
+    {%- assign gr_cta = section.settings.cta_text | default: "Read More Reviews on Google" -%}
+
+    {%- if is_de -%}
+      {%- assign gr_eyebrow = 'Google Verifizierte Bewertungen' -%}
+      {%- assign gr_title = 'Beliebt bei Bräuten & Kunden in ganz Europa' -%}
+      {%- assign gr_subtitle = 'Echte Erfahrungsberichte unserer Kundinnen und Kunden in Deutschland, Österreich und der Schweiz' -%}
+      {%- assign gr_summary = 'Basierend auf über 133 Google-Bewertungen (4,9 ★)' -%}
+      {%- assign gr_cta = 'Alle Bewertungen auf Google ansehen' -%}
+    {%- endif -%}
+
+    <div class="google-reviews-header">
+      <div class="google-reviews-eyebrow">
+        <svg class="google-g-icon" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        <span>{{ gr_eyebrow }}</span>
+      </div>
+
+      {%- if gr_title != blank -%}
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+          {{ gr_title }}
+        </h2>
+      {%- endif -%}
+
+      {%- if gr_subtitle != blank -%}
+        <p class="collection__description">
+          {{ gr_subtitle }}
+        </p>
+      {%- endif -%}
+
+      <div class="google-reviews-rating-bar">
+        <span class="rating-score">{{ section.settings.rating_score | default: "5.0" }}</span>
+        <div class="stars-container" aria-label="{{ section.settings.rating_score }} out of 5 stars">
+          {%- for i in (1..5) -%}
+            <svg viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          {%- endfor -%}
+        </div>
+        <p class="rating-summary-text">
+          {{ gr_summary }}
+        </p>
+      </div>
+    </div>
+
+    <div class="google-reviews-grid" role="list">
+      {%- for block in section.blocks -%}
+        <a
+          href="{{ block.settings.review_link | default: section.settings.google_link }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="google-review-card"
+          role="listitem"
+          {{ block.shopify_attributes }}
+        >
+          <div>
+            <div class="review-author-row">
+              <div class="author-avatar" style="{% if block.settings.avatar_color != blank %}background: {{ block.settings.avatar_color }};{% endif %}">
+                {{ block.settings.author | slice: 0, 1 }}
+              </div>
+              <div class="author-meta">
+                <h3 class="author-name">{{ block.settings.author }}</h3>
+                <div class="review-verification">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                  </svg>
+                  <span>Verified Google Review</span>
+                </div>
+              </div>
+              <svg class="google-source-icon" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+            </div>
+
+            <div class="review-stars-date">
+              <div class="card-stars">
+                {%- assign star_count = block.settings.stars | default: 5 -%}
+                {%- for i in (1..star_count) -%}
+                  <svg viewBox="0 0 24 24">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                {%- endfor -%}
+              </div>
+              <span class="review-date">{{ block.settings.date }}</span>
+            </div>
+
+            <div class="review-text">
+              "{{ block.settings.text }}"
+            </div>
+          </div>
+
+          {%- if block.settings.tag != blank -%}
+            <span class="review-tag">{{ block.settings.tag }}</span>
+          {%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.google_link != blank -%}
+      <div class="google-reviews-cta-container">
+        <a href="{{ section.settings.google_link }}" target="_blank" rel="noopener noreferrer" class="google-reviews-btn">
+          <svg class="google-g-icon" viewBox="0 0 24 24" style="filter: brightness(0) invert(1);">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          </svg>
+          <span>{{ gr_cta }}</span>
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- comment -%}
+  Schema Note:
+  Organization entity schema and aggregateRating (4.9 / 133 Google Reviews) are centrally defined in snippets/schema-json-ld.liquid.
+  Duplicate schema scripts must NOT be defined here to avoid the critical Google Search Console error: 'Review has multiple aggregate ratings'.
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Google Reviews",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Badge",
+      "default": "Google Verified Reviews"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Loved by Brides & Shoppers in Europe"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Read real feedback from our clients in Germany, Austria, and across Europe."
+    },
+    {
+      "type": "text",
+      "id": "rating_score",
+      "label": "Average Rating Score",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "rating_count",
+      "label": "Total Review Count (for AI Schema)",
+      "default": "133"
+    },
+    {
+      "type": "text",
+      "id": "rating_summary",
+      "label": "Rating Bar Summary Text",
+      "default": "Based on 133+ Google Reviews (4.9 ★)"
+    },
+    {
+      "type": "text",
+      "id": "google_link",
+      "label": "Google Maps / Reviews URL",
+      "default": "https://www.google.com/maps/search/?api=1&query=Neha+Couture+The+Playce+Berlin"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Label",
+      "default": "Review Us on Google"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 5,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "accent-1", "label": "Accent 1" },
+        { "value": "accent-2", "label": "Accent 2" },
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" },
+        { "value": "inverse", "label": "Inverse" }
+      ],
+      "default": "background-2",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Customer Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Reviewer Name",
+          "default": "Priya Sharma"
+        },
+        {
+          "type": "range",
+          "id": "stars",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Star Rating"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review Text",
+          "default": "I was looking for an authentic Indian lehenga for my reception in Berlin. Neha Couture had stunning pieces, and the fit was perfection! Shipped in just 2 days without any customs hassle."
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Review Date / Relative Time",
+          "default": "2 weeks ago"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Occasion / Item Tag",
+          "default": "Bridal Lehenga"
+        },
+        {
+          "type": "color",
+          "id": "avatar_color",
+          "label": "Avatar Circle Color",
+          "default": "#673147"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Google Reviews",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "author": "Ananya Verma",
+            "stars": 5,
+            "text": "Finding high quality ethnic wear in Germany used to be so hard! Ordered a pure silk saree and a festive sharara suit. Quality is top-notch and arrived in Frankfurt in 48 hours.",
+            "date": "1 month ago",
+            "tag": "Pure Silk Saree",
+            "avatar_color": "#673147"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Pooja Patel",
+            "stars": 5,
+            "text": "Visited their store at The Playce in Potsdamer Platz. Neha was so welcoming and helped me choose the perfect jewellery and lehenga for my brother's wedding. Highly recommended!",
+            "date": "3 weeks ago",
+            "tag": "Berlin Boutique Visit",
+            "avatar_color": "#8b4566"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Jasmin Weber",
+            "stars": 5,
+            "text": "We booked a live video consultation before ordering our wedding guest outfits. The team showed us fabrics up close and guided on measurements. Everything arrived perfectly tailored!",
+            "date": "2 months ago",
+            "tag": "Video Consultation",
+            "avatar_color": "#a15878"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

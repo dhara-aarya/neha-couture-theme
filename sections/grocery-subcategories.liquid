@@ -1,0 +1,586 @@
+{%- if collection.handle == 'indian-grocery' or collection.handle == 'grocery' or collection.handle contains 'grocery' -%}
+  {%- assign is_de = false -%}
+  {%- if request.locale.iso_code == 'de' -%}
+    {%- assign is_de = true -%}
+  {%- endif -%}
+
+  {%- style -%}
+    .grocery-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .grocery-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .grocery-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .grocery-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .grocery-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .grocery-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .grocery-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .grocery-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .grocery-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .grocery-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .grocery-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .grocery-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .grocery-subcat-card.is-active .grocery-subcat-circle,
+    .grocery-subcat-card:hover .grocery-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .grocery-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .grocery-subcat-card:hover .grocery-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .grocery-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 115px;
+      transition: color 0.2s ease;
+    }
+
+    .grocery-subcat-card.is-active .grocery-subcat-name,
+    .grocery-subcat-card:hover .grocery-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .grocery-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .grocery-subcat-card.is-active .grocery-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .grocery-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .grocery-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .grocery-reset-btn:hover {
+      background: #923e61;
+    }
+
+    .grocery-load-more-wrap {
+      text-align: center;
+      margin: 3rem 0;
+      display: none;
+    }
+
+    .grocery-load-more-btn {
+      background: #ffffff;
+      color: #103948;
+      border: 2px solid #103948;
+      border-radius: 25px;
+      padding: 1rem 2.8rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .grocery-load-more-btn:hover {
+      background: #103948;
+      color: #ffffff;
+    }
+  {%- endstyle -%}
+
+  <div class="grocery-subcats-section">
+    <div class="page-width">
+      <div class="grocery-subcats-header">
+        <h2 class="grocery-subcats-title">
+          {%- if is_de -%}
+            Indische Spezialitäten nach Kategorie shoppen
+          {%- else -%}
+            Shop Indian Grocery & Essentials By Category
+          {%- endif -%}
+        </h2>
+        <p class="grocery-subcats-subtitle">
+          {%- if is_de -%}
+            Authentische Gewürze, knusprige Snacks, traditionelle Mehle, Pickles und indischer Chai
+          {%- else -%}
+            Authentic spices, crispy namkeen, traditional flours, aromatic rice, pickles, and Indian chai
+          {%- endif -%}
+        </p>
+      </div>
+
+      <div class="grocery-subcats-track" role="list" id="GrocerySubcatTrack">
+        <!-- 1. All Grocery -->
+        <button type="button" class="grocery-subcat-card is-active" data-style="all" role="listitem">
+          <div class="grocery-subcat-circle">
+            <img src="{{ 'subcat-grocery-all.jpg' | asset_url }}" alt="All Grocery" width="100" height="100" loading="lazy">
+          </div>
+          <span class="grocery-subcat-name">{% if is_de %}Alle Artikel{% else %}All Grocery{% endif %}</span>
+          <span class="grocery-subcat-count">1,721 Items</span>
+        </button>
+
+        <!-- 2. Spices & Masalas -->
+        <button type="button" class="grocery-subcat-card" data-style="spices" role="listitem">
+          <div class="grocery-subcat-circle">
+            <img src="{{ 'subcat-grocery-spices.jpg' | asset_url }}" alt="Spices and Masalas" width="100" height="100" loading="lazy">
+          </div>
+          <span class="grocery-subcat-name">{% if is_de %}Gewürze & Masala{% else %}Spices & Masalas{% endif %}</span>
+          <span class="grocery-subcat-count">485 Styles</span>
+        </button>
+
+        <!-- 3. Atta, Rice & Dals -->
+        <button type="button" class="grocery-subcat-card" data-style="staples" role="listitem">
+          <div class="grocery-subcat-circle">
+            <img src="{{ 'subcat-grocery-staples.jpg' | asset_url }}" alt="Atta, Rice and Dals" width="100" height="100" loading="lazy">
+          </div>
+          <span class="grocery-subcat-name">{% if is_de %}Reis, Atta & Dals{% else %}Atta, Rice & Dals{% endif %}</span>
+          <span class="grocery-subcat-count">495 Styles</span>
+        </button>
+
+        <!-- 4. Namkeen & Snacks -->
+        <button type="button" class="grocery-subcat-card" data-style="namkeen" role="listitem">
+          <div class="grocery-subcat-circle">
+            <img src="{{ 'subcat-grocery-namkeen.jpg' | asset_url }}" alt="Namkeen and Snacks" width="100" height="100" loading="lazy">
+          </div>
+          <span class="grocery-subcat-name">{% if is_de %}Namkeen & Snacks{% else %}Namkeen & Snacks{% endif %}</span>
+          <span class="grocery-subcat-count">168 Styles</span>
+        </button>
+
+        <!-- 5. Instant Mixes & Sweets -->
+        <button type="button" class="grocery-subcat-card" data-style="instant-mix" role="listitem">
+          <div class="grocery-subcat-circle">
+            <img src="{{ 'subcat-grocery-instant.jpg' | asset_url }}" alt="Instant Mixes and Sweets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="grocery-subcat-name">{% if is_de %}Mischungen & Süßes{% else %}Mixes & Sweets{% endif %}</span>
+          <span class="grocery-subcat-count">187 Styles</span>
+        </button>
+
+        <!-- 6. Pickles & Chutneys -->
+        <button type="button" class="grocery-subcat-card" data-style="pickles" role="listitem">
+          <div class="grocery-subcat-circle">
+            <img src="{{ 'subcat-grocery-pickles.jpg' | asset_url }}" alt="Pickles and Chutneys" width="100" height="100" loading="lazy">
+          </div>
+          <span class="grocery-subcat-name">{% if is_de %}Pickles & Chutneys{% else %}Pickles & Chutneys{% endif %}</span>
+          <span class="grocery-subcat-count">183 Styles</span>
+        </button>
+
+        <!-- 7. Ghee, Oils & Papad -->
+        <button type="button" class="grocery-subcat-card" data-style="pantry" role="listitem">
+          <div class="grocery-subcat-circle">
+            <img src="{{ 'subcat-grocery-pantry.jpg' | asset_url }}" alt="Ghee, Oils and Papad" width="100" height="100" loading="lazy">
+          </div>
+          <span class="grocery-subcat-name">{% if is_de %}Ghee, Öl & Papad{% else %}Ghee, Oils & Papad{% endif %}</span>
+          <span class="grocery-subcat-count">210 Styles</span>
+        </button>
+
+        <!-- 8. Tea & Filter Coffee -->
+        <button type="button" class="grocery-subcat-card" data-style="beverages" role="listitem">
+          <div class="grocery-subcat-circle">
+            <img src="{{ 'subcat-grocery-tea.jpg' | asset_url }}" alt="Tea and Beverages" width="100" height="100" loading="lazy">
+          </div>
+          <span class="grocery-subcat-name">{% if is_de %}Chai & Getränke{% else %}Chai & Drinks{% endif %}</span>
+          <span class="grocery-subcat-count">169 Styles</span>
+        </button>
+
+        <!-- 9. God Photo Frames -->
+        <button type="button" class="grocery-subcat-card" data-style="frames" role="listitem">
+          <div class="grocery-subcat-circle">
+            <img src="{{ 'subcat-grocery-frames.jpg' | asset_url }}" alt="God Photo Frames" width="100" height="100" loading="lazy">
+          </div>
+          <span class="grocery-subcat-name">{% if is_de %}Bilderrahmen{% else %}Photo Frames{% endif %}</span>
+          <span class="grocery-subcat-count">42 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="GroceryFilterStatusBar" class="grocery-filter-status-bar">
+        <span id="GroceryFilterStatusText">Showing: <strong>All Items</strong></span>
+        <button type="button" id="GroceryFilterResetBtn" class="grocery-reset-btn">
+          {%- if is_de -%}✕ Filter zurücksetzen{%- else -%}✕ Clear Filter{%- endif -%}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="GroceryLoadMoreContainer" class="grocery-load-more-wrap page-width">
+    <button type="button" id="GroceryLoadMoreBtn" class="grocery-load-more-btn">
+      {%- if is_de -%}Mehr Artikel laden{%- else -%}Load More Products{%- endif -%}
+    </button>
+  </div>
+
+  <script>
+    (function() {
+      let cachedGrocery = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+      let currentFilteredItems = [];
+      let renderedCount = 0;
+      const BATCH_SIZE = 48;
+      const fallbackImg = "{{ 'subcat-grocery-all.jpg' | asset_url }}";
+
+      fetch("{{ 'grocery-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedGrocery = data;
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading grocery catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function renderBatch() {
+        const grid = getTargetGrid();
+        if (!grid || renderedCount >= currentFilteredItems.length) return;
+
+        const nextBatch = currentFilteredItems.slice(renderedCount, renderedCount + BATCH_SIZE);
+
+        const batchHTML = nextBatch.map(p => {
+          const img = p.image || fallbackImg;
+          const price = p.price || '0.00';
+          const safeTitle = (p.title || '').replace(/"/g, '&quot;');
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${safeTitle}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;" onerror="this.onerror=null;this.src='${fallbackImg}';">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        if (renderedCount === 0) {
+          grid.innerHTML = batchHTML;
+        } else {
+          grid.insertAdjacentHTML('beforeend', batchHTML);
+        }
+
+        renderedCount += nextBatch.length;
+
+        const loadMoreContainer = document.getElementById('GroceryLoadMoreContainer');
+        const loadMoreBtn = document.getElementById('GroceryLoadMoreBtn');
+        if (loadMoreContainer && loadMoreBtn) {
+          if (renderedCount < currentFilteredItems.length) {
+            const remaining = currentFilteredItems.length - renderedCount;
+            loadMoreContainer.style.display = 'block';
+            {% if is_de %}
+              loadMoreBtn.textContent = `Weitere Artikel laden (${remaining} verbleibend)`;
+            {% else %}
+              loadMoreBtn.textContent = `Load More (${remaining} remaining)`;
+            {% endif %}
+          } else {
+            loadMoreContainer.style.display = 'none';
+          }
+        }
+      }
+
+      function renderFilteredProducts(items, styleName) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        currentFilteredItems = items;
+        renderedCount = 0;
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('GroceryFilterStatusBar');
+        const statusText = document.getElementById('GroceryFilterStatusText');
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Showing: <strong>${styleName}</strong> (${items.length} products found)`;
+        }
+
+        renderBatch();
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function restoreOriginal() {
+        if (!cachedGrocery) {
+          fetch("{{ 'grocery-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedGrocery = data;
+              renderFilteredProducts(cachedGrocery, "{% if is_de %}Alle Artikel{% else %}All Grocery{% endif %}");
+            });
+          return;
+        }
+
+        renderFilteredProducts(cachedGrocery, "{% if is_de %}Alle Artikel{% else %}All Grocery{% endif %}");
+
+        const cards = document.querySelectorAll('.grocery-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === 'all') c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      function handleFilterClick(styleKey, styleName) {
+        const cards = document.querySelectorAll('.grocery-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          const newUrl = styleKey === 'all' 
+            ? window.location.pathname 
+            : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (styleKey === 'all') {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedGrocery) {
+          fetch("{{ 'grocery-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedGrocery = data;
+              const matches = cachedGrocery.filter(b => b.styles && b.styles.includes(styleKey));
+              renderFilteredProducts(matches, styleName);
+            });
+        } else {
+          const matches = cachedGrocery.filter(b => b.styles && b.styles.includes(styleKey));
+          renderFilteredProducts(matches, styleName);
+        }
+      }
+
+      function checkInitialURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style') || urlParams.get('type') || window.location.hash.replace('#', '');
+        if (style) {
+          const targetCard = document.querySelector(`.grocery-subcat-card[data-style="${style}"]`);
+          if (targetCard) {
+            const name = targetCard.querySelector('.grocery-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('GrocerySubcatTrack');
+        const resetBtn = document.getElementById('GroceryFilterResetBtn');
+        const loadMoreBtn = document.getElementById('GroceryLoadMoreBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.grocery-subcat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.grocery-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener('click', function() {
+            renderBatch();
+          });
+        }
+
+        // Infinite scroll observer
+        window.addEventListener('scroll', function() {
+          if (renderedCount < currentFilteredItems.length) {
+            const scrollPos = window.innerHeight + window.scrollY;
+            const bodyHeight = document.body.offsetHeight;
+            if (scrollPos >= bodyHeight - 700) {
+              renderBatch();
+            }
+          }
+        }, { passive: true });
+
+        setTimeout(captureOriginal, 1000);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Grocery Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Grocery Subcategories"
+    }
+  ]
+}
+{% endschema %}

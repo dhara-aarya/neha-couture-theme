@@ -1,0 +1,823 @@
+{
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_couture": {
+          "type": "slide",
+          "settings": {
+            "asset_image": "hero-lehenga.jpg",
+            "heading": "Exquisite Indian Couture & Bridal Wear in Germany",
+            "heading_size": "h1",
+            "subheading": "Royal Shararas, Designer Suits & Bridal Elegance",
+            "button_label": "Explore Couture",
+            "link": "shopify://collections/handwork-ladies-suits-in-germany",
+            "button_style_secondary": false,
+            "box_align": "middle-left",
+            "show_text_box": false,
+            "text_alignment": "left",
+            "image_overlay_opacity": 20,
+            "color_scheme": "inverse",
+            "text_alignment_mobile": "left"
+          }
+        },
+        "slide_sarees": {
+          "type": "slide",
+          "settings": {
+            "asset_image": "hero-saree.jpg",
+            "heading": "Handcrafted Sarees",
+            "heading_size": "h1",
+            "subheading": "Pure Silk, Ready to Wear, Georgette & Banarasi Weaves",
+            "button_label": "Shop All Sarees",
+            "link": "shopify://collections/buy-saree-in-germany",
+            "button_style_secondary": false,
+            "box_align": "middle-left",
+            "show_text_box": false,
+            "text_alignment": "left",
+            "image_overlay_opacity": 20,
+            "color_scheme": "inverse",
+            "text_alignment_mobile": "left"
+          }
+        },
+        "slide_ready": {
+          "type": "slide",
+          "settings": {
+            "asset_image": "hero-festive.jpg",
+            "heading": "Ready to Ship in Germany",
+            "heading_size": "h1",
+            "subheading": "Express 1\u20133 Days Dispatch from our Berlin Hub",
+            "button_label": "Shop Ready to Ship",
+            "link": "shopify://collections/kurti",
+            "button_style_secondary": false,
+            "box_align": "middle-left",
+            "show_text_box": false,
+            "text_alignment": "left",
+            "image_overlay_opacity": 20,
+            "color_scheme": "inverse",
+            "text_alignment_mobile": "left"
+          }
+        }
+      },
+      "block_order": [
+        "slide_couture",
+        "slide_sarees",
+        "slide_ready"
+      ],
+      "settings": {
+        "layout": "grid",
+        "slide_height": "medium",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Neha Couture seasonal collections"
+      }
+    },
+    "17070528005b221c2d": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_featured_carousel_pxCqtx": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1080
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_featured_carousel_pxCqtx"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "category_circles": {
+      "type": "category-circles",
+      "blocks": {
+        "cat_suits": {
+          "type": "category",
+          "settings": {
+            "collection": "handwork-ladies-suits-in-germany",
+            "title": "Shararas & Suits",
+            "asset_image": "cat-circle-suits.jpg",
+            "badge_text": ""
+          }
+        },
+        "cat_sarees": {
+          "type": "category",
+          "settings": {
+            "collection": "buy-saree-in-germany",
+            "title": "Sarees Collection",
+            "asset_image": "subcat-saree-all.jpg",
+            "badge_text": "Trending"
+          }
+        },
+        "cat_kurtis": {
+          "type": "category",
+          "settings": {
+            "collection": "kurti",
+            "title": "Kurtis",
+            "asset_image": "cat-kurtis.jpg",
+            "badge_text": ""
+          }
+        },
+        "cat_jewel_trad": {
+          "type": "category",
+          "settings": {
+            "collection": "indian-jewellery-in-germany",
+            "title": "Traditional Jewellery",
+            "asset_image": "cat-circle-jewel.jpg",
+            "badge_text": "Bridal"
+          }
+        },
+        "cat_bangles": {
+          "type": "category",
+          "settings": {
+            "collection": "exquisit-bangles-by-neha-couture",
+            "title": "Bangles & Choodas",
+            "asset_image": "cat-circle-bangles.jpg",
+            "badge_text": ""
+          }
+        },
+        "cat_gajra": {
+          "type": "category",
+          "settings": {
+            "collection": "indian-gajra-in-germany",
+            "title": "Hair Gajras",
+            "asset_image": "cat-circle-gajra.jpg",
+            "badge_text": ""
+          }
+        },
+        "cat_jewel_mod": {
+          "type": "category",
+          "settings": {
+            "collection": "jewellery",
+            "title": "Modern Jewellery",
+            "asset_image": "cat-circle-modern.jpg",
+            "badge_text": ""
+          }
+        },
+        "cat_mens": {
+          "type": "category",
+          "settings": {
+            "collection": "mens",
+            "title": "Men's Kurtas & Jackets",
+            "asset_image": "mens-nehru-jacket.jpg",
+            "badge_text": "Jackets"
+          }
+        },
+        "cat_girls": {
+          "type": "category",
+          "settings": {
+            "collection": "girls",
+            "title": "Girls",
+            "asset_image": "cat-girls.jpg",
+            "badge_text": ""
+          }
+        },
+        "cat_boys": {
+          "type": "category",
+          "settings": {
+            "collection": "boys",
+            "title": "Boys",
+            "asset_image": "cat-boys.jpg",
+            "badge_text": ""
+          }
+        },
+        "cat_flowers": {
+          "type": "category",
+          "settings": {
+            "collection": "fresh-flowers",
+            "title": "Fresh Flowers",
+            "asset_image": "cat-circle-flowers.jpg",
+            "badge_text": "Weekly"
+          }
+        },
+        "cat_grocery": {
+          "type": "category",
+          "settings": {
+            "collection": "indian-grocery",
+            "title": "Indian Grocery",
+            "asset_image": "cat-circle-grocery.png",
+            "badge_text": "Pantry"
+          }
+        },
+        "cat_cosmetics": {
+          "type": "category",
+          "settings": {
+            "collection": "cosmetics",
+            "title": "Cosmetics",
+            "asset_image": "cat-circle-cosmetics.jpg",
+            "badge_text": "Ayurvedic"
+          }
+        },
+        "cat_decor": {
+          "type": "category",
+          "settings": {
+            "collection": "home-decoration",
+            "title": "Home Decor & Torans",
+            "asset_image": "subcat-decor-all.jpg",
+            "badge_text": "Festive"
+          }
+        },
+        "cat_woolen_suits": {
+          "type": "category",
+          "settings": {
+            "collection": "handwork-ladies-suits-in-germany",
+            "link": "/pages/winter-wear",
+            "title": "Winter Wear",
+            "asset_image": "cat-circle-woolen-suits.jpg",
+            "badge_text": "Winter"
+          }
+        }
+      },
+      "block_order": [
+        "cat_suits",
+        "cat_woolen_suits",
+        "cat_sarees",
+        "cat_kurtis",
+        "cat_decor",
+        "cat_flowers",
+        "cat_grocery",
+        "cat_cosmetics",
+        "cat_jewel_trad",
+        "cat_bangles",
+        "cat_gajra",
+        "cat_jewel_mod",
+        "cat_mens",
+        "cat_girls",
+        "cat_boys"
+      ],
+      "settings": {
+        "title": "Shop By Category",
+        "subtitle": "Discover authentic Indian styles handcrafted with pure artistry",
+        "heading_size": "h1",
+        "color_scheme": "background-1",
+        "desktop_alignment": "center",
+        "circle_size_desktop": 110,
+        "circle_size_mobile": 80,
+        "padding_top": 28,
+        "padding_bottom": 24
+      }
+    },
+    "promo_cards": {
+      "type": "promo-cards",
+      "blocks": {
+        "tile_fashion": {
+          "type": "card",
+          "settings": {
+            "badge": "Couture & Ethnic",
+            "title": "Indian Fashion",
+            "subtitle": "Bridal lehengas, silk sarees & designer suits",
+            "button_text": "Shop Fashion",
+            "link": "/collections/all",
+            "asset_image": "tile-fashion.jpg"
+          }
+        },
+        "tile_flowers": {
+          "type": "card",
+          "settings": {
+            "badge": "Weekly Fresh",
+            "title": "Fresh Puja Flowers",
+            "subtitle": "Jasmine (Mogra), rose petals & festive garlands",
+            "button_text": "Shop Flowers",
+            "link": "/collections/fresh-flowers",
+            "asset_image": "tile-flowers.jpg"
+          }
+        },
+        "tile_cosmetics": {
+          "type": "card",
+          "settings": {
+            "badge": "Ayurvedic Care",
+            "title": "Cosmetics & Beauty",
+            "subtitle": "Mysore Sandal, herbal hair oils & skin care",
+            "button_text": "Shop Cosmetics",
+            "link": "/collections/cosmetics",
+            "asset_image": "tile-cosmetics.jpg"
+          }
+        },
+        "tile_grocery": {
+          "type": "card",
+          "settings": {
+            "badge": "Pantry Essentials",
+            "title": "Indian Grocery",
+            "subtitle": "Authentic spices, namkeen snacks & pantry staples",
+            "button_text": "Shop Grocery",
+            "link": "/collections/indian-grocery",
+            "asset_image": "tile-grocery.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "tile_fashion",
+        "tile_flowers",
+        "tile_cosmetics",
+        "tile_grocery"
+      ],
+      "settings": {
+        "title": "Curated Departments",
+        "subtitle": "Discover Indian couture, weekly fresh flowers, ayurvedic cosmetics & grocery staples",
+        "heading_size": "h1",
+        "columns_desktop": 4,
+        "card_height_desktop": 380,
+        "card_height_mobile": 240,
+        "card_radius": 16,
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "blocks": {
+        "trust_1": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "shipping",
+            "title": "Fast 1-3 Day Delivery",
+            "description": "Shipped from Germany. Free delivery over 40\u20ac."
+          }
+        },
+        "trust_2": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "craft",
+            "title": "Handcrafted Couture",
+            "description": "Pure silks & authentic hand embroidery from India."
+          }
+        },
+        "trust_3": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "location",
+            "title": "Berlin Store & Video Calls",
+            "description": "Live consultation Mon\u2013Sat (10am\u20138pm). Try in Berlin or book a video call."
+          }
+        },
+        "trust_4": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "security",
+            "title": "Secure Card & Online Checkout",
+            "description": "Shop safely with Visa, Mastercard, Maestro & SSL encrypted checkout."
+          }
+        }
+      },
+      "block_order": [
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4"
+      ],
+      "settings": {
+        "title": "Why Choose Neha Couture",
+        "subtitle": "Bringing authentic Indian fashion directly to you in Germany & Europe",
+        "heading_size": "h1",
+        "color_scheme": "background-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "consultation_section": {
+      "type": "consultation-section",
+      "settings": {
+        "heading": "Live Chat & Video Consultation",
+        "subheading": "Personalized Styling Service",
+        "description": "Experience our collections from home. Connect directly with our Berlin team for live video walkthroughs, color verification, and sizing assistance.",
+        "whatsapp_number": "4915175316266",
+        "whatsapp_message": "Hello Neha Couture, I would like to book a video consultation for an outfit.",
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "jewellery_slider": {
+      "type": "jewellery-slider",
+      "blocks": {
+        "jewel_1": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Traditional Indian Jewellery",
+            "badge": "Heritage & Bridal",
+            "subtitle": "Kundan, temple & choker sets",
+            "asset_image": "jewel-traditional.jpg",
+            "link": "/collections/indian-jewellery-in-germany"
+          }
+        },
+        "jewel_2": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Exquisite Bangles",
+            "badge": "Bridal & Festive",
+            "subtitle": "Choodas, velvet & glass bangles",
+            "asset_image": "jewel-bangles.jpg",
+            "link": "/collections/exquisit-bangles-by-neha-couture"
+          }
+        },
+        "jewel_3": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Gajras & Hair Accessories",
+            "badge": "Floral Elegance",
+            "subtitle": "Traditional fragrant hair adornments",
+            "asset_image": "jewel-gajra.jpg",
+            "link": "/collections/indian-gajra-in-germany"
+          }
+        },
+        "jewel_4": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Modern Jewellery",
+            "badge": "Contemporary",
+            "subtitle": "Chic earrings & statement pieces",
+            "asset_image": "jewel-modern.jpg",
+            "link": "/collections/jewellery"
+          }
+        },
+        "jewel_5": {
+          "type": "collection_card",
+          "settings": {
+            "title": "Festive Silver Jhumkas",
+            "badge": "Navratri & Festive",
+            "subtitle": "Oxidised silver & ethnic earrings",
+            "asset_image": "jewel-festive.jpg",
+            "link": "/collections/navratri-jewellery"
+          }
+        }
+      },
+      "block_order": [
+        "jewel_1",
+        "jewel_2",
+        "jewel_3",
+        "jewel_4",
+        "jewel_5"
+      ],
+      "settings": {
+        "title": "Jewellery & Accessories Collection",
+        "subtitle": "Discover handcrafted bridal sets, exquisite bangles, floral hair gajras & festive accents",
+        "heading_size": "h1",
+        "color_scheme": "background-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "google_reviews": {
+      "type": "google-reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "author": "Wolfgang M.",
+            "stars": 5,
+            "text": "Great quality, speedy delivery. The saree is stunning, and it arrived much faster than I anticipated. Highly recommend Neha Couture!",
+            "date": "Verified Customer",
+            "tag": "Saree & Express Delivery",
+            "avatar_color": "#673147"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "author": "Anika S.",
+            "stars": 5,
+            "text": "Timely delivery, so pleased! This kurti is fantastic. The material is soft and breathable, and the design is very stylish. The quality is exceptional and exceeded my expectations in every way.",
+            "date": "Verified Customer",
+            "tag": "Cotton Kurti",
+            "avatar_color": "#103948"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "author": "Mousumi B.",
+            "stars": 5,
+            "text": "Very happy with the saree. Chomotkar saree, khub khushi! Authentic Indian craftsmanship, beautiful drape, and fast delivery in Germany.",
+            "date": "Verified Customer",
+            "tag": "Pure Silk Saree",
+            "avatar_color": "#673147"
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "author": "Priyanka D.",
+            "stars": 5,
+            "text": "Beautiful kurta set \u2014 I wore this to an Indian wedding and got so many compliments. It's very comfortable and pleasant on the skin. Delighted with the fast dispatch in Germany!",
+            "date": "Verified Customer",
+            "tag": "Wedding Kurta Set",
+            "avatar_color": "#103948"
+          }
+        },
+        "review_5": {
+          "type": "review",
+          "settings": {
+            "author": "Kavita R.",
+            "stars": 5,
+            "text": "Finding authentic Indian ethnic wear in Germany used to be a struggle until I found Neha Couture. High quality, excellent fit, and arrived within 2 days!",
+            "date": "Verified Customer",
+            "tag": "Festive Ethnic Wear",
+            "avatar_color": "#673147"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4",
+        "review_5"
+      ],
+      "settings": {
+        "eyebrow": "Google Verified Reviews",
+        "title": "Loved by Brides & Shoppers Across Europe",
+        "heading_size": "h1",
+        "subtitle": "Read genuine feedback from our clients in Germany, Austria, and across the EU.",
+        "rating_score": "4.9",
+        "rating_count": "133",
+        "rating_summary": "Based on 133+ Google Reviews (4.9 \u2605)",
+        "google_link": "https://www.google.com/maps/search/?api=1&query=Neha+Couture+The+Playce+Berlin",
+        "cta_text": "Review Us on Google",
+        "columns_desktop": 5,
+        "color_scheme": "background-2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "brand_entity": {
+      "type": "brand-entity",
+      "settings": {
+        "heading": "About Neha Couture \u2014 South Asian & Indian Ethnic Wear in Germany",
+        "subheading": "Authoritative Brand Positioning",
+        "color_scheme": "background-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq_accordion": {
+      "type": "faq-section",
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship Indian wear across Germany and Europe?",
+            "answer": "<p>Yes! We ship all ready-to-ship collections directly from our Berlin fulfillment hub. Deliveries within Germany take <strong>1\u20133 business days</strong>. We also ship across all European Union countries and Switzerland within <strong>3\u20135 business days</strong> with zero customs duties.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "Where is your store located and can I try outfits in person?",
+            "answer": "<p>Yes! Our <strong>walk-in retail store & showroom is located exclusively at The Playce (Potsdamer Platz)</strong>, Shop No. 55, Level -1, Alte Potsdamer Str. 7, 10785 Berlin (open Mon\u2013Sat 10:00\u201320:00).<br><br><em>Please note: Our Dolgenseestr. 9A address is an administrative office only and is not open for walk-in shopping.</em></p>"
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "How does your 1-on-1 live video consultation work?",
+            "answer": "<p>If you live outside Berlin, you can book a free 1-on-1 video call via WhatsApp. Our stylists show you the fabric, hand embroidery details in natural lighting, and help you take precise measurements before placing an order.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "question": "How do I choose the correct size for Lehengas, Sarees, and Suits?",
+            "answer": "<p>Every product includes an accurate sizing chart in centimetres and inches. Sarees come with unstitched or semi-stitched blouse pieces, and many lehengas have adjustable drawstring waists. You can also send us your bust, waist, and height via WhatsApp to help you choose the best fitting size.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "question",
+          "settings": {
+            "question": "What is your return policy and how do I return items?",
+            "answer": "<p>We accept returns on unworn items with original tags intact within <strong>14 days of delivery</strong>.<br><br><strong>You have two return options:</strong><br>1. <strong>In-Person Returns:</strong> You can return or exchange items in person directly at our retail boutique at <strong>The Playce (Potsdamer Platz)</strong>, Shop No. 55, Floor -1, Alte Potsdamer Str. 7, 10785 Berlin.<br>2. <strong>Mailed / Shipped Returns:</strong> All postal return parcels must be shipped exclusively to our office address:<br><br><strong>Neha Aggarwal</strong><br>Dolgenseestr. 9A<br>10319 Berlin, Germany<br><br><em>Important Note: Shipping of return parcels to our Potsdamer Platz store is currently NOT possible. Please ensure all mailed packages are addressed to Dolgenseestr. 9A.</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_5",
+        "faq_6"
+      ],
+      "settings": {
+        "eyebrow": "Frequently Asked Questions",
+        "title": "Everything You Need to Know",
+        "heading_size": "h1",
+        "subtitle": "Clear answers about European shipping, ready-to-wear collections, sizing, and showroom visits in Berlin.",
+        "open_first": true,
+        "color_scheme": "background-1",
+        "show_contact_card": true,
+        "contact_title": "Still have questions?",
+        "contact_text": "Can't find the answer you need? Connect directly with our Berlin styling team.",
+        "whatsapp_number": "4915175316266",
+        "whatsapp_message": "Hello Neha Couture, I have a question about an outfit / sizing.",
+        "contact_email": "info@nehacouture.de",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "womens_outfits_slider": {
+      "type": "category-spotlight-slider",
+      "blocks": {
+        "outfit_1": {
+          "type": "card",
+          "settings": {
+            "title": "Shararas & Suits",
+            "badge": "Royal Sets",
+            "subtitle": "Zari & hand embroidery",
+            "asset_image": "cat-suits.jpg",
+            "link": "/collections/handwork-ladies-suits-in-germany"
+          }
+        },
+        "outfit_2": {
+          "type": "card",
+          "settings": {
+            "title": "Designer Sarees",
+            "badge": "Heirloom",
+            "subtitle": "Silk, georgette & ready to wear",
+            "asset_image": "outfit-teal-saree.jpg",
+            "link": "/collections/buy-saree-in-germany"
+          }
+        },
+        "outfit_3": {
+          "type": "card",
+          "settings": {
+            "title": "Kurtis & Tunics",
+            "badge": "Daily Chic",
+            "subtitle": "Comfortable festive wear",
+            "asset_image": "outfit-chikankari-red.jpg",
+            "link": "/collections/kurti"
+          }
+        },
+        "outfit_4": {
+          "type": "card",
+          "settings": {
+            "title": "Premium Handwork",
+            "badge": "Couture",
+            "subtitle": "Artisan handcrafting",
+            "asset_image": "outfit-handwork-embroidery.jpg",
+            "link": "/collections/indian-handwork-clothes-in-germany"
+          }
+        },
+        "outfit_5": {
+          "type": "card",
+          "settings": {
+            "title": "Western Fusion & Skirts",
+            "badge": "Contemporary",
+            "subtitle": "Modern ethnic silhouette",
+            "asset_image": "outfit-western-dress.jpg",
+            "link": "/collections/western-collection-with-indian-flavour"
+          }
+        }
+      },
+      "block_order": [
+        "outfit_1",
+        "outfit_2",
+        "outfit_3",
+        "outfit_4",
+        "outfit_5"
+      ],
+      "settings": {
+        "title": "Women's Couture & Outfits",
+        "subtitle": "Explore royal shararas, authentic silk sarees, handwork suits & daily chic kurtis",
+        "heading_size": "h1",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 24
+      }
+    },
+    "womens_essentials_slider": {
+      "type": "category-spotlight-slider",
+      "blocks": {
+        "ess_1": {
+          "type": "card",
+          "settings": {
+            "title": "Designer Blouses",
+            "badge": "Silk & Zari",
+            "subtitle": "Bespoke stitched blouses",
+            "asset_image": "essentials-blouse.jpg",
+            "link": "/collections/blouse-it-completes-the-best-dress-ever-made-for-a-women"
+          }
+        },
+        "ess_2": {
+          "type": "card",
+          "settings": {
+            "title": "Saree Petticoats",
+            "badge": "Comfort Fit",
+            "subtitle": "Seamless saree shapewear",
+            "asset_image": "essentials-petticoat.jpg",
+            "link": "/collections/underskirt-petticoat"
+          }
+        },
+        "ess_3": {
+          "type": "card",
+          "settings": {
+            "title": "Punjabi Juttis",
+            "badge": "Pure Leather",
+            "subtitle": "Hand-embroidered artisan flats",
+            "asset_image": "essentials-jutti.jpg",
+            "link": "/collections/royal-hand-embroidered-punjabi-juttis-artisan-crafted-leather-flats"
+          }
+        },
+        "ess_4": {
+          "type": "card",
+          "settings": {
+            "title": "Palazzos & Leggings",
+            "badge": "Mix & Match",
+            "subtitle": "Comfortable ethnic bottoms",
+            "asset_image": "essentials-pants.jpg",
+            "link": "/collections/pants-or-leggings"
+          }
+        }
+      },
+      "block_order": [
+        "ess_1",
+        "ess_2",
+        "ess_3",
+        "ess_4"
+      ],
+      "settings": {
+        "title": "Blouses, Petticoats & Footwear",
+        "subtitle": "Complete your ethnic wardrobe with designer blouses, saree petticoats & leather juttis",
+        "heading_size": "h1",
+        "color_scheme": "background-2",
+        "padding_top": 36,
+        "padding_bottom": 24
+      }
+    },
+    "family_festive_slider": {
+      "type": "category-spotlight-slider",
+      "blocks": {
+        "fam_1": {
+          "type": "card",
+          "settings": {
+            "title": "Men's Kurtas & Nehru Jackets",
+            "badge": "Nehru Jackets",
+            "subtitle": "Regal silk kurtas & tailored festive jackets",
+            "asset_image": "mens-nehru-jacket.jpg",
+            "link": "/collections/mens"
+          }
+        },
+        "fam_2": {
+          "type": "card",
+          "settings": {
+            "title": "Girls' Festive Lehengas",
+            "badge": "Girls Collection",
+            "subtitle": "Traditional handcrafted sets for girls",
+            "asset_image": "cat-girls.jpg",
+            "link": "/collections/girls"
+          }
+        },
+        "fam_3": {
+          "type": "card",
+          "settings": {
+            "title": "Boys' Kurta Pajamas",
+            "badge": "Boys Collection",
+            "subtitle": "Festive cotton and silk kurta sets for boys",
+            "asset_image": "cat-boys.jpg",
+            "link": "/collections/boys"
+          }
+        },
+        "fam_4": {
+          "type": "card",
+          "settings": {
+            "title": "Men's Silk & Pathani Sets",
+            "badge": "Traditional Men",
+            "subtitle": "Classic pathanis, dhotis & pure silk sets",
+            "asset_image": "cat-mens.jpg",
+            "link": "/collections/mens"
+          }
+        }
+      },
+      "block_order": [
+        "fam_1",
+        "fam_2",
+        "fam_3",
+        "fam_4"
+      ],
+      "settings": {
+        "title": "Men & Kids Festive Collections",
+        "subtitle": "Tailored Nehru jackets, pure silk kurtas & royal attire for the entire family",
+        "heading_size": "h1",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "category_circles",
+    "promo_cards",
+    "womens_outfits_slider",
+    "womens_essentials_slider",
+    "jewellery_slider",
+    "family_festive_slider",
+    "trust_badges",
+    "google_reviews",
+    "consultation_section",
+    "faq_accordion",
+    "brand_entity",
+    "17070528005b221c2d"
+  ]
+}

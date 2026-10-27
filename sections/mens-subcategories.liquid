@@ -1,0 +1,480 @@
+{%- if collection.handle == 'mens' or collection.handle contains 'mens' -%}
+  {%- style -%}
+    .mens-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .mens-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .mens-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .mens-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .mens-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .mens-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .mens-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .mens-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .mens-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .mens-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .mens-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .mens-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .mens-subcat-card.is-active .mens-subcat-circle,
+    .mens-subcat-card:hover .mens-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .mens-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .mens-subcat-card:hover .mens-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .mens-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 110px;
+      transition: color 0.2s ease;
+    }
+
+    .mens-subcat-card.is-active .mens-subcat-name,
+    .mens-subcat-card:hover .mens-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .mens-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .mens-subcat-card.is-active .mens-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .mens-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .mens-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .mens-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="mens-subcats-section">
+    <div class="page-width">
+      <div class="mens-subcats-header">
+        <h2 class="mens-subcats-title">Shop Men's Wear By Style & Occasion</h2>
+        <p class="mens-subcats-subtitle">Select any category below to instantly view matching handcrafted Men's ethnic ensembles</p>
+      </div>
+
+      <div class="mens-subcats-track" role="list" id="MensSubcatTrack">
+        <!-- 1. All Styles (284 items) -->
+        <button type="button" class="mens-subcat-card is-active" data-style="all" role="listitem">
+          <div class="mens-subcat-circle">
+            <img src="{{ 'subcat-mens-all.jpg' | asset_url }}" alt="All Men's Styles" width="100" height="100" loading="lazy">
+          </div>
+          <span class="mens-subcat-name">All Styles</span>
+          <span class="mens-subcat-count">284 Styles</span>
+        </button>
+
+        <!-- 2. Nehru Jacket Sets (49 items) -->
+        <button type="button" class="mens-subcat-card" data-style="nehru-jacket" role="listitem">
+          <div class="mens-subcat-circle">
+            <img src="{{ 'subcat-mens-nehru.jpg' | asset_url }}" alt="Nehru Jacket Sets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="mens-subcat-name">Nehru Jacket Sets</span>
+          <span class="mens-subcat-count">49 Styles</span>
+        </button>
+
+        <!-- 3. Royal Silk Sets (100 items) -->
+        <button type="button" class="mens-subcat-card" data-style="silk-kurta" role="listitem">
+          <div class="mens-subcat-circle">
+            <img src="{{ 'subcat-mens-silk.jpg' | asset_url }}" alt="Royal Silk Sets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="mens-subcat-name">Royal Silk Sets</span>
+          <span class="mens-subcat-count">100 Styles</span>
+        </button>
+
+        <!-- 4. Pure Cotton Sets (114 items) -->
+        <button type="button" class="mens-subcat-card" data-style="cotton-kurta" role="listitem">
+          <div class="mens-subcat-circle">
+            <img src="{{ 'subcat-mens-cotton.jpg' | asset_url }}" alt="Pure Cotton Sets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="mens-subcat-name">Pure Cotton Sets</span>
+          <span class="mens-subcat-count">114 Styles</span>
+        </button>
+
+        <!-- 5. Lucknowi Chikankari (52 items) -->
+        <button type="button" class="mens-subcat-card" data-style="chikankari" role="listitem">
+          <div class="mens-subcat-circle">
+            <img src="{{ 'subcat-mens-chikankari.jpg' | asset_url }}" alt="Lucknowi Chikankari" width="100" height="100" loading="lazy">
+          </div>
+          <span class="mens-subcat-name">Chikankari Kurta</span>
+          <span class="mens-subcat-count">52 Styles</span>
+        </button>
+
+        <!-- 6. Embroidered & Zari (113 items) -->
+        <button type="button" class="mens-subcat-card" data-style="embroidered" role="listitem">
+          <div class="mens-subcat-circle">
+            <img src="{{ 'subcat-mens-embroidered.jpg' | asset_url }}" alt="Embroidered & Zari" width="100" height="100" loading="lazy">
+          </div>
+          <span class="mens-subcat-name">Embroidered & Zari</span>
+          <span class="mens-subcat-count">113 Styles</span>
+        </button>
+
+        <!-- 7. Printed & Motifs (83 items) -->
+        <button type="button" class="mens-subcat-card" data-style="printed-motifs" role="listitem">
+          <div class="mens-subcat-circle">
+            <img src="{{ 'subcat-mens-printed.jpg' | asset_url }}" alt="Printed & Motifs" width="100" height="100" loading="lazy">
+          </div>
+          <span class="mens-subcat-name">Printed & Motifs</span>
+          <span class="mens-subcat-count">83 Styles</span>
+        </button>
+
+        <!-- 8. Pathani Suit Sets (14 items) -->
+        <button type="button" class="mens-subcat-card" data-style="pathani" role="listitem">
+          <div class="mens-subcat-circle">
+            <img src="{{ 'subcat-mens-pathani.jpg' | asset_url }}" alt="Pathani Suit Sets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="mens-subcat-name">Pathani Suit Sets</span>
+          <span class="mens-subcat-count">14 Styles</span>
+        </button>
+
+        <!-- 9. Dhoti Kurta Sets (5 items) -->
+        <button type="button" class="mens-subcat-card" data-style="dhoti" role="listitem">
+          <div class="mens-subcat-circle">
+            <img src="{{ 'subcat-mens-dhoti.jpg' | asset_url }}" alt="Dhoti Kurta Sets" width="100" height="100" loading="lazy">
+          </div>
+          <span class="mens-subcat-name">Dhoti Kurta Sets</span>
+          <span class="mens-subcat-count">5 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="MensFilterStatusBar" class="mens-filter-status-bar">
+        <span id="MensFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="MensFilterResetBtn" class="mens-reset-btn">✕ Clear Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let cachedMens = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+
+      // Pre-fetch all 284 mens products on page load
+      fetch("{{ 'mens-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedMens = data;
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading mens catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function renderFilteredProducts(items, styleName) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('MensFilterStatusBar');
+        const statusText = document.getElementById('MensFilterStatusText');
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Filtered: <strong>${styleName}</strong> (${items.length} styles found)`;
+        }
+
+        grid.innerHTML = items.map(p => {
+          const img = p.image || '';
+          const price = p.price || '0.00';
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function restoreOriginal() {
+        const grid = getTargetGrid();
+        if (grid && originalGridHTML) {
+          grid.innerHTML = originalGridHTML;
+        }
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = '';
+
+        updateCountDisplays(284);
+
+        const statusBar = document.getElementById('MensFilterStatusBar');
+        if (statusBar) statusBar.style.display = 'none';
+
+        const cards = document.querySelectorAll('.mens-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === 'all') c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      function handleFilterClick(styleKey, styleName) {
+        const cards = document.querySelectorAll('.mens-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          const newUrl = styleKey === 'all' 
+            ? window.location.pathname 
+            : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (styleKey === 'all') {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedMens) {
+          fetch("{{ 'mens-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedMens = data;
+              const matches = cachedMens.filter(b => b.styles && b.styles.includes(styleKey));
+              renderFilteredProducts(matches, styleName);
+            });
+        } else {
+          const matches = cachedMens.filter(b => b.styles && b.styles.includes(styleKey));
+          renderFilteredProducts(matches, styleName);
+        }
+      }
+
+      function checkInitialURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style') || window.location.hash.replace('#', '');
+        if (style && style !== 'all') {
+          const targetCard = document.querySelector(`.mens-subcat-card[data-style="${style}"]`);
+          if (targetCard) {
+            const name = targetCard.querySelector('.mens-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('MensSubcatTrack');
+        const resetBtn = document.getElementById('MensFilterResetBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.mens-subcat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.mens-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+
+        setTimeout(captureOriginal, 1000);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Mens Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Mens Subcategories"
+    }
+  ]
+}
+{% endschema %}

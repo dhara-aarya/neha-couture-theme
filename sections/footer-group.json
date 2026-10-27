@@ -1,0 +1,55 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "link_list_YeafFK": {
+          "type": "link_list",
+          "settings": {
+            "heading": "We deliver in all these countries",
+            "menu": "footer"
+          }
+        },
+        "customer_care_links": {
+          "type": "text",
+          "settings": {
+            "heading": "Store & Returns Addresses",
+            "subtext": "<p><strong>🛍️ Retail Boutique (Shopping & In-Person Returns):</strong><br>The Playce, Shop No. 55 (Level -1), Alte Potsdamer Str. 7, 10785 Berlin (Potsdamer Platz)<br><em>Open Mon–Sat (10am to 8pm). In-person returns & exchanges accepted here by hand. (Note: Shipping/mailing parcels to this store is NOT possible).</em><br><br><strong>📦 Postal Return Shipping & Office Address:</strong><br>Neha Aggarwal<br>Dolgenseestr. 9A, 10319 Berlin, Germany<br><em>(All mailed return parcels must be shipped exclusively to our Dolgenseestr office address).</em><br><br><a href=\"/pages/faq\">Help & FAQ</a> • <a href=\"/pages/different-ways-to-reach-us\">Contact & Visit Info</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_YeafFK",
+        "customer_care_links"
+      ],
+      "settings": {
+        "color_scheme": "inverse",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

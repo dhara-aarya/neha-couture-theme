@@ -1,0 +1,184 @@
+{%- comment -%}
+  Renders split-shipment and fresh flower advisories with itemized separate shipping costs
+  Usage: {% render 'cart-fulfillment-notices' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign has_neha = false
+  assign has_namma = false
+  assign has_flowers = false
+  assign neha_total = 0
+  assign namma_total = 0
+
+  for item in cart.items
+    assign v_low = item.product.vendor | downcase
+    assign t_low = item.product.type | downcase
+    assign tit_low = item.product.title | downcase
+
+    if t_low contains 'flower' or t_low contains 'garland' or t_low contains 'leaves' or tit_low contains 'garland' or tit_low contains 'rose' and v_low contains 'namma'
+      assign has_flowers = true
+      assign namma_total = namma_total | plus: item.final_line_price
+    elsif v_low contains 'namma'
+      assign has_namma = true
+      assign namma_total = namma_total | plus: item.final_line_price
+    else
+      assign has_neha = true
+      assign neha_total = neha_total | plus: item.final_line_price
+    endif
+  endfor
+
+  assign origin_count = 0
+  if has_neha
+    assign origin_count = origin_count | plus: 1
+  endif
+  if has_namma or has_flowers
+    assign origin_count = origin_count | plus: 1
+  endif
+
+  if neha_total >= 10000
+    assign neha_shipping_cents = 0
+    assign neha_shipping_text = '0,00 € (Kostenlos ab 100 €)'
+  elsif neha_total >= 4000
+    assign neha_shipping_cents = 100
+    assign neha_shipping_text = '1,00 € (Aktion ab 40 €)'
+  elsif neha_total >= 2500
+    assign neha_shipping_cents = 399
+    assign neha_shipping_text = '3,99 €'
+  else
+    assign neha_shipping_cents = 599
+    assign neha_shipping_text = '5,99 €'
+  endif
+
+  assign namma_shipping_cents = 699
+  assign namma_shipping_text = '6,99 €'
+  assign combined_shipping_cents = neha_shipping_cents | plus: namma_shipping_cents
+-%}
+
+{%- if origin_count > 1 or has_flowers or has_namma -%}
+  <div class="cart-fulfillment-notices">
+    {%- if origin_count > 1 -%}
+      <div class="fulfillment-notice fulfillment-notice--split">
+        <div class="fulfillment-notice__header">
+          <span class="fulfillment-notice__icon">📦</span>
+          <strong class="fulfillment-notice__title">Multi-Partner Delivery (Separate Parcels)</strong>
+        </div>
+        <p class="fulfillment-notice__desc">
+          Your order will be fulfilled in <strong>2 separate parcels</strong> from our dedicated hubs:
+        </p>
+
+        <div class="fulfillment-rate-breakdown">
+          <div class="fulfillment-rate-item">
+            <span>📦 <strong>Neha Couture (Berlin):</strong></span>
+            <span class="fulfillment-rate-cost">{{ neha_shipping_text }}</span>
+          </div>
+          <div class="fulfillment-rate-item">
+            <span>🚚 <strong>Namma Markt (Hamburg):</strong></span>
+            <span class="fulfillment-rate-cost">{{ namma_shipping_text }}</span>
+          </div>
+          <div class="fulfillment-rate-item fulfillment-rate-item--total">
+            <span><strong>Combined Shipping at Checkout:</strong></span>
+            <span class="fulfillment-rate-cost"><strong>{{ combined_shipping_cents | money }}</strong></span>
+          </div>
+        </div>
+      </div>
+    {%- elsif has_namma and has_neha == false and has_flowers == false -%}
+      <div class="fulfillment-notice fulfillment-notice--partner">
+        <div class="fulfillment-notice__header">
+          <span class="fulfillment-notice__icon">🚚</span>
+          <strong class="fulfillment-notice__title">Dispatched by Namma Markt (Hamburg)</strong>
+        </div>
+        <p class="fulfillment-notice__desc">
+          These items are dispatched directly from Namma Markt's warehouse via DHL (1–2 business days across Germany). Standard shipping: <strong>6,99 €</strong>.
+        </p>
+      </div>
+    {%- endif -%}
+
+    {%- if has_flowers -%}
+      <div class="fulfillment-notice fulfillment-notice--flower">
+        <div class="fulfillment-notice__header">
+          <span class="fulfillment-notice__icon">🌸</span>
+          <strong class="fulfillment-notice__title">Fresh Flowers Priority Care</strong>
+        </div>
+        <p class="fulfillment-notice__desc">
+          Fresh floral garlands and loose petals are packed fresh and dispatched mid-week with express handling to preserve natural bloom and fragrance. Please ensure someone is present to accept the delivery.
+        </p>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <style>
+    .cart-fulfillment-notices {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .fulfillment-notice {
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 1.25rem;
+      line-height: 1.45;
+      text-align: left;
+    }
+    .fulfillment-notice__header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      font-size: 1.3rem;
+    }
+    .fulfillment-notice__desc {
+      margin: 0 0 8px 0;
+      font-size: 1.2rem;
+    }
+    .fulfillment-rate-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-top: 6px;
+    }
+    .fulfillment-rate-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+    .fulfillment-rate-item--total {
+      border-top: 1px dashed rgba(110, 65, 27, 0.25);
+      padding-top: 5px;
+      margin-top: 3px;
+      font-size: 1.25rem;
+    }
+    .fulfillment-rate-cost {
+      font-weight: 600;
+    }
+    .fulfillment-notice--split {
+      background: #fdfaf5;
+      border: 1px solid #fae8d2;
+      color: #6e411b;
+    }
+    .fulfillment-notice--split strong {
+      color: #4a280c;
+    }
+    .fulfillment-notice--partner {
+      background: #f0f7fd;
+      border: 1px solid #cbe1f5;
+      color: #12538a;
+    }
+    .fulfillment-notice--partner strong {
+      color: #0b3d68;
+    }
+    .fulfillment-notice--flower {
+      background: #fdf4f6;
+      border: 1px solid #fad2dc;
+      color: #7d2039;
+    }
+    .fulfillment-notice--flower strong {
+      color: #591224;
+    }
+  </style>
+{%- endif -%}

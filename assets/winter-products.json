@@ -1,0 +1,352 @@
+[
+  {
+    "id": "gid://shopify/Product/9573213831506",
+    "title": "Peach Anarkali Suit-Set",
+    "handle": "peach-anarkali-suit-set-in-germany",
+    "price": "34.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/kw3058ss19pch-1.jpg?v=1722363323",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "palazzo-sets",
+    "categories": [
+      "all",
+      "palazzo-sets"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9785466585426",
+    "title": "Printed Velvet Straight Kurta With Dupatta",
+    "handle": "printed-velvet-straight-kurta-with-dupatta-in-germany",
+    "price": "45.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2024-11-15at4.15.59PM.jpg?v=1731674388",
+    "inventory": 8,
+    "in_stock": true,
+    "category": "velvet",
+    "categories": [
+      "all",
+      "velvet"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9785467273554",
+    "title": "Printed Velvet Straight Kurta With Dupatta",
+    "handle": "printed-velvet-straight-kurta-with-dupatta-in-berlin",
+    "price": "45.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2024-11-15at4.25.25PM.jpg?v=1731674623",
+    "inventory": 10,
+    "in_stock": true,
+    "category": "velvet",
+    "categories": [
+      "all",
+      "velvet"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9785470615890",
+    "title": "Printed Velvet Straight Kurta With Dupatta",
+    "handle": "printed-velvet-straight-kurta-with-dupatta-in-germany-1",
+    "price": "45.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2024-11-15at4.25.25PM_2.jpg?v=1731674828",
+    "inventory": 11,
+    "in_stock": true,
+    "category": "velvet",
+    "categories": [
+      "all",
+      "velvet"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9785474089298",
+    "title": "Printed Velvet Straight Kurta With Dupatta",
+    "handle": "printed-velvet-straight-kurta-with-dupatta-in",
+    "price": "45.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2024-11-15at4.25.26PM_1.jpg?v=1731675020",
+    "inventory": 9,
+    "in_stock": true,
+    "category": "velvet",
+    "categories": [
+      "all",
+      "velvet"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9785476415826",
+    "title": "Printed Velvet Straight Kurta With Dupatta in Poland",
+    "handle": "printed-velvet-straight-kurta-with-dupatta-in-poland",
+    "price": "45.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2024-11-15at4.25.27PM.jpg?v=1731675255",
+    "inventory": 9,
+    "in_stock": true,
+    "category": "velvet",
+    "categories": [
+      "all",
+      "velvet"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11230064247122",
+    "title": "Blue Straight Fit Kurta",
+    "handle": "blue-straight-fit-kurta-in-berlin",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at4.00.22AM.jpg?v=1791981687",
+    "inventory": 5,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11230082400594",
+    "title": "Blue Straight Fit Printed Kurta",
+    "handle": "blue-straight-fit-printed-kurta-in-berlin",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at4.06.11AM_b6f43e22-8940-47a9-b6a1-7833f5dcc400.jpg?v=1791983521",
+    "inventory": 5,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11238624624978",
+    "title": "Olive Jacquard Straight Yarndyed Kurta Palazzo Suit Set For Women",
+    "handle": "olive-jacquard-straight-yarndyed-kurta-palazzo-suit-set-for-women-in-germany",
+    "price": "60.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at3.10.29PM.jpg?v=1792162580",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "palazzo-sets",
+    "categories": [
+      "all",
+      "palazzo-sets"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11238657786194",
+    "title": "Floral Printed Regular Straight Kurta with Trousers",
+    "handle": "floral-printed-regular-straight-kurta-with-trousers-in-berlin",
+    "price": "60.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at8.38.49PM.jpg?v=1792163093",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "palazzo-sets",
+    "categories": [
+      "all",
+      "palazzo-sets"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11229748691282",
+    "title": "Mustard Calf Length A Line Kurta(Winter Kurti )",
+    "handle": "mustard-calf-length-a-line-kurtawinter-kurti-in-berlin",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at3.42.26AM.jpg?v=1791975475",
+    "inventory": 3,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11229762224466",
+    "title": "Pink Straight Fit Printed Kurta in Belin",
+    "handle": "pink-straight-fit-printed-kurta-in-belin",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at3.47.37AM.jpg?v=1791976330",
+    "inventory": 3,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11230175101266",
+    "title": "Black Acrylic Straight Kurta for Women",
+    "handle": "black-acrylic-straight-kurta-for-women-in-germany",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at4.16.28AM.jpg?v=1791984656",
+    "inventory": 4,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11230197121362",
+    "title": "Floral Yoke Design Tie-Up Neck Thread Work Kurta",
+    "handle": "floral-yoke-design-tie-up-neck-thread-work-kurta-in-germany",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at4.20.49AM_1.jpg?v=1791985005",
+    "inventory": 2,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11230324916562",
+    "title": "Blue Straight Fit Printed Kurta",
+    "handle": "blue-straight-fit-printed-kurta-in-berlin-1",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at10.57.32AM.jpg?v=1791985358",
+    "inventory": 3,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11230350836050",
+    "title": "Floral Embroidered Mandarin Collar Straight Kurta",
+    "handle": "floral-embroidered-mandarin-collar-straight-kurta-in-germany",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at2.04.15PM.jpg?v=1791987361",
+    "inventory": 3,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11230369546578",
+    "title": "Grey Straight Fit Printed Kurta",
+    "handle": "grey-straight-fit-printed-kurta-in-germany",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-13at2.10.13PM_1.jpg?v=1791987766",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11240511897938",
+    "title": "Floral Embroidered Ethnic Kurta",
+    "handle": "floral-embroidered-ethnic-kurta-in-germany",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-14at5.13.34PM.jpg?v=1792232601",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11240571142482",
+    "title": "Pink Straight Fit Printed Kurta",
+    "handle": "pink-straight-fit-printed-kurta-in-germany",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-14at7.07.16PM_1.jpg?v=1792234531",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11240585167186",
+    "title": "Black Straight Fit Kurta",
+    "handle": "black-straight-fit-kurta-in-berlin",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-14at10.51.47PM.jpg?v=1792234899",
+    "inventory": 3,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9832394916178",
+    "title": "Acrylic, Wool Embroidered Women Shawl",
+    "handle": "acrylic-wool-embroidered-women-shawl-in-berlin",
+    "price": "19.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2024-12-14at10.26.42PM.jpg?v=1734266710",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "shawls",
+    "categories": [
+      "all",
+      "shawls"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9832399339858",
+    "title": "Stylish Kashmiri Stole for Women Aari Embroidery Matka Jaal",
+    "handle": "stylish-kashmiri-stole-for-women-aari-embroidery-matka-jaal-in-munich",
+    "price": "19.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2024-12-14at10.27.31PM.jpg?v=1734266971",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "shawls",
+    "categories": [
+      "all",
+      "shawls"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9832404910418",
+    "title": "Women's Kashmiri Aari Embroided MATKA Cashmilon Stoles",
+    "handle": "womens-kashmiri-aari-embroided-matka-cashmilon-stoles-in-germany",
+    "price": "19.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2024-12-14at10.28.25PM.jpg?v=1734267258",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "shawls",
+    "categories": [
+      "all",
+      "shawls"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11240556069202",
+    "title": "Rust Straight Fit Printed Kurta",
+    "handle": "rust-straight-fit-printed-kurta-in-berlin",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-14at5.39.13PM.jpg?v=1792234098",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/11240600043858",
+    "title": "Skyblue Straight Fit Printed Kurta",
+    "handle": "skyblue-straight-fit-printed-kurta-in-berlin",
+    "price": "30.00",
+    "image": "https://cdn.shopify.com/s/files/1/0762/7830/1010/files/WhatsAppImage2026-10-14at11.01.42PM.jpg?v=1792235229",
+    "inventory": 1,
+    "in_stock": true,
+    "category": "warm-kurtas",
+    "categories": [
+      "all",
+      "warm-kurtas"
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+# we use Shopify as our ecommerce platform
+{%- comment -%}
+  Custom robots.txt for AI SEO and Generative Engine Optimization (GEO)
+  Optimizes discovery & retrieval for SearchGPT, ChatGPT, Perplexity, Claude, Google Gemini, and Apple Intelligence.
+{%- endcomment -%}
+{% for group in robots.default_groups %}
+  {{- group.user_agent -}}
+
+  {% for rule in group.rules %}
+    {{- rule -}}
+  {% endfor %}
+
+  {%- if group.sitemap != blank -%}
+    {{ group.sitemap }}
+  {%- endif -%}
+{% endfor %}
+
+# ==============================================================================
+# AI Search Engines & Generative Assistants (GEO / LLMO Directives)
+# ==============================================================================
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Meta-ExternalAgent
+Allow: /collections
+Allow: /products
+Allow: /blogs
+Allow: /pages
+Allow: /pages/llms-txt
+Allow: /pages/llms-full
+Allow: /llms.txt
+Allow: /assets/llms.txt
+Allow: /llms-full.txt
+Allow: /assets/llms-full.txt
+Allow: {{ 'llms.txt' | asset_url }}
+Allow: {{ 'llms-full.txt' | asset_url }}
+Disallow: /cart
+Disallow: /checkout
+Disallow: /checkouts/
+Disallow: /orders
+Disallow: /account
+Disallow: /*preview_theme_id*
+
+# AI Knowledge & Context Directives for LLMs & AI Search Engines
+# llms.txt: {{ shop.url }}/pages/llms-txt
+# llms-full.txt: {{ shop.url }}/pages/llms-full

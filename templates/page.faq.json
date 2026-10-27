@@ -1,0 +1,78 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 0
+      }
+    },
+    "faq_accordion": {
+      "type": "faq-section",
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship Indian wear across Germany and Europe?",
+            "answer": "<p>Yes! We ship all ready-to-ship collections directly from our Berlin fulfillment hub. Deliveries within Germany take <strong>1–3 business days</strong>. We also ship across all European Union countries and Switzerland within <strong>3–5 business days</strong> with zero customs duties.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I visit your showroom in Berlin to try outfits in person?",
+            "answer": "<p>Yes, absolutely! You can visit our retail store & showroom at <strong>The Playce Mall (Potsdamer Platz), Shop No. 55, Floor -1, Alte Potsdamer Str. 7, 10785 Berlin</strong>. We are open Monday to Saturday from 10:00 to 20:00.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "How does your 1-on-1 live video consultation work?",
+            "answer": "<p>If you live outside Berlin, you can book a free 1-on-1 video call via WhatsApp. Our stylists show you the fabric, hand embroidery details in natural lighting, and help you take precise measurements before placing an order.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "question": "How do I choose the correct size for Lehengas, Sarees, and Suits?",
+            "answer": "<p>Every product includes an accurate sizing chart in centimetres and inches. Sarees come with unstitched or semi-stitched blouse pieces, and many lehengas have adjustable drawstring waists. You can also send us your bust, waist, and height via WhatsApp to help you choose the best fitting size.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "question",
+          "settings": {
+            "question": "What is your return policy and how do I return items?",
+            "answer": "<p>We accept returns on unworn items with original tags intact within <strong>14 days of delivery</strong>.<br><br><strong>You have two return options:</strong><br>1. <strong>In-Person Returns:</strong> You can return or exchange items in person directly at our retail boutique at <strong>The Playce (Potsdamer Platz)</strong>, Shop No. 55, Floor -1, Alte Potsdamer Str. 7, 10785 Berlin.<br>2. <strong>Mailed / Shipped Returns:</strong> All postal return parcels must be shipped exclusively to our returns office address:<br><br><strong>Neha Aggarwal</strong><br>Dolgenseestr. 9A<br>10319 Berlin, Germany<br><br><em>Important Note: Postal package delivery to our Potsdamer Platz store is not possible; all mailed returns must be sent to Dolgenseestr. 9A.</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_5",
+        "faq_6"
+      ],
+      "settings": {
+        "eyebrow": "Frequently Asked Questions",
+        "title": "Everything You Need to Know",
+        "heading_size": "h1",
+        "subtitle": "Clear answers about European shipping, ready-to-wear collections, sizing, and showroom visits in Berlin.",
+        "open_first": true,
+        "color_scheme": "background-1",
+        "show_contact_card": true,
+        "contact_title": "Still have questions?",
+        "contact_text": "Can't find the answer you need? Connect directly with our Berlin styling team.",
+        "whatsapp_number": "4915175316266",
+        "whatsapp_message": "Hello Neha Couture, I have a question about an outfit / sizing.",
+        "contact_email": "info@nehacouture.de",
+        "padding_top": 40,
+        "padding_bottom": 56
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq_accordion"
+  ]
+}

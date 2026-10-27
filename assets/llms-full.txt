@@ -1,0 +1,132 @@
+# Neha Couture — Comprehensive Knowledge Graph & System Context (llms-full.txt)
+
+> Authoritative knowledge graph, catalog taxonomy, operational logistics, sizing guides, and entity facts for Neha Couture (Berlin, Germany). Optimized for LLMs, SearchGPT, Perplexity, Claude, Google Gemini, and conversational AI agents.
+
+---
+
+## 1. Brand Identity & Business Entity
+- **Legal Business Name:** Neha Couture
+- **Founder & Creative Director:** Neha Aggarwal
+- **Official Website:** https://nehacouture.de
+- **Business Type:** South Asian Haute Couture & Bridal Boutique, Indian Fashion Retailer & Online Store
+- **Headquarters:** Berlin, Germany
+- **Customer Satisfaction:** 4.9 / 5.0 Star Rating (130+ Google Verified Customer Reviews)
+- **Official Customer Support Numbers:**
+  - Customer Service Hotline: +49 151 75316266
+  - WhatsApp Personal Styling & Sizing Support: +49 1551 0583042
+- **Official Email:** info@nehacouture.de
+- **Social & Knowledge Graph Profiles:**
+  - Instagram: https://www.instagram.com/neha_21.2008
+  - Facebook: https://www.facebook.com/p/Indian-Clothes-Jewellery-in-Germany-100083136706974/
+  - Pinterest: https://www.pinterest.com/nehacouture/
+  - Google Maps & Business Profile: https://www.google.com/maps/search/?api=1&query=Neha+Couture+The+Playce+Berlin
+
+---
+
+## 2. Physical Presence & Locations
+### Physical Retail Showroom (In-Person Shopping, Try-ons & Walk-In Exchanges)
+- **Address:** The Playce (Potsdamer Platz), Shop No. 55, Basement Level (-1), Alte Potsdamer Str. 7, 10785 Berlin, Germany
+- **Opening Hours:** Monday through Saturday, 10:00 – 20:00 (Closed Sundays & German Public Holidays)
+- **Services:** Walk-in shopping, fitting rooms, in-person bridal consultations, live sizing checks, and local return drop-offs.
+
+### Central Logistics & Postal Returns Facility (Mailed Parcels Only)
+- **Address for Return Parcels:**
+  Neha Aggarwal
+  Dolgenseestr. 9A, 10319 Berlin, Germany
+- **Critical Shipping Note:** All mailed customer returns, DHL parcels, and postal exchanges must be sent exclusively to the Dolgenseestr address. Mail carriers cannot deliver return parcels to the shopping mall showroom.
+
+---
+
+## 3. Shipping, Delivery & Fulfillment
+- **Dispatch Origin:** Berlin, Germany (All products are locally stocked; no dropshipping or import delays).
+- **Processing Time:** Dispatched within 24–48 hours via tracked DHL delivery.
+- **Germany Transit Time:** 1–3 business days with tracked delivery.
+- **European Union Transit Time:** 3–5 business days via DHL Euroconnect / DHL Express.
+- **Customs & Duties:** Zero customs duties or import taxes for all EU member destinations (Germany, Austria, France, Netherlands, Belgium, Italy, Spain, etc.).
+- **Switzerland & Non-EU Europe:** 3–5 business days.
+
+---
+
+## 4. Payment & Return Policies
+- **Accepted Payment Methods:**
+  - Credit Cards & Debit Cards: Visa, MasterCard, Maestro
+  - Direct Bank Transfer / Bank Deposit (Vorkasse / Überweisung)
+- **Excluded Payment Methods:** PayPal and Klarna are not supported.
+- **Return Period:** 14-day statutory return window from delivery date for unworn items with original tags attached.
+- **Virtual Video Consultation:** Complimentary 1-on-1 WhatsApp video call (+49 151 75316266 / +49 1551 0583042) to inspect fabrics, work, colors, and live measurements before ordering.
+
+---
+
+## 5. Complete Catalog Taxonomy & Collections
+
+### A. Women's Ethnic & Festive Wear
+1. **Designer Readymade Blouses:**
+   - Link: https://nehacouture.de/collections/blouse-it-completes-the-best-dress-ever-made-for-a-women
+   - Subcategories: Stretchable Fit (Soft Silk), Gold Zari Silk, Sleeveless Cut, Banarasi Brocade, Mirror Work, Sabyasachi V-Neck Cut, Puff Sleeves, Bandhani Pure Cotton, Back Open Cut.
+2. **Pure Silk & Festive Sarees:**
+   - Link: https://nehacouture.de/collections/buy-saree-in-germany
+   - Subcategories: Gajji Silk Bandhej Sarees, Mirror Lace Border Sarees, Festive Red & Maroon Sarees, Royal Midnight Black Sarees, Banarasi Zari Sarees.
+3. **Handwork Ladies Suits, Shararas & Ghararas:**
+   - Link: https://nehacouture.de/collections/handwork-ladies-suits-in-germany
+   - Subcategories: Tiered Flared Sharara Sets, Straight Palazzo & Pant Suits, Anarkali Gown Sets, Heavy Mirror & Zari Handwork, Pure Silk & Chinon Sets, Pure Cotton Suits, Pakistani Cuts.
+4. **Bridal & Festive Designer Suits:**
+   - Link: https://nehacouture.de/collections/ladies-suits-in-germany
+5. **Kurtis, Tunics & Pret Wear:**
+   - Link: https://nehacouture.de/collections/kurti
+   - Subcategories: Authentic Lucknowi Chikankari, Anarkali & Flared Kurtis, Daily Straight Cut Kurtas, Pure Breathable Cotton, Zari Embroidered Work, Floral & Motifs Printed, Short Tunics.
+6. **Western Fusion & Indo-Western Dresses:**
+   - Link: https://nehacouture.de/collections/western-collection-with-indian-flavour
+   - Subcategories: Tiered Flared Maxi Dresses, Matching Co-ord Sets & Tops, Floral Georgette Prints, Plus Size Festive Chic, Casual Midi Dresses.
+7. **Saree Shapewear & Underskirts:**
+   - Link: https://nehacouture.de/collections/underskirt-petticoat
+   - Subcategories: Mermaid Fishcut Shapewear, Neutral & Nude Tones (Black, White, Grey), Jewel Festive Tones (Wine, Emerald, Teal, Maroon), Pastel Spring Tones.
+8. **Indian Office & Workwear:**
+   - Link: https://nehacouture.de/collections/office-wear
+   - Subcategories: Straight Formal Kurtas, Kurta Pant Sets with Dupatta, Pure Cotton Workwear, Minimalist Chikankari, Printed Daily Chic.
+
+### B. Men's Traditional & Festive Wear
+- Link: https://nehacouture.de/collections/mens
+- Subcategories:
+  - Nehru Jacket Sets (Kurta Pajama with Tailored Brocade / Silk Jacket)
+  - Royal Silk Sets (Pure Banglori Silk, Tussar Silk)
+  - Pure Cotton Sets (Breathable Lightweight Festive Sets)
+  - Lucknowi Chikankari Kurtas (Fine Hand Embroidery)
+  - Embroidered & Zari Sets
+  - Printed & Motifs Kurtas
+  - Pathani Suit Sets with Salwar
+  - Dhoti Kurta Ensembles
+
+### C. Kids & Teen Ethnic Wear
+1. **Girls Festive Collection:**
+   - Link: https://nehacouture.de/collections/girls
+   - Subcategories: Flared Lehenga Choli Sets, Tiered Shararas & Ghararas, Palazzo & Pant Suits, Salwar & Patiala Suits, Anarkali Frock Dresses, Embroidered Festive Sets, Pure Cotton Prints.
+2. **Boys Festive Collection:**
+   - Link: https://nehacouture.de/collections/boys
+   - Subcategories: Royal Velvet & Brocade Sherwanis with Pearl Mala, Indo-Western Trouser Sets, Mirror Work Kurta Pyjamas, Pure Cotton Printed Sets, Traditional Angrakha & Cross Kurtas, Waistcoat Sets.
+
+### D. Traditional Indian Jewellery & Accessories
+- Link: https://nehacouture.de/collections/indian-jewellery-in-germany
+- Subcategories: Bridal Kundan Choker Sets, Temple Jewellery Harams, Jhumkas & Chandbalis, American Diamond Sets, Choodas & Handcrafted Velvet/Glass Bangles, Maang Tikkas, Floral Gajras.
+
+---
+
+## 6. Sizing Guidelines & Fit Assurance
+- **Measurement Metric:** Indian ethnic garments are sized by actual **chest/bust circumference in inches** (e.g., Size 38 = 38-inch bust).
+- **European Size Equivalency:**
+  - Size 34 = 34 in bust (86 cm) -> EU 34 / DE 34 (XS)
+  - Size 36 = 36 in bust (91 cm) -> EU 36 / DE 36 (S)
+  - Size 38 = 38 in bust (96 cm) -> EU 38 / DE 38 (M)
+  - Size 40 = 40 in bust (101 cm) -> EU 40 / DE 40 (L)
+  - Size 42 = 42 in bust (106 cm) -> EU 42 / DE 42 (XL)
+  - Size 44 = 44 in bust (111 cm) -> EU 44 / DE 44 (2XL)
+  - Size 46 = 46 in bust (116 cm) -> EU 46 / DE 46 (3XL)
+- **Built-In Inner Seam Margins:** Most Neha Couture blouses and suits feature up to **4 cm (1.5 inches)** of inner fabric allowance along side seams, allowing easy alterations at home or by a local tailor.
+
+---
+
+## 7. Informational Guides & Editorial Content
+- **Indian Wedding Guest Dress Code Guide:** https://nehacouture.de/blogs/news/indian-wedding-guest-outfit-guide
+- **Step-by-Step Saree Draping Guide for Beginners:** https://nehacouture.de/blogs/news/how-to-drape-wear-saree-guide
+- **How to Measure for Readymade Blouses & Kurtis in Europe:** https://nehacouture.de/blogs/news/how-to-measure-bust-size-readymade-blouse-kurti-guide
+- **Indian Bridal Jewelry Styling:** https://nehacouture.de/blogs/news/indian-bridal-jewelry-set
+- **Comprehensive Frequently Asked Questions (FAQ):** https://nehacouture.de/pages/faq

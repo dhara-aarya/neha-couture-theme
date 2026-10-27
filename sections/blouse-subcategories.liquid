@@ -1,0 +1,462 @@
+{%- if collection.handle contains 'blouse' -%}
+  {%- style -%}
+    .blouse-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .blouse-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .blouse-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .blouse-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .blouse-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .blouse-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .blouse-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .blouse-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .blouse-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .blouse-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .blouse-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .blouse-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .blouse-subcat-card.is-active .blouse-subcat-circle,
+    .blouse-subcat-card:hover .blouse-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .blouse-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .blouse-subcat-card:hover .blouse-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .blouse-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 110px;
+      transition: color 0.2s ease;
+    }
+
+    .blouse-subcat-card.is-active .blouse-subcat-name,
+    .blouse-subcat-card:hover .blouse-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .blouse-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .blouse-subcat-card.is-active .blouse-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .blouse-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .blouse-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .blouse-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="blouse-subcats-section">
+    <div class="page-width">
+      <div class="blouse-subcats-header">
+        <h2 class="blouse-subcats-title">Shop Blouses By Style & Cut</h2>
+        <p class="blouse-subcats-subtitle">Select any category below to instantly view matching handcrafted blouses</p>
+      </div>
+
+      <div class="blouse-subcats-track" role="list" id="BlouseSubcatTrack">
+        <!-- 1. All Blouses -->
+        <button type="button" class="blouse-subcat-card is-active" data-style="all" role="listitem">
+          <div class="blouse-subcat-circle">
+            <img src="{{ 'subcat-blouse-all.jpg' | asset_url }}" alt="All Blouses" width="100" height="100" loading="lazy">
+          </div>
+          <span class="blouse-subcat-name">All Styles</span>
+          <span class="blouse-subcat-count">251 Styles</span>
+        </button>
+
+        <!-- 2. Stretchable & Elastic (20 items) -->
+        <button type="button" class="blouse-subcat-card" data-style="stretch" role="listitem">
+          <div class="blouse-subcat-circle">
+            <img src="{{ 'subcat-blouse-stretch.jpg' | asset_url }}" alt="Stretchable Soft Silk" width="100" height="100" loading="lazy">
+          </div>
+          <span class="blouse-subcat-name">Stretchable Fit</span>
+          <span class="blouse-subcat-count">20 Styles</span>
+        </button>
+
+        <!-- 3. Gold Zari & Embroidered (53 items) -->
+        <button type="button" class="blouse-subcat-card" data-style="zari" role="listitem">
+          <div class="blouse-subcat-circle">
+            <img src="{{ 'subcat-blouse-zari.jpg' | asset_url }}" alt="Gold Zari & Embroidered Silk" width="100" height="100" loading="lazy">
+          </div>
+          <span class="blouse-subcat-name">Gold Zari Silk</span>
+          <span class="blouse-subcat-count">53 Styles</span>
+        </button>
+
+        <!-- 4. Sleeveless Modern (33 items) -->
+        <button type="button" class="blouse-subcat-card" data-style="sleeveless" role="listitem">
+          <div class="blouse-subcat-circle">
+            <img src="{{ 'subcat-blouse-sleeveless.jpg' | asset_url }}" alt="Sleeveless & Modern Cuts" width="100" height="100" loading="lazy">
+          </div>
+          <span class="blouse-subcat-name">Sleeveless Cut</span>
+          <span class="blouse-subcat-count">33 Styles</span>
+        </button>
+
+        <!-- 5. Banarasi Brocade (14 items) -->
+        <button type="button" class="blouse-subcat-card" data-style="brocade" role="listitem">
+          <div class="blouse-subcat-circle">
+            <img src="{{ 'subcat-blouse-brocade.jpg' | asset_url }}" alt="Banarasi Brocade & Heritage" width="100" height="100" loading="lazy">
+          </div>
+          <span class="blouse-subcat-name">Banarasi Brocade</span>
+          <span class="blouse-subcat-count">14 Styles</span>
+        </button>
+
+        <!-- 6. Real Mirror Work (12 items) -->
+        <button type="button" class="blouse-subcat-card" data-style="mirror" role="listitem">
+          <div class="blouse-subcat-circle">
+            <img src="{{ 'subcat-blouse-mirror.jpg' | asset_url }}" alt="Real Mirror Work Blouses" width="100" height="100" loading="lazy">
+          </div>
+          <span class="blouse-subcat-name">Mirror Work</span>
+          <span class="blouse-subcat-count">12 Styles</span>
+        </button>
+
+        <!-- 7. Sabyasachi Inspired (7 items) -->
+        <button type="button" class="blouse-subcat-card" data-style="sabyasachi" role="listitem">
+          <div class="blouse-subcat-circle">
+            <img src="{{ 'subcat-blouse-sabyasachi.jpg' | asset_url }}" alt="Sabyasachi-Inspired Designer" width="100" height="100" loading="lazy">
+          </div>
+          <span class="blouse-subcat-name">Sabyasachi Cut</span>
+          <span class="blouse-subcat-count">7 Styles</span>
+        </button>
+
+        <!-- 8. Puff Sleeves & Textured (6 items) -->
+        <button type="button" class="blouse-subcat-card" data-style="puff" role="listitem">
+          <div class="blouse-subcat-circle">
+            <img src="{{ 'subcat-blouse-puff.jpg' | asset_url }}" alt="Puff Sleeves & Textured Blouse" width="100" height="100" loading="lazy">
+          </div>
+          <span class="blouse-subcat-name">Puff Sleeves</span>
+          <span class="blouse-subcat-count">6 Styles</span>
+        </button>
+
+        <!-- 9. Bandhani & Cotton (6 items) -->
+        <button type="button" class="blouse-subcat-card" data-style="bandhani" role="listitem">
+          <div class="blouse-subcat-circle">
+            <img src="{{ 'subcat-blouse-bandhani.jpg' | asset_url }}" alt="Bandhani & Ajrakh Pure Cotton" width="100" height="100" loading="lazy">
+          </div>
+          <span class="blouse-subcat-name">Bandhani Cotton</span>
+          <span class="blouse-subcat-count">6 Styles</span>
+        </button>
+
+        <!-- 10. Back Open Cut (17 items) -->
+        <button type="button" class="blouse-subcat-card" data-style="backopen" role="listitem">
+          <div class="blouse-subcat-circle">
+            <img src="{{ 'subcat-blouse-mulberry.jpg' | asset_url }}" alt="Back Open Designer Blouses" width="100" height="100" loading="lazy">
+          </div>
+          <span class="blouse-subcat-name">Back Open Cut</span>
+          <span class="blouse-subcat-count">17 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="BlouseFilterStatusBar" class="blouse-filter-status-bar">
+        <span id="BlouseFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="BlouseFilterResetBtn" class="blouse-reset-btn">✕ Clear Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let cachedBlouses = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+
+      // Pre-fetch all 251 blouses on page load
+      fetch("{{ 'blouse-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedBlouses = data;
+        })
+        .catch(err => console.error('Error preloading blouse catalog:', err));
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('BlouseSubcatTrack');
+        const statusBar = document.getElementById('BlouseFilterStatusBar');
+        const statusText = document.getElementById('BlouseFilterStatusText');
+        const resetBtn = document.getElementById('BlouseFilterResetBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.blouse-subcat-card');
+
+        function getTargetGrid() {
+          return document.querySelector('#product-grid ul.product-grid') 
+            || document.getElementById('dynamic-blouse-grid')
+            || document.querySelector('ul#product-grid');
+        }
+
+        function captureOriginal() {
+          if (isOriginalCaptured) return;
+          const grid = getTargetGrid();
+          if (grid && grid.innerHTML.trim().length > 0) {
+            originalGridHTML = grid.innerHTML;
+            isOriginalCaptured = true;
+          }
+        }
+
+        function updateCountDisplays(cnt) {
+          const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+          countEls.forEach(el => {
+            el.textContent = `${cnt} products`;
+          });
+        }
+
+        function renderFilteredProducts(items, styleName) {
+          const grid = getTargetGrid();
+          if (!grid) return;
+
+          captureOriginal();
+
+          // Hide pagination & empty notices while filtering
+          const pagination = document.querySelector('.pagination-wrapper, .pagination');
+          if (pagination) pagination.style.display = 'none';
+
+          const emptyNotice = document.querySelector('.collection--empty');
+          if (emptyNotice) emptyNotice.style.display = 'none';
+
+          updateCountDisplays(items.length);
+
+          if (statusBar) {
+            statusBar.style.display = 'flex';
+            statusText.innerHTML = `Filtered: <strong>${styleName}</strong> (${items.length} styles found)`;
+          }
+
+          grid.innerHTML = items.map(p => {
+            const img = p.image || '';
+            const price = p.price || '0.00';
+            return `
+              <li class="grid__item">
+                <div class="card-wrapper product-card-wrapper underline-links-hover">
+                  <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                    <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                      <div class="card__media">
+                        <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                          <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                      <div class="card__information">
+                        <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                          <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                            ${p.title}
+                          </a>
+                        </h3>
+                        <div class="card-information">
+                          <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                            €${parseFloat(price).toFixed(2)}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            `;
+          }).join('');
+
+          // Scroll to product grid smoothly
+          grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function restoreOriginal() {
+          const grid = getTargetGrid();
+          if (grid && originalGridHTML) {
+            grid.innerHTML = originalGridHTML;
+          }
+          const pagination = document.querySelector('.pagination-wrapper, .pagination');
+          if (pagination) pagination.style.display = '';
+
+          updateCountDisplays(251);
+
+          if (statusBar) statusBar.style.display = 'none';
+
+          cards.forEach(c => {
+            if (c.getAttribute('data-style') === 'all') c.classList.add('is-active');
+            else c.classList.remove('is-active');
+          });
+        }
+
+        function handleFilterClick(styleKey, styleName) {
+          cards.forEach(c => {
+            if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+            else c.classList.remove('is-active');
+          });
+
+          if (styleKey === 'all') {
+            restoreOriginal();
+            return;
+          }
+
+          if (!cachedBlouses) {
+            fetch("{{ 'blouse-products.json' | asset_url }}")
+              .then(r => r.json())
+              .then(data => {
+                cachedBlouses = data;
+                const matches = cachedBlouses.filter(b => b.styles && b.styles.includes(styleKey));
+                renderFilteredProducts(matches, styleName);
+              });
+          } else {
+            const matches = cachedBlouses.filter(b => b.styles && b.styles.includes(styleKey));
+            renderFilteredProducts(matches, styleName);
+          }
+        }
+
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.blouse-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+
+        // Capture initial DOM after page settles
+        setTimeout(captureOriginal, 1000);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Blouse Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Blouse Subcategories"
+    }
+  ]
+}
+{% endschema %}

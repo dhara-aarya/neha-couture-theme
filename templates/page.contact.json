@@ -1,0 +1,57 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection_list_MVxX8t": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_kmf37F": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "boys"
+          }
+        },
+        "featured_collection_Dm8QrL": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "girls"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_kmf37F",
+        "featured_collection_Dm8QrL"
+      ],
+      "settings": {
+        "title": "Eid dresses for boys and girls| 1 day free delivery in germany",
+        "heading_size": "h2",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "collection_list_MVxX8t",
+    "main"
+  ]
+}

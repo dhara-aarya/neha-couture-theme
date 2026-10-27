@@ -1,0 +1,12 @@
+{%- comment -%}
+  Strips programmatic geo-spam suffixes (in Germany, in Berlin, etc.) from SKU titles
+  Usage:
+    {%- render 'clean-title', title: product.title -%}
+{%- endcomment -%}
+{%- assign raw_title = title | default: '' -%}
+{%- assign clean_title = raw_title -%}
+{%- assign geo_tokens = 'with in Germany||with in Leipzig||with in Dresden||with in Bremen||with in Berlin||with in Bonn||IN GERMANY||in Germany||In Germany||in germany||IN BERLIN||in Berlin||In Berlin||in berlin||IN ESSEN||in Essen||In Essen||in essen||IN MUNICH||in Munich||In Munich||in munich||IN MÜNCHEN||in München||In München||in münchen||IN FRANKFURT||in Frankfurt||In Frankfurt||in frankfurt||IN HAMBURG||in Hamburg||In Hamburg||in hamburg||IN COLOGNE||in Cologne||In Cologne||in cologne||IN KÖLN||in Köln||In Köln||in köln||IN STUTTGART||in Stuttgart||In Stuttgart||in stuttgart||IN DUSSELDORF||in Dusseldorf||In Dusseldorf||in dusseldorf||IN DÜSSELDORF||in Düsseldorf||In Düsseldorf||in düsseldorf||IN DORTMUND||in Dortmund||In Dortmund||in dortmund||IN LEIPZIG||in Leipzig||In Leipzig||in leipzig||IN BREMEN||in Bremen||In Bremen||in bremen||IN DRESDEN||in Dresden||In Dresden||in dresden||IN HANNOVER||in Hannover||In Hannover||in hannover||IN NUREMBERG||in Nuremberg||In Nuremberg||in nuremberg||IN DUISBURG||in Duisburg||In Duisburg||in duisburg||IN BOCHUM||in Bochum||In Bochum||in bochum||IN WUPPERTAL||in Wuppertal||In Wuppertal||in wuppertal||IN BONN||in Bonn||In Bonn||in bonn||IN EUROPE||in Europe||In Europe||in europe||IN DEUTSCHLAND||in Deutschland||In Deutschland||in deutschland' | split: '||' -%}
+{%- for token in geo_tokens -%}
+  {%- assign clean_title = clean_title | replace: token, '' -%}
+{%- endfor -%}
+{{- clean_title | replace: '  ', ' ' | strip -}}

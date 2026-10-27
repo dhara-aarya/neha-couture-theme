@@ -1,0 +1,452 @@
+{%- if collection.handle contains 'western' or collection.handle == 'skirts' -%}
+  {%- style -%}
+    .western-subcats-section {
+      padding: 2.4rem 0 3.2rem;
+      background: #faf7f2;
+      border-bottom: 1px solid #ebd9c8;
+    }
+
+    .western-subcats-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .western-subcats-title {
+      font-family: var(--font-heading-family);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #103948;
+      margin: 0 0 0.5rem;
+    }
+
+    .western-subcats-subtitle {
+      font-size: 1.4rem;
+      color: #55666f;
+      margin: 0;
+    }
+
+    .western-subcats-track {
+      display: flex;
+      gap: 1.6rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.8rem 1rem 1.6rem;
+      justify-content: flex-start;
+    }
+
+    .western-subcats-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (min-width: 990px) {
+      .western-subcats-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+    }
+
+    .western-subcat-card {
+      flex: 0 0 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform 0.25s ease;
+      outline: none;
+    }
+
+    @media screen and (min-width: 750px) {
+      .western-subcat-card {
+        flex: 0 0 120px;
+      }
+    }
+
+    .western-subcat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .western-subcat-circle {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(103, 49, 71, 0.12);
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+
+    @media screen and (min-width: 750px) {
+      .western-subcat-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .western-subcat-card.is-active .western-subcat-circle,
+    .western-subcat-card:hover .western-subcat-circle {
+      border-color: #673147;
+      box-shadow: 0 6px 18px rgba(103, 49, 71, 0.3);
+      transform: scale(1.05);
+    }
+
+    .western-subcat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    .western-subcat-card:hover .western-subcat-circle img {
+      transform: scale(1.08);
+    }
+
+    .western-subcat-name {
+      margin-top: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #103948;
+      line-height: 1.25;
+      max-width: 110px;
+      transition: color 0.2s ease;
+    }
+
+    .western-subcat-card.is-active .western-subcat-name,
+    .western-subcat-card:hover .western-subcat-name {
+      color: #673147;
+      font-weight: 700;
+    }
+
+    .western-subcat-count {
+      font-size: 1.15rem;
+      color: #7b8b93;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .western-subcat-card.is-active .western-subcat-count {
+      color: #673147;
+      font-weight: 600;
+    }
+
+    .western-filter-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 30px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.4rem auto 0;
+      max-width: 540px;
+      font-size: 1.35rem;
+      color: #103948;
+      box-shadow: 0 4px 14px rgba(103, 49, 71, 0.08);
+    }
+
+    .western-reset-btn {
+      background: #673147;
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .western-reset-btn:hover {
+      background: #923e61;
+    }
+  {%- endstyle -%}
+
+  <div class="western-subcats-section">
+    <div class="page-width">
+      <div class="western-subcats-header">
+        <h2 class="western-subcats-title">Shop Western Fusion & Indo-Western</h2>
+        <p class="western-subcats-subtitle">Select any category below to instantly view tiered maxi dresses, co-ord sets & skirts</p>
+      </div>
+
+      <div class="western-subcats-track" role="list" id="WesternSubcatTrack">
+        <!-- 1. All Styles (92 items) -->
+        <button type="button" class="western-subcat-card is-active" data-style="all" role="listitem">
+          <div class="western-subcat-circle">
+            <img src="{{ 'subcat-western-all.jpg' | asset_url }}" alt="All Western Fusion" width="100" height="100" loading="lazy">
+          </div>
+          <span class="western-subcat-name">All Styles</span>
+          <span class="western-subcat-count">92 Styles</span>
+        </button>
+
+        <!-- 2. Tiered Maxi Dresses (41 items) -->
+        <button type="button" class="western-subcat-card" data-style="maxi" role="listitem">
+          <div class="western-subcat-circle">
+            <img src="{{ 'subcat-western-maxi.jpg' | asset_url }}" alt="Tiered Maxi Dresses" width="100" height="100" loading="lazy">
+          </div>
+          <span class="western-subcat-name">Tiered Maxi</span>
+          <span class="western-subcat-count">41 Styles</span>
+        </button>
+
+        <!-- 3. Co-ord Sets & Tops (23 items) -->
+        <button type="button" class="western-subcat-card" data-style="coord" role="listitem">
+          <div class="western-subcat-circle">
+            <img src="{{ 'subcat-western-coord.jpg' | asset_url }}" alt="Co-ord Sets & Tops" width="100" height="100" loading="lazy">
+          </div>
+          <span class="western-subcat-name">Co-ord Sets</span>
+          <span class="western-subcat-count">23 Styles</span>
+        </button>
+
+        <!-- 4. Floral & Printed (42 items) -->
+        <button type="button" class="western-subcat-card" data-style="printed" role="listitem">
+          <div class="western-subcat-circle">
+            <img src="{{ 'subcat-western-printed.jpg' | asset_url }}" alt="Floral & Printed" width="100" height="100" loading="lazy">
+          </div>
+          <span class="western-subcat-name">Floral & Printed</span>
+          <span class="western-subcat-count">42 Styles</span>
+        </button>
+
+        <!-- 5. Plus Size Chic (13 items) -->
+        <button type="button" class="western-subcat-card" data-style="plus-size" role="listitem">
+          <div class="western-subcat-circle">
+            <img src="{{ 'subcat-western-plus.jpg' | asset_url }}" alt="Plus Size Dresses" width="100" height="100" loading="lazy">
+          </div>
+          <span class="western-subcat-name">Plus Size Chic</span>
+          <span class="western-subcat-count">13 Styles</span>
+        </button>
+
+        <!-- 6. Casual Midi Dresses (41 items) -->
+        <button type="button" class="western-subcat-card" data-style="casual" role="listitem">
+          <div class="western-subcat-circle">
+            <img src="{{ 'subcat-western-casual.jpg' | asset_url }}" alt="Casual Midi Dresses" width="100" height="100" loading="lazy">
+          </div>
+          <span class="western-subcat-name">Casual Dresses</span>
+          <span class="western-subcat-count">41 Styles</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Feedback Bar -->
+      <div id="WesternFilterStatusBar" class="western-filter-status-bar">
+        <span id="WesternFilterStatusText">Showing: <strong>All Styles</strong></span>
+        <button type="button" id="WesternFilterResetBtn" class="western-reset-btn">✕ Clear Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let cachedWestern = null;
+      let originalGridHTML = null;
+      let isOriginalCaptured = false;
+
+      fetch("{{ 'western-products.json' | asset_url }}")
+        .then(r => r.json())
+        .then(data => {
+          cachedWestern = data;
+          checkInitialURL();
+        })
+        .catch(err => console.error('Error preloading western catalog:', err));
+
+      function getTargetGrid() {
+        const el = document.getElementById('product-grid');
+        if (el && el.tagName === 'UL') return el;
+        return document.querySelector('ul#product-grid') 
+          || document.querySelector('#product-grid ul.product-grid')
+          || document.querySelector('#ProductGridContainer ul.product-grid')
+          || document.querySelector('ul.product-grid')
+          || document.getElementById('product-grid');
+      }
+
+      function captureOriginal() {
+        if (isOriginalCaptured) return;
+        const grid = getTargetGrid();
+        if (grid && grid.innerHTML.trim().length > 0) {
+          originalGridHTML = grid.innerHTML;
+          isOriginalCaptured = true;
+        }
+      }
+
+      function updateCountDisplays(cnt) {
+        const countEls = document.querySelectorAll('#ProductCount, #ProductCountDesktop, .product-count__text span');
+        countEls.forEach(el => {
+          el.textContent = `${cnt} products`;
+        });
+      }
+
+      function renderFilteredProducts(items, styleName) {
+        const grid = getTargetGrid();
+        if (!grid) return;
+
+        captureOriginal();
+
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = 'none';
+
+        const emptyNotice = document.querySelector('.collection--empty');
+        if (emptyNotice) emptyNotice.style.display = 'none';
+
+        updateCountDisplays(items.length);
+
+        const statusBar = document.getElementById('WesternFilterStatusBar');
+        const statusText = document.getElementById('WesternFilterStatusText');
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Filtered: <strong>${styleName}</strong> (${items.length} styles found)`;
+        }
+
+        grid.innerHTML = items.map(p => {
+          const img = p.image || '';
+          const price = p.price || '0.00';
+          return `
+            <li class="grid__item">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 133.33%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 133.33%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect" style="aspect-ratio: 3/4;">
+                        <img src="${img}" alt="${p.title}" loading="lazy" class="motion-reduce" style="width:100%;height:100%;object-fit:cover;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content" style="padding-top: 1.2rem; text-align: center;">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" style="font-size: 1.45rem; line-height: 1.35; margin-bottom: 0.6rem;">
+                        <a href="/products/${p.handle}" class="full-unstyled-link" style="color: #103948; text-decoration: none; font-weight: 600;">
+                          ${p.title}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="price-item price-item--regular" style="font-weight: 700; color: #673147; font-size: 1.5rem;">
+                          €${parseFloat(price).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join('');
+
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function restoreOriginal() {
+        const grid = getTargetGrid();
+        if (grid && originalGridHTML) {
+          grid.innerHTML = originalGridHTML;
+        }
+        const pagination = document.querySelector('.pagination-wrapper, .pagination');
+        if (pagination) pagination.style.display = '';
+
+        updateCountDisplays(92);
+
+        const statusBar = document.getElementById('WesternFilterStatusBar');
+        if (statusBar) statusBar.style.display = 'none';
+
+        const cards = document.querySelectorAll('.western-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === 'all') c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      function handleFilterClick(styleKey, styleName) {
+        const cards = document.querySelectorAll('.western-subcat-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-style') === styleKey) c.classList.add('is-active');
+          else c.classList.remove('is-active');
+        });
+
+        if (history.replaceState) {
+          const newUrl = styleKey === 'all' 
+            ? window.location.pathname 
+            : window.location.pathname + '?style=' + encodeURIComponent(styleKey);
+          history.replaceState(null, '', newUrl);
+        }
+
+        if (styleKey === 'all') {
+          restoreOriginal();
+          return;
+        }
+
+        if (!cachedWestern) {
+          fetch("{{ 'western-products.json' | asset_url }}")
+            .then(r => r.json())
+            .then(data => {
+              cachedWestern = data;
+              const matches = cachedWestern.filter(b => b.styles && b.styles.includes(styleKey));
+              renderFilteredProducts(matches, styleName);
+            });
+        } else {
+          const matches = cachedWestern.filter(b => b.styles && b.styles.includes(styleKey));
+          renderFilteredProducts(matches, styleName);
+        }
+      }
+
+      function checkInitialURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style') || window.location.hash.replace('#', '');
+        if (style && style !== 'all') {
+          const targetCard = document.querySelector(`.western-subcat-card[data-style="${style}"]`);
+          if (targetCard) {
+            const name = targetCard.querySelector('.western-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('WesternSubcatTrack');
+        const resetBtn = document.getElementById('WesternFilterResetBtn');
+        if (!track) return;
+
+        const cards = track.querySelectorAll('.western-subcat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const style = this.getAttribute('data-style');
+            const name = this.querySelector('.western-subcat-name').textContent.trim();
+            handleFilterClick(style, name);
+          });
+        });
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            restoreOriginal();
+          });
+        }
+
+        setTimeout(captureOriginal, 1000);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Western Subcategories",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Western Subcategories"
+    }
+  ]
+}
+{% endschema %}
