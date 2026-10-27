@@ -1,0 +1,19 @@
+catalog.sh
+  s_936222cc4c0323::t_d7380f0a80a4c2 1-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "c1d9623f992048684287149f12d9d1083e26e86f",
+  "prompts": {},
+  "sessions": {
+    "s_936222cc4c0323": {
+      "agent_id": {
+        "tool": "gemini",
+        "id": "a3ae3563-6507-4c0c-bc21-b3d70bd9aa1c",
+        "model": "gemini-3.8-flash"
+      },
+      "human_author": "Saurabh Goel <saurabhhotstar12@gmail.com>"
+    }
+  }
+}
